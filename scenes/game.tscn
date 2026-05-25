@@ -1,0 +1,1013 @@
+[gd_scene format=4 uid="uid://caq5ijr5geoe7"]
+
+[ext_resource type="Texture2D" uid="uid://bt77eidvhb0ii" path="res://assets/sprites/tilesets/TS_grassBrick-32x32.png" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://oc0dkklawq5y" path="res://scenes/grid_cell.tscn" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://peyfk6sgllqu" path="res://scenes/brawler_blue.tscn" id="3_iywne"]
+[ext_resource type="Texture2D" uid="uid://d04wyb7jkprij" path="res://assets/sprites/ui/header2.png" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://nopuwc8dbyvd" path="res://assets/sprites/ui/panel4.png" id="4_lbhrr"]
+[ext_resource type="FontFile" uid="uid://dbo5gvh0p6oil" path="res://assets/sprites/alagard.ttf" id="4_p57ef"]
+[ext_resource type="Script" uid="uid://p6423cwds4dw" path="res://scripts/turn_order.gd" id="5_gee14"]
+[ext_resource type="Texture2D" uid="uid://daylhmw7gyq1x" path="res://assets/sprites/chars/brawlerBlue/Faceset.png" id="5_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://bxgnpb8oxqmdb" path="res://assets/sprites/ui/buttonexit.png" id="8_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://be0tq4i3oce1p" path="res://assets/sprites/ui/buttondragon1.png" id="8_vtaks"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
+texture = ExtResource("1_uwrxv")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+0:5/0 = 0
+0:6/0 = 0
+0:7/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+1:2/0 = 0
+1:3/0 = 0
+1:4/0 = 0
+1:5/0 = 0
+1:6/0 = 0
+1:7/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+2:3/0 = 0
+2:4/0 = 0
+2:5/0 = 0
+2:6/0 = 0
+2:7/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+3:3/0 = 0
+3:4/0 = 0
+3:5/0 = 0
+3:6/0 = 0
+3:7/0 = 0
+4:0/0 = 0
+4:1/0 = 0
+4:2/0 = 0
+4:3/0 = 0
+4:4/0 = 0
+4:5/0 = 0
+4:6/0 = 0
+4:7/0 = 0
+5:0/0 = 0
+5:1/0 = 0
+5:2/0 = 0
+5:3/0 = 0
+5:4/0 = 0
+5:5/0 = 0
+5:6/0 = 0
+5:7/0 = 0
+6:0/0 = 0
+6:1/0 = 0
+6:2/0 = 0
+6:3/0 = 0
+6:4/0 = 0
+6:5/0 = 0
+6:6/0 = 0
+6:7/0 = 0
+7:0/0 = 0
+7:1/0 = 0
+7:2/0 = 0
+7:3/0 = 0
+7:4/0 = 0
+7:5/0 = 0
+7:6/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lnu2h"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_yqjtg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5sy4"]
+font = ExtResource("4_p57ef")
+
+[sub_resource type="LabelSettings" id="LabelSettings_p57ef"]
+font = ExtResource("4_p57ef")
+font_size = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
+atlas = ExtResource("8_vtaks")
+region = Rect2(0, 0, 100, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir15t"]
+atlas = ExtResource("8_vtaks")
+region = Rect2(200, 0, 100, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca42v"]
+atlas = ExtResource("8_vtaks")
+region = Rect2(100, 0, 100, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rysoc"]
+atlas = ExtResource("8_vtaks")
+region = Rect2(300, 0, 100, 35)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vtaks"]
+font = ExtResource("4_p57ef")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvpfn"]
+font = ExtResource("4_p57ef")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dinhu"]
+font = ExtResource("4_p57ef")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtaks"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvuet"]
+font = ExtResource("4_p57ef")
+
+[node name="Game" type="Node2D" unique_id=1873102440]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1685079538]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1797703118]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAD6//z/AAADAAUAAAD6//3/AAACAAQAAAD6//7/AAABAAUAAAD6////AAACAAUAAAD6/wAAAAAAAAUAAAD7//z/AAACAAcAAAD7//3/AAADAAUAAAD7//7/AAAAAAcAAAD7////AAAGAAcAAAD7/wAAAAAFAAYAAAD8//z/AAAAAAcAAAD8//3/AAAFAAYAAAD8//7/AAAEAAYAAAD8////AAAGAAQAAAD8/wAAAAACAAQAAAD9//z/AAAEAAcAAAD9//3/AAABAAcAAAD9//7/AAAEAAYAAAD9////AAAEAAQAAAD9/wAAAAAGAAYAAAD+//z/AAAEAAYAAAD+//3/AAAEAAcAAAD+//7/AAABAAYAAAD+////AAAGAAUAAAD+/wAAAAAGAAQAAAD///z/AAAGAAUAAAD///3/AAACAAYAAAD///7/AAAFAAcAAAD/////AAAFAAYAAAD//wAAAAAEAAcAAAAAAPz/AAACAAQAAAAAAP3/AAAGAAQAAAAAAP7/AAAGAAQAAAAAAP//AAAAAAUAAAAAAAAAAAACAAcAAAABAPz/AAAAAAUAAAABAP3/AAAFAAQAAAABAP7/AAAEAAUAAAABAP//AAABAAYAAAABAAAAAAAGAAQAAAACAPz/AAAAAAYAAAACAP3/AAABAAcAAAACAP7/AAAAAAcAAAACAP//AAAHAAYAAAACAAAAAAAAAAQAAAADAPz/AAABAAQAAAADAP3/AAAFAAcAAAADAP7/AAAEAAYAAAADAP//AAAGAAUAAAADAAAAAAAAAAQAAAAEAPz/AAADAAcAAAAEAP3/AAACAAcAAAAEAP7/AAAFAAQAAAAEAP//AAACAAQAAAAEAAAAAAAFAAYAAAAFAPz/AAAAAAUAAAAFAP3/AAAEAAUAAAAFAP7/AAADAAQAAAAFAP//AAAAAAcAAAAFAAAAAAACAAcAAAA=")
+tile_set = SubResource("TileSet_lnu2h")
+
+[node name="BrawlerBlue" parent="." unique_id=1301531628 instance=ExtResource("3_iywne")]
+z_index = 5
+position = Vector2(-224, -160)
+scale = Vector2(4, 4)
+
+[node name="UI" type="Control" parent="." unique_id=2064261322]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HUD" type="MarginContainer" parent="UI" unique_id=1752919572]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="baseContainer" type="BoxContainer" parent="UI/HUD" unique_id=1880248608]
+layout_mode = 2
+alignment = 2
+vertical = true
+
+[node name="topContainer" type="HBoxContainer" parent="UI/HUD/baseContainer" unique_id=2111873916]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TurnDisplay" type="NinePatchRect" parent="UI/HUD/baseContainer/topContainer" unique_id=96143438]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+texture = ExtResource("4_lbhrr")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay" unique_id=1212291463]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="conent" type="VBoxContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer" unique_id=1567907572]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent" unique_id=1484269728]
+layout_mode = 2
+text = "Turn Order"
+label_settings = SubResource("LabelSettings_u5sy4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent" unique_id=463755411]
+layout_mode = 2
+
+[node name="facesetContainer" type="MarginContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent" unique_id=1873858670]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="turnOrder" type="ScrollContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer" unique_id=961016027]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+script = ExtResource("5_gee14")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder" unique_id=1545394175]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=1183734593]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=1076267359]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=562818190]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=1178969229]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=588487726]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextureRect6" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=365395996]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Banner" type="NinePatchRect" parent="UI/HUD/baseContainer/topContainer" unique_id=32996742]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+texture = ExtResource("3_lnu2h")
+patch_margin_left = 19
+patch_margin_top = 8
+patch_margin_right = 19
+patch_margin_bottom = 8
+
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/topContainer/Banner" unique_id=876517995]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="UI/HUD/baseContainer/topContainer/Banner/innerContainer" unique_id=178927339]
+layout_mode = 2
+text = "Contextual information."
+label_settings = SubResource("LabelSettings_p57ef")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Log" type="NinePatchRect" parent="UI/HUD/baseContainer/topContainer" unique_id=1721341094]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+texture = ExtResource("4_lbhrr")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/topContainer/Log" unique_id=1165370457]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="content" type="VBoxContainer" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer" unique_id=1799249332]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer/content" unique_id=390113014]
+layout_mode = 2
+text = "Log"
+label_settings = SubResource("LabelSettings_u5sy4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer/content" unique_id=1133712981]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer/content" unique_id=767252119]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer/content/ScrollContainer" unique_id=610110922]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Mage moved 2 spaces.
+Mage attempting to attack Brawler...
+[DEX: 4, 4d6] Mage rolled a 5!
+[DEX: 5, 5d3] Brawler rolled a 6!
+Mage failed to attack Brawler.
+Brawler moved 3 spaces.
+Brawler attempting to attack Mage...
+[DEX: 5, 5d6] Brawler rolled a 12!
+[DEX: 4, 4d3] Mage rolled a 10!
+Brawler's attack was successful. Calculating damage...
+[PWR: 7, 7d3] Brawler rolled a 16!
+[DEF: 3] Mage reduced incoming damage by 3.
+Mage recieved 13pts of damage.
+Mage was defeated!"
+scroll_following = true
+
+[node name="bottomContainer" type="NinePatchRect" parent="UI/HUD/baseContainer" unique_id=1788899059]
+custom_minimum_size = Vector2(0, 224)
+layout_mode = 2
+texture = ExtResource("4_lbhrr")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer" unique_id=1059040756]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer" unique_id=554630315]
+layout_mode = 2
+
+[node name="activeCharFaceset" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1641721098]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharFaceset" unique_id=1663636505]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 2
+
+[node name="activeCharStats" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1023672761]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats" unique_id=1335031633]
+layout_mode = 2
+
+[node name="name" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=1635533084]
+layout_mode = 2
+size_flags_vertical = 3
+text = "<name>"
+
+[node name="hp" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=1124789103]
+layout_mode = 2
+size_flags_vertical = 3
+text = "<HP>"
+
+[node name="ap" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=882714391]
+layout_mode = 2
+size_flags_vertical = 3
+text = "<AP>"
+
+[node name="pwr" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=2080349014]
+layout_mode = 2
+size_flags_vertical = 3
+text = "PWR:"
+
+[node name="def" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=780395024]
+layout_mode = 2
+size_flags_vertical = 3
+text = "DEF:"
+
+[node name="dex" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=1034699132]
+layout_mode = 2
+size_flags_vertical = 3
+text = "DEX:"
+
+[node name="spd" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=455430528]
+layout_mode = 2
+size_flags_vertical = 3
+text = "SPD:"
+
+[node name="actionMenu" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1195125436]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu" unique_id=962366240]
+layout_mode = 2
+
+[node name="moveButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=273896661]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_trtic")
+texture_pressed = SubResource("AtlasTexture_ir15t")
+texture_hover = SubResource("AtlasTexture_ca42v")
+texture_disabled = SubResource("AtlasTexture_rysoc")
+texture_focused = SubResource("AtlasTexture_ca42v")
+stretch_mode = 0
+
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/moveButton" unique_id=1913707968]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/moveButton/innerContainer" unique_id=674183728]
+layout_mode = 2
+text = "Move"
+label_settings = SubResource("LabelSettings_vtaks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="attackButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=84745252]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_trtic")
+texture_pressed = SubResource("AtlasTexture_ir15t")
+texture_hover = SubResource("AtlasTexture_ca42v")
+texture_disabled = SubResource("AtlasTexture_rysoc")
+texture_focused = SubResource("AtlasTexture_ca42v")
+stretch_mode = 0
+
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/attackButton" unique_id=1007359482]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/attackButton/innerContainer" unique_id=171046709]
+layout_mode = 2
+text = "Attack"
+label_settings = SubResource("LabelSettings_vtaks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill1Button" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=793698351]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_trtic")
+texture_pressed = SubResource("AtlasTexture_ir15t")
+texture_hover = SubResource("AtlasTexture_ca42v")
+texture_disabled = SubResource("AtlasTexture_rysoc")
+texture_focused = SubResource("AtlasTexture_ca42v")
+stretch_mode = 0
+
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/skill1Button" unique_id=292623773]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -7.5
+offset_right = 22.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/skill1Button/innerContainer" unique_id=1648169575]
+layout_mode = 2
+text = "Skills"
+label_settings = SubResource("LabelSettings_vtaks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="delayButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=75603471]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_trtic")
+texture_pressed = SubResource("AtlasTexture_ir15t")
+texture_hover = SubResource("AtlasTexture_ca42v")
+texture_disabled = SubResource("AtlasTexture_rysoc")
+texture_focused = SubResource("AtlasTexture_ca42v")
+stretch_mode = 0
+
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/delayButton" unique_id=550752441]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/delayButton/innerContainer" unique_id=1670104047]
+layout_mode = 2
+text = "Delay"
+label_settings = SubResource("LabelSettings_vtaks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="endButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=549057678]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_trtic")
+texture_pressed = SubResource("AtlasTexture_ir15t")
+texture_hover = SubResource("AtlasTexture_ca42v")
+texture_disabled = SubResource("AtlasTexture_rysoc")
+texture_focused = SubResource("AtlasTexture_ca42v")
+stretch_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/endButton" unique_id=1197383736]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = -7.5
+offset_right = 19.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/endButton/MarginContainer" unique_id=1132877895]
+layout_mode = 2
+text = "End"
+label_settings = SubResource("LabelSettings_vtaks")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="executionMenu" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=268527893]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="innerContainerBox" type="VBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu" unique_id=889225597]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox" unique_id=2086471285]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="chance" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox/HBoxContainer" unique_id=2125399092]
+layout_mode = 2
+text = "<chance>"
+label_settings = SubResource("LabelSettings_kvpfn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dmg" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox/HBoxContainer" unique_id=384603367]
+layout_mode = 2
+text = "<crit>"
+label_settings = SubResource("LabelSettings_dinhu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox" unique_id=1309921858]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = SubResource("AtlasTexture_vtaks")
+texture_pressed = SubResource("AtlasTexture_kvpfn")
+texture_hover = SubResource("AtlasTexture_dinhu")
+texture_disabled = SubResource("AtlasTexture_kvuet")
+texture_focused = SubResource("AtlasTexture_dinhu")
+stretch_mode = 5
+
+[node name="result" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox" unique_id=1171707222]
+layout_mode = 2
+text = "<result>"
+label_settings = SubResource("LabelSettings_kvuet")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="targetCharStats" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1567235532]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats" unique_id=1397656167]
+layout_mode = 2
+
+[node name="name" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=1069326688]
+layout_mode = 2
+size_flags_vertical = 3
+text = "<name>"
+horizontal_alignment = 2
+
+[node name="hp" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=41496277]
+layout_mode = 2
+size_flags_vertical = 3
+text = "<HP>"
+horizontal_alignment = 2
+
+[node name="ap" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=1554050199]
+layout_mode = 2
+size_flags_vertical = 3
+text = "<AP>"
+horizontal_alignment = 2
+
+[node name="pwr" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=198756820]
+layout_mode = 2
+size_flags_vertical = 3
+text = ":PWR"
+horizontal_alignment = 2
+
+[node name="def" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=560444629]
+layout_mode = 2
+size_flags_vertical = 3
+text = ":DEF"
+horizontal_alignment = 2
+
+[node name="dex" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=2101533321]
+layout_mode = 2
+size_flags_vertical = 3
+text = ":DEX"
+horizontal_alignment = 2
+
+[node name="spd" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=736053474]
+layout_mode = 2
+size_flags_vertical = 3
+text = ":SPD"
+horizontal_alignment = 2
+
+[node name="targetCharFaceset" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1336605949]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharFaceset" unique_id=1290644385]
+layout_mode = 2
+texture = ExtResource("5_u5sy4")
+expand_mode = 2
+
+[node name="GridMap" type="GridContainer" parent="UI" unique_id=966407688]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 68.0
+offset_right = 576.0
+offset_bottom = 228.0
+scale = Vector2(2, 2)
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 12
+
+[node name="Cell01" parent="UI/GridMap" unique_id=463411070 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell02" parent="UI/GridMap" unique_id=1402807200 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell03" parent="UI/GridMap" unique_id=2078766866 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell04" parent="UI/GridMap" unique_id=2094571364 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell05" parent="UI/GridMap" unique_id=1480924302 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell06" parent="UI/GridMap" unique_id=529022190 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell07" parent="UI/GridMap" unique_id=2090480825 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell08" parent="UI/GridMap" unique_id=1713703547 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell09" parent="UI/GridMap" unique_id=823035503 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell10" parent="UI/GridMap" unique_id=440921207 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell11" parent="UI/GridMap" unique_id=870894953 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell12" parent="UI/GridMap" unique_id=1312193307 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell13" parent="UI/GridMap" unique_id=1250108703 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell14" parent="UI/GridMap" unique_id=1749324885 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell15" parent="UI/GridMap" unique_id=932268219 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell16" parent="UI/GridMap" unique_id=1164299397 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell17" parent="UI/GridMap" unique_id=1113436347 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell18" parent="UI/GridMap" unique_id=1823301831 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell19" parent="UI/GridMap" unique_id=304622809 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell20" parent="UI/GridMap" unique_id=805272251 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell21" parent="UI/GridMap" unique_id=244927124 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell22" parent="UI/GridMap" unique_id=1741802914 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell23" parent="UI/GridMap" unique_id=1941717850 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell24" parent="UI/GridMap" unique_id=1128983322 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell25" parent="UI/GridMap" unique_id=1704365469 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell26" parent="UI/GridMap" unique_id=533456897 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell27" parent="UI/GridMap" unique_id=1786707391 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell28" parent="UI/GridMap" unique_id=165706760 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell29" parent="UI/GridMap" unique_id=1815842183 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell30" parent="UI/GridMap" unique_id=60776777 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell31" parent="UI/GridMap" unique_id=168977894 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell32" parent="UI/GridMap" unique_id=1639855815 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell33" parent="UI/GridMap" unique_id=1026215729 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell34" parent="UI/GridMap" unique_id=637900821 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell35" parent="UI/GridMap" unique_id=900341244 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell36" parent="UI/GridMap" unique_id=1003544775 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell37" parent="UI/GridMap" unique_id=804225681 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell38" parent="UI/GridMap" unique_id=28623846 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell39" parent="UI/GridMap" unique_id=236213006 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell40" parent="UI/GridMap" unique_id=934192502 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell41" parent="UI/GridMap" unique_id=139769125 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell42" parent="UI/GridMap" unique_id=406178564 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell43" parent="UI/GridMap" unique_id=956116215 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell44" parent="UI/GridMap" unique_id=2071569184 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell45" parent="UI/GridMap" unique_id=785297122 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell46" parent="UI/GridMap" unique_id=833242187 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell47" parent="UI/GridMap" unique_id=246670287 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell48" parent="UI/GridMap" unique_id=802837068 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell49" parent="UI/GridMap" unique_id=875388647 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell50" parent="UI/GridMap" unique_id=768576551 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell51" parent="UI/GridMap" unique_id=1625022808 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell52" parent="UI/GridMap" unique_id=778469725 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell53" parent="UI/GridMap" unique_id=846994256 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell54" parent="UI/GridMap" unique_id=265959302 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell55" parent="UI/GridMap" unique_id=1744962195 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell56" parent="UI/GridMap" unique_id=661740741 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell57" parent="UI/GridMap" unique_id=1064763032 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell58" parent="UI/GridMap" unique_id=1712501593 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell59" parent="UI/GridMap" unique_id=2050898852 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[node name="Cell60" parent="UI/GridMap" unique_id=1663631938 instance=ExtResource("2_lbhrr")]
+layout_mode = 2
+
+[connection signal="mouse_entered" from="UI/GridMap/Cell01" to="UI/GridMap/Cell01" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell01" to="UI/GridMap/Cell01" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell02" to="UI/GridMap/Cell02" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell02" to="UI/GridMap/Cell02" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell03" to="UI/GridMap/Cell03" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell03" to="UI/GridMap/Cell03" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell04" to="UI/GridMap/Cell04" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell04" to="UI/GridMap/Cell04" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell05" to="UI/GridMap/Cell05" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell05" to="UI/GridMap/Cell05" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell06" to="UI/GridMap/Cell06" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell06" to="UI/GridMap/Cell06" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell07" to="UI/GridMap/Cell07" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell07" to="UI/GridMap/Cell07" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell08" to="UI/GridMap/Cell08" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell08" to="UI/GridMap/Cell08" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell09" to="UI/GridMap/Cell09" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell09" to="UI/GridMap/Cell09" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell10" to="UI/GridMap/Cell10" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell10" to="UI/GridMap/Cell10" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell11" to="UI/GridMap/Cell11" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell11" to="UI/GridMap/Cell11" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell12" to="UI/GridMap/Cell12" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell12" to="UI/GridMap/Cell12" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell13" to="UI/GridMap/Cell13" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell13" to="UI/GridMap/Cell13" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell14" to="UI/GridMap/Cell14" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell14" to="UI/GridMap/Cell14" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell15" to="UI/GridMap/Cell15" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell15" to="UI/GridMap/Cell15" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell16" to="UI/GridMap/Cell16" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell16" to="UI/GridMap/Cell16" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell17" to="UI/GridMap/Cell17" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell17" to="UI/GridMap/Cell17" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell18" to="UI/GridMap/Cell18" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell18" to="UI/GridMap/Cell18" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell19" to="UI/GridMap/Cell19" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell19" to="UI/GridMap/Cell19" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell20" to="UI/GridMap/Cell20" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell20" to="UI/GridMap/Cell20" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell21" to="UI/GridMap/Cell21" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell21" to="UI/GridMap/Cell21" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell22" to="UI/GridMap/Cell22" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell22" to="UI/GridMap/Cell22" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell23" to="UI/GridMap/Cell23" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell23" to="UI/GridMap/Cell23" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell24" to="UI/GridMap/Cell24" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell24" to="UI/GridMap/Cell24" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell25" to="UI/GridMap/Cell25" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell25" to="UI/GridMap/Cell25" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell26" to="UI/GridMap/Cell26" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell26" to="UI/GridMap/Cell26" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell27" to="UI/GridMap/Cell27" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell27" to="UI/GridMap/Cell27" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell28" to="UI/GridMap/Cell28" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell28" to="UI/GridMap/Cell28" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell29" to="UI/GridMap/Cell29" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell29" to="UI/GridMap/Cell29" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell30" to="UI/GridMap/Cell30" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell30" to="UI/GridMap/Cell30" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell31" to="UI/GridMap/Cell31" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell31" to="UI/GridMap/Cell31" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell32" to="UI/GridMap/Cell32" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell32" to="UI/GridMap/Cell32" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell33" to="UI/GridMap/Cell33" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell33" to="UI/GridMap/Cell33" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell34" to="UI/GridMap/Cell34" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell34" to="UI/GridMap/Cell34" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell35" to="UI/GridMap/Cell35" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell35" to="UI/GridMap/Cell35" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell36" to="UI/GridMap/Cell36" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell36" to="UI/GridMap/Cell36" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell37" to="UI/GridMap/Cell37" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell37" to="UI/GridMap/Cell37" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell38" to="UI/GridMap/Cell38" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell38" to="UI/GridMap/Cell38" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell39" to="UI/GridMap/Cell39" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell39" to="UI/GridMap/Cell39" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell40" to="UI/GridMap/Cell40" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell40" to="UI/GridMap/Cell40" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell41" to="UI/GridMap/Cell41" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell41" to="UI/GridMap/Cell41" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell42" to="UI/GridMap/Cell42" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell42" to="UI/GridMap/Cell42" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell43" to="UI/GridMap/Cell43" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell43" to="UI/GridMap/Cell43" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell44" to="UI/GridMap/Cell44" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell44" to="UI/GridMap/Cell44" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell45" to="UI/GridMap/Cell45" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell45" to="UI/GridMap/Cell45" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell46" to="UI/GridMap/Cell46" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell46" to="UI/GridMap/Cell46" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell47" to="UI/GridMap/Cell47" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell47" to="UI/GridMap/Cell47" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell48" to="UI/GridMap/Cell48" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell48" to="UI/GridMap/Cell48" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell49" to="UI/GridMap/Cell49" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell49" to="UI/GridMap/Cell49" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell50" to="UI/GridMap/Cell50" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell50" to="UI/GridMap/Cell50" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell51" to="UI/GridMap/Cell51" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell51" to="UI/GridMap/Cell51" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell52" to="UI/GridMap/Cell52" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell52" to="UI/GridMap/Cell52" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell53" to="UI/GridMap/Cell53" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell53" to="UI/GridMap/Cell53" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell54" to="UI/GridMap/Cell54" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell54" to="UI/GridMap/Cell54" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell55" to="UI/GridMap/Cell55" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell55" to="UI/GridMap/Cell55" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell56" to="UI/GridMap/Cell56" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell56" to="UI/GridMap/Cell56" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell57" to="UI/GridMap/Cell57" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell57" to="UI/GridMap/Cell57" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell58" to="UI/GridMap/Cell58" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell58" to="UI/GridMap/Cell58" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell59" to="UI/GridMap/Cell59" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell59" to="UI/GridMap/Cell59" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/GridMap/Cell60" to="UI/GridMap/Cell60" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/GridMap/Cell60" to="UI/GridMap/Cell60" method="_on_mouse_exited"]
