@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ActorData" format=3 uid="uid://cvmd5eo1uvxvj"]
+
+[ext_resource type="Texture2D" uid="uid://mt377b5uvu21" path="res://assets/sprites/chars/scoutMasked/Faceset.png" id="1_4bhcl"]
+[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/actor_data.gd" id="1_yjfyb"]
+[ext_resource type="Texture2D" uid="uid://g4lw5e1r3qdn" path="res://assets/sprites/chars/scoutMasked/SpriteSheet.png" id="2_drks0"]
+
+[resource]
+script = ExtResource("1_yjfyb")
+name = "Vale the Vague"
+spritesheet = ExtResource("2_drks0")
+faceset = ExtResource("1_4bhcl")
+pwr = 4
+def = 4
+dex = 6
+spd = 3
+metadata/_custom_type_script = "uid://h8dpm7kjod7v"

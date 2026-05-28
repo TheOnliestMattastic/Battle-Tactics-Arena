@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://djhx7tehfjcsx"]
+
+[ext_resource type="Script" uid="uid://dmsibkxw0osh4" path="res://scripts/actor.gd" id="1_0qi0m"]
+[ext_resource type="Texture2D" uid="uid://dx8g4fidsdy25" path="res://assets/sprites/chars/brawlerBlue/SpriteSheet.png" id="2_35erh"]
+[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/actor_data.gd" id="2_w6j74"]
+[ext_resource type="Script" uid="uid://cuim36c3j6xxr" path="res://scripts/input_component.gd" id="5_0jvkp"]
+[ext_resource type="Script" uid="uid://btm3pfhbdg24m" path="res://scripts/ap_component.gd" id="5_7i7yh"]
+[ext_resource type="Script" uid="uid://cvcrygxjwsqp2" path="res://scripts/move_component.gd" id="6_7i7yh"]
+
+[sub_resource type="Resource" id="Resource_7i7yh"]
+script = ExtResource("2_w6j74")
+metadata/_custom_type_script = "uid://h8dpm7kjod7v"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvbpl"]
+size = Vector2(14, 14)
+
+[sub_resource type="Animation" id="Animation_0qi0m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_35erh"]
+resource_name = "active"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.5, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 4, 8, 12]
+}
+
+[sub_resource type="Animation" id="Animation_w6j74"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w6j74"]
+_data = {
+&"RESET": SubResource("Animation_0qi0m"),
+&"active": SubResource("Animation_35erh"),
+&"idle": SubResource("Animation_w6j74")
+}
+
+[node name="Actor" type="CharacterBody2D" unique_id=1096699479]
+input_pickable = true
+script = ExtResource("1_0qi0m")
+data = SubResource("Resource_7i7yh")
+metadata/_custom_type_script = "uid://dmsibkxw0osh4"
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1376264151]
+position = Vector2(8, 8)
+texture = ExtResource("2_35erh")
+hframes = 4
+vframes = 7
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1811817914]
+show_behind_parent = true
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_yvbpl")
+
+[node name="AnimPlayer" type="AnimationPlayer" parent="." unique_id=1547184422]
+libraries/ = SubResource("AnimationLibrary_w6j74")
+
+[node name="InputComponent" type="Node" parent="." unique_id=1118900849]
+unique_name_in_owner = true
+script = ExtResource("5_0jvkp")
+metadata/_custom_type_script = "uid://cuim36c3j6xxr"
+
+[node name="APComponent" type="Node" parent="." unique_id=1344272504]
+unique_name_in_owner = true
+script = ExtResource("5_7i7yh")
+metadata/_custom_type_script = "uid://btm3pfhbdg24m"
+
+[node name="MoveComponent" type="Node" parent="." unique_id=1915798148 node_paths=PackedStringArray("actor", "sprite")]
+unique_name_in_owner = true
+script = ExtResource("6_7i7yh")
+actor = NodePath("..")
+sprite = NodePath("../Sprite")
+metadata/_custom_type_script = "uid://cvcrygxjwsqp2"
+
+[node name="InputDelay" type="Timer" parent="MoveComponent" unique_id=2012550250]
+wait_time = 0.08
+one_shot = true
+
+[connection signal="mouse_entered" from="." to="InputComponent" method="_on_actor_mouse_entered"]
+[connection signal="mouse_exited" from="." to="InputComponent" method="_on_actor_mouse_exited"]

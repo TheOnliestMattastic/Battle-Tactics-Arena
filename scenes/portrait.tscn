@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://sv3c1o1hl810"]
+
+[ext_resource type="Texture2D" uid="uid://daylhmw7gyq1x" path="res://assets/sprites/chars/brawlerBlue/Faceset.png" id="1_tlpwk"]
+[ext_resource type="Script" uid="uid://bsd08msxa38kp" path="res://scripts/portrait.gd" id="2_et3kn"]
+
+[node name="Portrait" type="TextureRect" unique_id=22324220]
+texture = ExtResource("1_tlpwk")
+expand_mode = 5
+stretch_mode = 5
+script = ExtResource("2_et3kn")

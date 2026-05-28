@@ -1,15 +1,26 @@
 [gd_scene format=4 uid="uid://caq5ijr5geoe7"]
 
+[ext_resource type="Script" uid="uid://djl6x2uatqc3m" path="res://scripts/game_master.gd" id="1_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bt77eidvhb0ii" path="res://assets/sprites/tilesets/TS_grassBrick-32x32.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://oc0dkklawq5y" path="res://scenes/grid_cell.tscn" id="2_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://peyfk6sgllqu" path="res://scenes/brawler_blue.tscn" id="3_iywne"]
 [ext_resource type="Texture2D" uid="uid://d04wyb7jkprij" path="res://assets/sprites/ui/header2.png" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://nopuwc8dbyvd" path="res://assets/sprites/ui/panel4.png" id="4_lbhrr"]
 [ext_resource type="FontFile" uid="uid://dbo5gvh0p6oil" path="res://assets/sprites/alagard.ttf" id="4_p57ef"]
-[ext_resource type="Script" uid="uid://p6423cwds4dw" path="res://scripts/turn_order.gd" id="5_gee14"]
-[ext_resource type="Texture2D" uid="uid://daylhmw7gyq1x" path="res://assets/sprites/chars/brawlerBlue/Faceset.png" id="5_u5sy4"]
+[ext_resource type="Script" uid="uid://p6423cwds4dw" path="res://scripts/scrollbox.gd" id="5_gee14"]
+[ext_resource type="PackedScene" uid="uid://sv3c1o1hl810" path="res://scenes/portrait.tscn" id="7_pl11u"]
 [ext_resource type="Texture2D" uid="uid://bxgnpb8oxqmdb" path="res://assets/sprites/ui/buttonexit.png" id="8_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://be0tq4i3oce1p" path="res://assets/sprites/ui/buttondragon1.png" id="8_vtaks"]
+[ext_resource type="Resource" uid="uid://ce5fcrpn2n2dp" path="res://resources/brawler_blue.tres" id="11_264po"]
+[ext_resource type="PackedScene" uid="uid://djhx7tehfjcsx" path="res://scenes/actor.tscn" id="11_kvpfn"]
+[ext_resource type="Resource" uid="uid://d1g7m63sg7d24" path="res://resources/fighter_blue.tres" id="12_1kice"]
+[ext_resource type="Resource" uid="uid://npyyjre4kfre" path="res://resources/ninja_black.tres" id="13_5newe"]
+[ext_resource type="Resource" uid="uid://6vlqkldwdxmc" path="res://resources/shaman.tres" id="14_37s47"]
+[ext_resource type="Resource" uid="uid://bbid3vui80s6q" path="res://resources/sultan_white.tres" id="15_bt5mj"]
+[ext_resource type="Resource" uid="uid://bku3wcwl3thpp" path="res://resources/brawler_red.tres" id="16_e1j6l"]
+[ext_resource type="Resource" uid="uid://u0nuwsc4a5o" path="res://resources/fighter_red.tres" id="17_pl11u"]
+[ext_resource type="Resource" uid="uid://cvmd5eo1uvxvj" path="res://resources/scout_masked.tres" id="18_bhx41"]
+[ext_resource type="Resource" uid="uid://c3vls8acqcun3" path="res://resources/sultan_black.tres" id="19_qnb83"]
+[ext_resource type="Resource" uid="uid://58ok6iwyf4un" path="res://resources/shaman_lion.tres" id="20_5newe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_uwrxv")
@@ -136,17 +147,21 @@ font = ExtResource("4_p57ef")
 
 [node name="Game" type="Node2D" unique_id=1873102440]
 
+[node name="GameMaster" type="Node" parent="." unique_id=226980244 node_paths=PackedStringArray("queue_display", "active_display", "target_display")]
+unique_name_in_owner = true
+script = ExtResource("1_kvpfn")
+queue_display = NodePath("../UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox")
+active_display = NodePath("../UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorPortrait")
+target_display = NodePath("../UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorPortrait")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1685079538]
+metadata/_edit_lock_ = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1797703118]
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAD6//z/AAADAAUAAAD6//3/AAACAAQAAAD6//7/AAABAAUAAAD6////AAACAAUAAAD6/wAAAAAAAAUAAAD7//z/AAACAAcAAAD7//3/AAADAAUAAAD7//7/AAAAAAcAAAD7////AAAGAAcAAAD7/wAAAAAFAAYAAAD8//z/AAAAAAcAAAD8//3/AAAFAAYAAAD8//7/AAAEAAYAAAD8////AAAGAAQAAAD8/wAAAAACAAQAAAD9//z/AAAEAAcAAAD9//3/AAABAAcAAAD9//7/AAAEAAYAAAD9////AAAEAAQAAAD9/wAAAAAGAAYAAAD+//z/AAAEAAYAAAD+//3/AAAEAAcAAAD+//7/AAABAAYAAAD+////AAAGAAUAAAD+/wAAAAAGAAQAAAD///z/AAAGAAUAAAD///3/AAACAAYAAAD///7/AAAFAAcAAAD/////AAAFAAYAAAD//wAAAAAEAAcAAAAAAPz/AAACAAQAAAAAAP3/AAAGAAQAAAAAAP7/AAAGAAQAAAAAAP//AAAAAAUAAAAAAAAAAAACAAcAAAABAPz/AAAAAAUAAAABAP3/AAAFAAQAAAABAP7/AAAEAAUAAAABAP//AAABAAYAAAABAAAAAAAGAAQAAAACAPz/AAAAAAYAAAACAP3/AAABAAcAAAACAP7/AAAAAAcAAAACAP//AAAHAAYAAAACAAAAAAAAAAQAAAADAPz/AAABAAQAAAADAP3/AAAFAAcAAAADAP7/AAAEAAYAAAADAP//AAAGAAUAAAADAAAAAAAAAAQAAAAEAPz/AAADAAcAAAAEAP3/AAACAAcAAAAEAP7/AAAFAAQAAAAEAP//AAACAAQAAAAEAAAAAAAFAAYAAAAFAPz/AAAAAAUAAAAFAP3/AAAEAAUAAAAFAP7/AAADAAQAAAAFAP//AAAAAAcAAAAFAAAAAAACAAcAAAA=")
 tile_set = SubResource("TileSet_lnu2h")
-
-[node name="BrawlerBlue" parent="." unique_id=1301531628 instance=ExtResource("3_iywne")]
-z_index = 5
-position = Vector2(-224, -160)
-scale = Vector2(4, 4)
+metadata/_edit_lock_ = true
 
 [node name="UI" type="Control" parent="." unique_id=2064261322]
 layout_mode = 3
@@ -159,6 +174,8 @@ offset_right = 576.0
 offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
 
 [node name="HUD" type="MarginContainer" parent="UI" unique_id=1752919572]
 layout_mode = 1
@@ -172,16 +189,16 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="baseContainer" type="BoxContainer" parent="UI/HUD" unique_id=1880248608]
+[node name="baseBox" type="BoxContainer" parent="UI/HUD" unique_id=1880248608]
 layout_mode = 2
 alignment = 2
 vertical = true
 
-[node name="topContainer" type="HBoxContainer" parent="UI/HUD/baseContainer" unique_id=2111873916]
+[node name="topBox" type="HBoxContainer" parent="UI/HUD/baseBox" unique_id=2111873916]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TurnDisplay" type="NinePatchRect" parent="UI/HUD/baseContainer/topContainer" unique_id=96143438]
+[node name="QueuePanel" type="NinePatchRect" parent="UI/HUD/baseBox/topBox" unique_id=96143438]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 texture = ExtResource("4_lbhrr")
@@ -190,7 +207,7 @@ patch_margin_top = 12
 patch_margin_right = 12
 patch_margin_bottom = 12
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay" unique_id=1212291463]
+[node name="innerMargin" type="MarginContainer" parent="UI/HUD/baseBox/topBox/QueuePanel" unique_id=1212291463]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -202,21 +219,21 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="conent" type="VBoxContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer" unique_id=1567907572]
+[node name="conentBox" type="VBoxContainer" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin" unique_id=1567907572]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent" unique_id=1484269728]
+[node name="Label" type="Label" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox" unique_id=1484269728]
 layout_mode = 2
 text = "Turn Order"
 label_settings = SubResource("LabelSettings_u5sy4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent" unique_id=463755411]
+[node name="HSeparator" type="HSeparator" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox" unique_id=463755411]
 layout_mode = 2
 
-[node name="facesetContainer" type="MarginContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent" unique_id=1873858670]
+[node name="innerMargin" type="MarginContainer" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox" unique_id=1873858670]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 16
@@ -224,54 +241,33 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 4
 
-[node name="turnOrder" type="ScrollContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer" unique_id=961016027]
+[node name="QueueScrollBox" type="ScrollContainer" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin" unique_id=961016027]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 script = ExtResource("5_gee14")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder" unique_id=1545394175]
+[node name="QueueBox" type="VBoxContainer" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox" unique_id=1545394175]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TextureRect" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=1183734593]
+[node name="Portrait" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox" unique_id=1396012851 instance=ExtResource("7_pl11u")]
 layout_mode = 2
-texture = ExtResource("5_u5sy4")
-expand_mode = 5
-stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=1076267359]
+[node name="Portrait2" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox" unique_id=22324220 instance=ExtResource("7_pl11u")]
 layout_mode = 2
-texture = ExtResource("5_u5sy4")
-expand_mode = 5
-stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=562818190]
+[node name="Portrait3" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox" unique_id=14201770 instance=ExtResource("7_pl11u")]
 layout_mode = 2
-texture = ExtResource("5_u5sy4")
-expand_mode = 5
-stretch_mode = 5
 
-[node name="TextureRect4" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=1178969229]
+[node name="Portrait4" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox" unique_id=168648503 instance=ExtResource("7_pl11u")]
 layout_mode = 2
-texture = ExtResource("5_u5sy4")
-expand_mode = 5
-stretch_mode = 5
 
-[node name="TextureRect5" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=588487726]
+[node name="Portrait5" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox" unique_id=1040465098 instance=ExtResource("7_pl11u")]
 layout_mode = 2
-texture = ExtResource("5_u5sy4")
-expand_mode = 5
-stretch_mode = 5
 
-[node name="TextureRect6" type="TextureRect" parent="UI/HUD/baseContainer/topContainer/TurnDisplay/innerContainer/conent/facesetContainer/turnOrder/VBoxContainer" unique_id=365395996]
-layout_mode = 2
-texture = ExtResource("5_u5sy4")
-expand_mode = 5
-stretch_mode = 5
-
-[node name="Banner" type="NinePatchRect" parent="UI/HUD/baseContainer/topContainer" unique_id=32996742]
+[node name="Banner" type="NinePatchRect" parent="UI/HUD/baseBox/topBox" unique_id=32996742]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -282,7 +278,7 @@ patch_margin_top = 8
 patch_margin_right = 19
 patch_margin_bottom = 8
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/topContainer/Banner" unique_id=876517995]
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/topBox/Banner" unique_id=876517995]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -294,14 +290,14 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="UI/HUD/baseContainer/topContainer/Banner/innerContainer" unique_id=178927339]
+[node name="Label" type="Label" parent="UI/HUD/baseBox/topBox/Banner/innerContainer" unique_id=178927339]
 layout_mode = 2
 text = "Contextual information."
 label_settings = SubResource("LabelSettings_p57ef")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Log" type="NinePatchRect" parent="UI/HUD/baseContainer/topContainer" unique_id=1721341094]
+[node name="LogPanel" type="NinePatchRect" parent="UI/HUD/baseBox/topBox" unique_id=1721341094]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 texture = ExtResource("4_lbhrr")
@@ -310,7 +306,7 @@ patch_margin_top = 12
 patch_margin_right = 12
 patch_margin_bottom = 12
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/topContainer/Log" unique_id=1165370457]
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/topBox/LogPanel" unique_id=1165370457]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -322,25 +318,25 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="content" type="VBoxContainer" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer" unique_id=1799249332]
+[node name="contentBox" type="VBoxContainer" parent="UI/HUD/baseBox/topBox/LogPanel/innerContainer" unique_id=1799249332]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Label" type="Label" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer/content" unique_id=390113014]
+[node name="Label" type="Label" parent="UI/HUD/baseBox/topBox/LogPanel/innerContainer/contentBox" unique_id=390113014]
 layout_mode = 2
 text = "Log"
 label_settings = SubResource("LabelSettings_u5sy4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer/content" unique_id=1133712981]
+[node name="HSeparator" type="HSeparator" parent="UI/HUD/baseBox/topBox/LogPanel/innerContainer/contentBox" unique_id=1133712981]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer/content" unique_id=767252119]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/HUD/baseBox/topBox/LogPanel/innerContainer/contentBox" unique_id=767252119]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/HUD/baseContainer/topContainer/Log/innerContainer/content/ScrollContainer" unique_id=610110922]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/HUD/baseBox/topBox/LogPanel/innerContainer/contentBox/ScrollContainer" unique_id=610110922]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -362,7 +358,7 @@ Mage recieved 13pts of damage.
 Mage was defeated!"
 scroll_following = true
 
-[node name="bottomContainer" type="NinePatchRect" parent="UI/HUD/baseContainer" unique_id=1788899059]
+[node name="bottomPanel" type="NinePatchRect" parent="UI/HUD/baseBox" unique_id=1788899059]
 custom_minimum_size = Vector2(0, 224)
 layout_mode = 2
 texture = ExtResource("4_lbhrr")
@@ -371,7 +367,7 @@ patch_margin_top = 12
 patch_margin_right = 12
 patch_margin_bottom = 12
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer" unique_id=1059040756]
+[node name="innerMargin" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel" unique_id=1059040756]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -383,68 +379,63 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer" unique_id=554630315]
+[node name="contentBox" type="HBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin" unique_id=554630315]
 layout_mode = 2
 
-[node name="activeCharFaceset" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1641721098]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharFaceset" unique_id=1663636505]
-layout_mode = 2
-texture = ExtResource("5_u5sy4")
-expand_mode = 2
-
-[node name="activeCharStats" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1023672761]
+[node name="ActiveActorPortrait" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1641721098]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats" unique_id=1335031633]
+[node name="ActiveActorStats" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1023672761]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="activeCharStats" type="VBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats" unique_id=1335031633]
 layout_mode = 2
 
-[node name="name" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=1635533084]
+[node name="name" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=1635533084]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<name>"
 
-[node name="hp" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=1124789103]
+[node name="hp" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=1124789103]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<HP>"
 
-[node name="ap" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=882714391]
+[node name="ap" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=882714391]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<AP>"
 
-[node name="pwr" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=2080349014]
+[node name="pwr" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=2080349014]
 layout_mode = 2
 size_flags_vertical = 3
 text = "PWR:"
 
-[node name="def" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=780395024]
+[node name="def" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=780395024]
 layout_mode = 2
 size_flags_vertical = 3
 text = "DEF:"
 
-[node name="dex" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=1034699132]
+[node name="dex" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=1034699132]
 layout_mode = 2
 size_flags_vertical = 3
 text = "DEX:"
 
-[node name="spd" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/activeCharStats/VBoxContainer" unique_id=455430528]
+[node name="spd" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=455430528]
 layout_mode = 2
 size_flags_vertical = 3
 text = "SPD:"
 
-[node name="actionMenu" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1195125436]
+[node name="ActionMenu" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1195125436]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu" unique_id=962366240]
+[node name="actionMenu" type="VBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu" unique_id=962366240]
 layout_mode = 2
 
-[node name="moveButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=273896661]
+[node name="moveButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=84745252]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -454,7 +445,7 @@ texture_disabled = SubResource("AtlasTexture_rysoc")
 texture_focused = SubResource("AtlasTexture_ca42v")
 stretch_mode = 0
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/moveButton" unique_id=1913707968]
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/moveButton" unique_id=1007359482]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -468,14 +459,14 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/moveButton/innerContainer" unique_id=674183728]
+[node name="Label" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/moveButton/innerContainer" unique_id=171046709]
 layout_mode = 2
 text = "Move"
 label_settings = SubResource("LabelSettings_vtaks")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="attackButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=84745252]
+[node name="attackButton2" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=1054470299]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -485,7 +476,7 @@ texture_disabled = SubResource("AtlasTexture_rysoc")
 texture_focused = SubResource("AtlasTexture_ca42v")
 stretch_mode = 0
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/attackButton" unique_id=1007359482]
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/attackButton2" unique_id=355804190]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -499,14 +490,14 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/attackButton/innerContainer" unique_id=171046709]
+[node name="Label" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/attackButton2/innerContainer" unique_id=2006582507]
 layout_mode = 2
 text = "Attack"
 label_settings = SubResource("LabelSettings_vtaks")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="skill1Button" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=793698351]
+[node name="skillsButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=793698351]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -516,7 +507,7 @@ texture_disabled = SubResource("AtlasTexture_rysoc")
 texture_focused = SubResource("AtlasTexture_ca42v")
 stretch_mode = 0
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/skill1Button" unique_id=292623773]
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/skillsButton" unique_id=292623773]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -530,14 +521,14 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/skill1Button/innerContainer" unique_id=1648169575]
+[node name="Label" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/skillsButton/innerContainer" unique_id=1648169575]
 layout_mode = 2
 text = "Skills"
 label_settings = SubResource("LabelSettings_vtaks")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="delayButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=75603471]
+[node name="delayButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=75603471]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -547,7 +538,7 @@ texture_disabled = SubResource("AtlasTexture_rysoc")
 texture_focused = SubResource("AtlasTexture_ca42v")
 stretch_mode = 0
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/delayButton" unique_id=550752441]
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/delayButton" unique_id=550752441]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -561,14 +552,14 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/delayButton/innerContainer" unique_id=1670104047]
+[node name="Label" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/delayButton/innerContainer" unique_id=1670104047]
 layout_mode = 2
 text = "Delay"
 label_settings = SubResource("LabelSettings_vtaks")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="endButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer" unique_id=549057678]
+[node name="endButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=549057678]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -578,7 +569,7 @@ texture_disabled = SubResource("AtlasTexture_rysoc")
 texture_focused = SubResource("AtlasTexture_ca42v")
 stretch_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/endButton" unique_id=1197383736]
+[node name="MarginContainer" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/endButton" unique_id=1197383736]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -592,40 +583,40 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/actionMenu/VBoxContainer/endButton/MarginContainer" unique_id=1132877895]
+[node name="Label" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/endButton/MarginContainer" unique_id=1132877895]
 layout_mode = 2
 text = "End"
 label_settings = SubResource("LabelSettings_vtaks")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="executionMenu" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=268527893]
+[node name="ExecutionMenu" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=268527893]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="innerContainerBox" type="VBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu" unique_id=889225597]
+[node name="executionMenu" type="VBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ExecutionMenu" unique_id=889225597]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox" unique_id=2086471285]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ExecutionMenu/executionMenu" unique_id=2086471285]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="chance" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox/HBoxContainer" unique_id=2125399092]
+[node name="chance" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ExecutionMenu/executionMenu/HBoxContainer" unique_id=2125399092]
 layout_mode = 2
 text = "<chance>"
 label_settings = SubResource("LabelSettings_kvpfn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="dmg" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox/HBoxContainer" unique_id=384603367]
+[node name="dmg" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ExecutionMenu/executionMenu/HBoxContainer" unique_id=384603367]
 layout_mode = 2
 text = "<crit>"
 label_settings = SubResource("LabelSettings_dinhu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox" unique_id=1309921858]
+[node name="TextureButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ExecutionMenu/executionMenu" unique_id=1309921858]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_vtaks")
@@ -635,70 +626,65 @@ texture_disabled = SubResource("AtlasTexture_kvuet")
 texture_focused = SubResource("AtlasTexture_dinhu")
 stretch_mode = 5
 
-[node name="result" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/executionMenu/innerContainerBox" unique_id=1171707222]
+[node name="result" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ExecutionMenu/executionMenu" unique_id=1171707222]
 layout_mode = 2
 text = "<result>"
 label_settings = SubResource("LabelSettings_kvuet")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="targetCharStats" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1567235532]
+[node name="TargetActorStats" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1567235532]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats" unique_id=1397656167]
+[node name="targetCharStats" type="VBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats" unique_id=1397656167]
 layout_mode = 2
 
-[node name="name" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=1069326688]
+[node name="name" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=1069326688]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<name>"
 horizontal_alignment = 2
 
-[node name="hp" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=41496277]
+[node name="hp" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=41496277]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<HP>"
 horizontal_alignment = 2
 
-[node name="ap" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=1554050199]
+[node name="ap" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=1554050199]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<AP>"
 horizontal_alignment = 2
 
-[node name="pwr" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=198756820]
+[node name="pwr" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=198756820]
 layout_mode = 2
 size_flags_vertical = 3
 text = ":PWR"
 horizontal_alignment = 2
 
-[node name="def" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=560444629]
+[node name="def" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=560444629]
 layout_mode = 2
 size_flags_vertical = 3
 text = ":DEF"
 horizontal_alignment = 2
 
-[node name="dex" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=2101533321]
+[node name="dex" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=2101533321]
 layout_mode = 2
 size_flags_vertical = 3
 text = ":DEX"
 horizontal_alignment = 2
 
-[node name="spd" type="Label" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharStats/VBoxContainer" unique_id=736053474]
+[node name="spd" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=736053474]
 layout_mode = 2
 size_flags_vertical = 3
 text = ":SPD"
 horizontal_alignment = 2
 
-[node name="targetCharFaceset" type="MarginContainer" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer" unique_id=1336605949]
+[node name="TargetActorPortrait" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1336605949]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="TextureRect" type="TextureRect" parent="UI/HUD/baseContainer/bottomContainer/innerContainer/HBoxContainer/targetCharFaceset" unique_id=1290644385]
-layout_mode = 2
-texture = ExtResource("5_u5sy4")
-expand_mode = 2
 
 [node name="GridMap" type="GridContainer" parent="UI" unique_id=966407688]
 layout_mode = 0
@@ -890,6 +876,62 @@ layout_mode = 2
 
 [node name="Cell60" parent="UI/GridMap" unique_id=1663631938 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
+
+[node name="Actors" type="Node2D" parent="." unique_id=1254128970]
+
+[node name="Vanguard" type="Node2D" parent="Actors" unique_id=442984596]
+
+[node name="Actor" parent="Actors/Vanguard" unique_id=1096699479 instance=ExtResource("11_kvpfn")]
+position = Vector2(-192, -192)
+scale = Vector2(4, 4)
+data = ExtResource("11_264po")
+
+[node name="Actor2" parent="Actors/Vanguard" unique_id=745253610 instance=ExtResource("11_kvpfn")]
+position = Vector2(-192, -64)
+scale = Vector2(4, 4)
+data = ExtResource("12_1kice")
+
+[node name="Actor3" parent="Actors/Vanguard" unique_id=368183936 instance=ExtResource("11_kvpfn")]
+position = Vector2(-256, -256)
+scale = Vector2(4, 4)
+data = ExtResource("13_5newe")
+
+[node name="Actor4" parent="Actors/Vanguard" unique_id=1730961276 instance=ExtResource("11_kvpfn")]
+position = Vector2(-256, 0)
+scale = Vector2(4, 4)
+data = ExtResource("14_37s47")
+
+[node name="Actor5" parent="Actors/Vanguard" unique_id=1762960488 instance=ExtResource("11_kvpfn")]
+position = Vector2(-320, -128)
+scale = Vector2(4, 4)
+data = ExtResource("15_bt5mj")
+
+[node name="Flank" type="Node2D" parent="Actors" unique_id=993040297]
+
+[node name="Actor6" parent="Actors/Flank" unique_id=1461648755 instance=ExtResource("11_kvpfn")]
+position = Vector2(128, -256)
+scale = Vector2(4, 4)
+data = ExtResource("16_e1j6l")
+
+[node name="Actor7" parent="Actors/Flank" unique_id=1628815872 instance=ExtResource("11_kvpfn")]
+position = Vector2(128, -128)
+scale = Vector2(4, 4)
+data = ExtResource("17_pl11u")
+
+[node name="Actor8" parent="Actors/Flank" unique_id=1523922529 instance=ExtResource("11_kvpfn")]
+position = Vector2(128, 0)
+scale = Vector2(4, 4)
+data = ExtResource("18_bhx41")
+
+[node name="Actor9" parent="Actors/Flank" unique_id=1144354513 instance=ExtResource("11_kvpfn")]
+position = Vector2(192, -192)
+scale = Vector2(4, 4)
+data = ExtResource("20_5newe")
+
+[node name="Actor10" parent="Actors/Flank" unique_id=517215697 instance=ExtResource("11_kvpfn")]
+position = Vector2(192, -64)
+scale = Vector2(4, 4)
+data = ExtResource("19_qnb83")
 
 [connection signal="mouse_entered" from="UI/GridMap/Cell01" to="UI/GridMap/Cell01" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/GridMap/Cell01" to="UI/GridMap/Cell01" method="_on_mouse_exited"]
