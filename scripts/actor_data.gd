@@ -12,3 +12,7 @@ extends Resource
 @export var def: int = 5
 @export var dex: int = 5
 @export var spd: int = 2
+
+# === TESTING ===
+@export var hp: int = 15
+@export var ap: int = 3

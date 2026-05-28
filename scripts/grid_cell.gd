@@ -12,6 +12,5 @@ func _ready() -> void:
 func _on_mouse_entered() -> void:
 	self.add_theme_stylebox_override("panel", style_hover)
 
-
 func _on_mouse_exited() -> void:
 	self.add_theme_stylebox_override("panel", style_default)

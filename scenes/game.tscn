@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://djl6x2uatqc3m" path="res://scripts/game_master.gd" id="1_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bt77eidvhb0ii" path="res://assets/sprites/tilesets/TS_grassBrick-32x32.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://oc0dkklawq5y" path="res://scenes/grid_cell.tscn" id="2_lbhrr"]
+[ext_resource type="Script" uid="uid://d0jh2l0cccxn5" path="res://scripts/render_system.gd" id="3_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://d04wyb7jkprij" path="res://assets/sprites/ui/header2.png" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://nopuwc8dbyvd" path="res://assets/sprites/ui/panel4.png" id="4_lbhrr"]
 [ext_resource type="FontFile" uid="uid://dbo5gvh0p6oil" path="res://assets/sprites/alagard.ttf" id="4_p57ef"]
@@ -10,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://sv3c1o1hl810" path="res://scenes/portrait.tscn" id="7_pl11u"]
 [ext_resource type="Texture2D" uid="uid://bxgnpb8oxqmdb" path="res://assets/sprites/ui/buttonexit.png" id="8_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://be0tq4i3oce1p" path="res://assets/sprites/ui/buttondragon1.png" id="8_vtaks"]
+[ext_resource type="LabelSettings" uid="uid://bnot8r4weqg5m" path="res://resources/label_settings.tres" id="9_e1j6l"]
+[ext_resource type="Script" uid="uid://bc4m1pgyqqgbs" path="res://scripts/grid_system.gd" id="10_37s47"]
 [ext_resource type="Resource" uid="uid://ce5fcrpn2n2dp" path="res://resources/brawler_blue.tres" id="11_264po"]
 [ext_resource type="PackedScene" uid="uid://djhx7tehfjcsx" path="res://scenes/actor.tscn" id="11_kvpfn"]
 [ext_resource type="Resource" uid="uid://d1g7m63sg7d24" path="res://resources/fighter_blue.tres" id="12_1kice"]
@@ -147,12 +150,9 @@ font = ExtResource("4_p57ef")
 
 [node name="Game" type="Node2D" unique_id=1873102440]
 
-[node name="GameMaster" type="Node" parent="." unique_id=226980244 node_paths=PackedStringArray("queue_display", "active_display", "target_display")]
+[node name="GameMaster" type="Node" parent="." unique_id=226980244]
 unique_name_in_owner = true
 script = ExtResource("1_kvpfn")
-queue_display = NodePath("../UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox")
-active_display = NodePath("../UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorPortrait")
-target_display = NodePath("../UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorPortrait")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1685079538]
 metadata/_edit_lock_ = true
@@ -163,7 +163,8 @@ tile_map_data = PackedByteArray("AAD6//z/AAADAAUAAAD6//3/AAACAAQAAAD6//7/AAABAAU
 tile_set = SubResource("TileSet_lnu2h")
 metadata/_edit_lock_ = true
 
-[node name="UI" type="Control" parent="." unique_id=2064261322]
+[node name="UI" type="Control" parent="." unique_id=2064261322 node_paths=PackedStringArray("queue_display", "active_display", "target_display")]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,6 +176,10 @@ offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+script = ExtResource("3_bt5mj")
+queue_display = NodePath("HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox")
+active_display = NodePath("HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox")
+target_display = NodePath("HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox")
 metadata/_edit_lock_ = true
 
 [node name="HUD" type="MarginContainer" parent="UI" unique_id=1752919572]
@@ -382,51 +387,78 @@ theme_override_constants/margin_bottom = 8
 [node name="contentBox" type="HBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin" unique_id=554630315]
 layout_mode = 2
 
-[node name="ActiveActorPortrait" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1641721098]
+[node name="ActiveBox" type="BoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=2053983896]
 layout_mode = 2
 size_flags_horizontal = 3
+vertical = true
 
-[node name="ActiveActorStats" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1023672761]
+[node name="name" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox" unique_id=1635533084]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "<name>"
+label_settings = ExtResource("9_e1j6l")
+vertical_alignment = 2
 
-[node name="activeCharStats" type="VBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats" unique_id=1335031633]
-layout_mode = 2
-
-[node name="name" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=1635533084]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox" unique_id=1167018352]
 layout_mode = 2
 size_flags_vertical = 3
-text = "<name>"
 
-[node name="hp" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=1124789103]
+[node name="ActiveActorPortrait" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer" unique_id=1641721098]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Portrait" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer/ActiveActorPortrait" unique_id=937671826 instance=ExtResource("7_pl11u")]
+layout_mode = 2
+
+[node name="ActiveActorStatMargin" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer" unique_id=1023672761]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActiveActorStatBox" type="VBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer/ActiveActorStatMargin" unique_id=1335031633]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="hp" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox" unique_id=1124789103]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<HP>"
+label_settings = ExtResource("9_e1j6l")
+vertical_alignment = 1
 
-[node name="ap" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=882714391]
+[node name="ap" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox" unique_id=882714391]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<AP>"
+label_settings = ExtResource("9_e1j6l")
+vertical_alignment = 1
 
-[node name="pwr" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=2080349014]
+[node name="pwr" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox" unique_id=2080349014]
 layout_mode = 2
 size_flags_vertical = 3
-text = "PWR:"
+text = "<pwr>"
+label_settings = ExtResource("9_e1j6l")
+vertical_alignment = 1
 
-[node name="def" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=780395024]
+[node name="def" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox" unique_id=780395024]
 layout_mode = 2
 size_flags_vertical = 3
-text = "DEF:"
+text = "<def>"
+label_settings = ExtResource("9_e1j6l")
+vertical_alignment = 1
 
-[node name="dex" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=1034699132]
+[node name="dex" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox" unique_id=1034699132]
 layout_mode = 2
 size_flags_vertical = 3
-text = "DEX:"
+text = "<dex>"
+label_settings = ExtResource("9_e1j6l")
+vertical_alignment = 1
 
-[node name="spd" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveActorStats/activeCharStats" unique_id=455430528]
+[node name="spd" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox/HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox" unique_id=455430528]
 layout_mode = 2
 size_flags_vertical = 3
-text = "SPD:"
+text = "<spd>"
+label_settings = ExtResource("9_e1j6l")
+vertical_alignment = 1
 
 [node name="ActionMenu" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1195125436]
 layout_mode = 2
@@ -633,60 +665,87 @@ label_settings = SubResource("LabelSettings_kvuet")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TargetActorStats" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1567235532]
+[node name="TargetBox" type="BoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=974541276]
+layout_mode = 2
+size_flags_horizontal = 3
+vertical = true
+
+[node name="name" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox" unique_id=1069326688]
+layout_mode = 2
+size_flags_vertical = 0
+text = "<name>"
+label_settings = ExtResource("9_e1j6l")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox" unique_id=1585945059]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TargetActorStatMargin" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer" unique_id=1567235532]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="targetCharStats" type="VBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats" unique_id=1397656167]
+[node name="TargetActorStatBox" type="VBoxContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorStatMargin" unique_id=1397656167]
 layout_mode = 2
+size_flags_vertical = 4
 
-[node name="name" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=1069326688]
-layout_mode = 2
-size_flags_vertical = 3
-text = "<name>"
-horizontal_alignment = 2
-
-[node name="hp" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=41496277]
+[node name="hp" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorStatMargin/TargetActorStatBox" unique_id=41496277]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<HP>"
+label_settings = ExtResource("9_e1j6l")
 horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="ap" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=1554050199]
+[node name="ap" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorStatMargin/TargetActorStatBox" unique_id=1554050199]
 layout_mode = 2
 size_flags_vertical = 3
 text = "<AP>"
+label_settings = ExtResource("9_e1j6l")
 horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="pwr" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=198756820]
+[node name="pwr" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorStatMargin/TargetActorStatBox" unique_id=198756820]
 layout_mode = 2
 size_flags_vertical = 3
-text = ":PWR"
+text = "<pwr>"
+label_settings = ExtResource("9_e1j6l")
 horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="def" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=560444629]
+[node name="def" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorStatMargin/TargetActorStatBox" unique_id=560444629]
 layout_mode = 2
 size_flags_vertical = 3
-text = ":DEF"
+text = "<def>"
+label_settings = ExtResource("9_e1j6l")
 horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="dex" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=2101533321]
+[node name="dex" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorStatMargin/TargetActorStatBox" unique_id=2101533321]
 layout_mode = 2
 size_flags_vertical = 3
-text = ":DEX"
+text = "<dex>"
+label_settings = ExtResource("9_e1j6l")
 horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="spd" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetActorStats/targetCharStats" unique_id=736053474]
+[node name="spd" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorStatMargin/TargetActorStatBox" unique_id=736053474]
 layout_mode = 2
 size_flags_vertical = 3
-text = ":SPD"
+text = "<spd>"
+label_settings = ExtResource("9_e1j6l")
 horizontal_alignment = 2
+vertical_alignment = 1
 
-[node name="TargetActorPortrait" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox" unique_id=1336605949]
+[node name="TargetActorPortrait" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer" unique_id=1336605949]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GridMap" type="GridContainer" parent="UI" unique_id=966407688]
+[node name="Portrait" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorPortrait" unique_id=1672731350 instance=ExtResource("7_pl11u")]
+layout_mode = 2
+
+[node name="GridMap" type="GridContainer" parent="UI" unique_id=966407688 node_paths=PackedStringArray("grid_map")]
 layout_mode = 0
 offset_left = 192.0
 offset_top = 68.0
@@ -696,6 +755,8 @@ scale = Vector2(2, 2)
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 12
+script = ExtResource("10_37s47")
+grid_map = NodePath(".")
 
 [node name="Cell01" parent="UI/GridMap" unique_id=463411070 instance=ExtResource("2_lbhrr")]
 layout_mode = 2

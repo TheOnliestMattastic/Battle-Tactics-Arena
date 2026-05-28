@@ -5,7 +5,7 @@ extends Node
 @export var actor: Actor
 @export var sprite: Node2D
 @onready var input_delay: Timer = $InputDelay
-var direction: Vector2i = Vector2i.ZERO
+var direction: Vector2 = Vector2.ZERO
 
 func tick(delta: float) -> void:
 	# null check
@@ -13,5 +13,5 @@ func tick(delta: float) -> void:
 		return
 
 	# Move actor
-	actor.move_and_collide(direction * GameMaster.CELL_SIZE)
+	actor.position = actor.position + direction * GameMaster.CELL_SIZE
 	input_delay.start()

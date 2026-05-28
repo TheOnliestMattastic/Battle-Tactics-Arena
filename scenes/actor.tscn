@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cuim36c3j6xxr" path="res://scripts/input_component.gd" id="5_0jvkp"]
 [ext_resource type="Script" uid="uid://btm3pfhbdg24m" path="res://scripts/ap_component.gd" id="5_7i7yh"]
 [ext_resource type="Script" uid="uid://cvcrygxjwsqp2" path="res://scripts/move_component.gd" id="6_7i7yh"]
+[ext_resource type="Script" uid="uid://808xmj4dvm1y" path="res://scripts/grid_component.gd" id="7_yvg0l"]
 
 [sub_resource type="Resource" id="Resource_7i7yh"]
 script = ExtResource("2_w6j74")
@@ -87,9 +88,10 @@ shape = SubResource("RectangleShape2D_yvbpl")
 [node name="AnimPlayer" type="AnimationPlayer" parent="." unique_id=1547184422]
 libraries/ = SubResource("AnimationLibrary_w6j74")
 
-[node name="InputComponent" type="Node" parent="." unique_id=1118900849]
+[node name="InputComponent" type="Node" parent="." unique_id=1118900849 node_paths=PackedStringArray("actor")]
 unique_name_in_owner = true
 script = ExtResource("5_0jvkp")
+actor = NodePath("..")
 metadata/_custom_type_script = "uid://cuim36c3j6xxr"
 
 [node name="APComponent" type="Node" parent="." unique_id=1344272504]
@@ -105,8 +107,12 @@ sprite = NodePath("../Sprite")
 metadata/_custom_type_script = "uid://cvcrygxjwsqp2"
 
 [node name="InputDelay" type="Timer" parent="MoveComponent" unique_id=2012550250]
-wait_time = 0.08
+wait_time = 0.1
 one_shot = true
+
+[node name="GridComponent" type="Node" parent="." unique_id=1709377098]
+script = ExtResource("7_yvg0l")
+metadata/_custom_type_script = "uid://808xmj4dvm1y"
 
 [connection signal="mouse_entered" from="." to="InputComponent" method="_on_actor_mouse_entered"]
 [connection signal="mouse_exited" from="." to="InputComponent" method="_on_actor_mouse_exited"]
