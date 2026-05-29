@@ -1,24 +1,17 @@
-class_name RenderSystem
+class_name DisplayManager
 extends Control
 
 # === Config ===
 @export var portrait_scene: PackedScene = preload("uid://sv3c1o1hl810")
 @export var queue_display: Container
 @export var active_display: Container
-@export var target_display: Container
+@export var target_display: Container 
+@export var combat_log: RichTextLabel
 
-# === Build queue
-func build_queue(team_a: Array, team_b: Array) -> Array[Actor]:
-	var queue: Array[Actor] = []
-	queue.append_array(team_a)
-	queue.append_array(team_b)
-	queue.sort_custom(func(a, b): return a.data.spd > b.data.spd)
-	return queue
+func display_queue(queue: Array[Actor]) -> Dictionary:
+	var copy_of_queue = queue.duplicate() # use copy for function
 
-func display_queue(sorted_queue: Array[Actor], portraits: Dictionary) -> Dictionary:
-	var copy_of_queue = sorted_queue.duplicate() # use copy for function
-
-	# Clear and fill active display, and populate portraits dictionary
+	# Clear and fill active display, and populate dictionary
 	for child in active_display.get_node("HBoxContainer/ActiveActorPortrait").get_children():
 		child.queue_free()
 	var portrait = portrait_scene.instantiate()
@@ -36,6 +29,7 @@ func display_queue(sorted_queue: Array[Actor], portraits: Dictionary) -> Diction
 	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/spd").text = "SPD: " + str(copy_of_queue[0].data.spd)
 	
 	# add to dictionary
+	var portraits: Dictionary = {}
 	portraits[copy_of_queue[0].data.name] = portrait 
 	copy_of_queue.pop_front() # remove active actor
 
@@ -49,15 +43,12 @@ func display_queue(sorted_queue: Array[Actor], portraits: Dictionary) -> Diction
 		portrait.texture = actor.data.faceset
 		queue_display.add_child(portrait)
 		portraits[actor.data.name] = portrait
-	
-	# return populated dictionary
 	return portraits
 
 func display_target(target: Actor) -> void:
 	var portrait = portrait_scene.instantiate()
 	for child in target_display.get_node("HBoxContainer/TargetActorPortrait").get_children():
 		child.queue_free()
-		
 	target_display.get_node("HBoxContainer/TargetActorPortrait").add_child(portrait)
 	portrait.actor_name = target.data.name # link actor to portrait
 	portrait.texture = target.data.faceset # populate portrait w/texture
@@ -68,3 +59,7 @@ func display_target(target: Actor) -> void:
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/def").text = str(target.data.def) + " :DEF" 
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/dex").text = str(target.data.dex) + " :DEX" 
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/spd").text = str(target.data.spd) + " :SPD" 
+
+func log_init(results: Dictionary) -> void:
+	for actor in results:
+		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + actor.data.name + " rolled a " + str(results[actor]) + "![br]")

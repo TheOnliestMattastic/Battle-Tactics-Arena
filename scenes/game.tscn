@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://djl6x2uatqc3m" path="res://scripts/game_master.gd" id="1_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://bt77eidvhb0ii" path="res://assets/sprites/tilesets/TS_grassBrick-32x32.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://oc0dkklawq5y" path="res://scenes/grid_cell.tscn" id="2_lbhrr"]
-[ext_resource type="Script" uid="uid://d0jh2l0cccxn5" path="res://scripts/render_system.gd" id="3_bt5mj"]
+[ext_resource type="Script" uid="uid://d0jh2l0cccxn5" path="res://scripts/display_manager.gd" id="3_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://d04wyb7jkprij" path="res://assets/sprites/ui/header2.png" id="3_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://nopuwc8dbyvd" path="res://assets/sprites/ui/panel4.png" id="4_lbhrr"]
 [ext_resource type="FontFile" uid="uid://dbo5gvh0p6oil" path="res://assets/sprites/alagard.ttf" id="4_p57ef"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bxgnpb8oxqmdb" path="res://assets/sprites/ui/buttonexit.png" id="8_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://be0tq4i3oce1p" path="res://assets/sprites/ui/buttondragon1.png" id="8_vtaks"]
 [ext_resource type="LabelSettings" uid="uid://bnot8r4weqg5m" path="res://resources/label_settings.tres" id="9_e1j6l"]
-[ext_resource type="Script" uid="uid://bc4m1pgyqqgbs" path="res://scripts/grid_system.gd" id="10_37s47"]
 [ext_resource type="Resource" uid="uid://ce5fcrpn2n2dp" path="res://resources/brawler_blue.tres" id="11_264po"]
 [ext_resource type="PackedScene" uid="uid://djhx7tehfjcsx" path="res://scenes/actor.tscn" id="11_kvpfn"]
 [ext_resource type="Resource" uid="uid://d1g7m63sg7d24" path="res://resources/fighter_blue.tres" id="12_1kice"]
@@ -151,7 +150,6 @@ font = ExtResource("4_p57ef")
 [node name="Game" type="Node2D" unique_id=1873102440]
 
 [node name="GameMaster" type="Node" parent="." unique_id=226980244]
-unique_name_in_owner = true
 script = ExtResource("1_kvpfn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1685079538]
@@ -163,7 +161,7 @@ tile_map_data = PackedByteArray("AAD6//z/AAADAAUAAAD6//3/AAACAAQAAAD6//7/AAABAAU
 tile_set = SubResource("TileSet_lnu2h")
 metadata/_edit_lock_ = true
 
-[node name="UI" type="Control" parent="." unique_id=2064261322 node_paths=PackedStringArray("queue_display", "active_display", "target_display")]
+[node name="UI" type="Control" parent="." unique_id=2064261322 node_paths=PackedStringArray("queue_display", "active_display", "target_display", "combat_log")]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -180,6 +178,7 @@ script = ExtResource("3_bt5mj")
 queue_display = NodePath("HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox")
 active_display = NodePath("HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox")
 target_display = NodePath("HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox")
+combat_log = NodePath("HUD/baseBox/topBox/LogPanel/innerContainer/contentBox/ScrollContainer/CombatLog")
 metadata/_edit_lock_ = true
 
 [node name="HUD" type="MarginContainer" parent="UI" unique_id=1752919572]
@@ -340,27 +339,15 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/HUD/baseBox/topBox/LogPanel/innerContainer/contentBox" unique_id=767252119]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("5_gee14")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/HUD/baseBox/topBox/LogPanel/innerContainer/contentBox/ScrollContainer" unique_id=610110922]
+[node name="CombatLog" type="RichTextLabel" parent="UI/HUD/baseBox/topBox/LogPanel/innerContainer/contentBox/ScrollContainer" unique_id=610110922]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 12
+theme_override_fonts/normal_font = ExtResource("4_p57ef")
+theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
-text = "Mage moved 2 spaces.
-Mage attempting to attack Brawler...
-[DEX: 4, 4d6] Mage rolled a 5!
-[DEX: 5, 5d3] Brawler rolled a 6!
-Mage failed to attack Brawler.
-Brawler moved 3 spaces.
-Brawler attempting to attack Mage...
-[DEX: 5, 5d6] Brawler rolled a 12!
-[DEX: 4, 4d3] Mage rolled a 10!
-Brawler's attack was successful. Calculating damage...
-[PWR: 7, 7d3] Brawler rolled a 16!
-[DEF: 3] Mage reduced incoming damage by 3.
-Mage recieved 13pts of damage.
-Mage was defeated!"
 scroll_following = true
 
 [node name="bottomPanel" type="NinePatchRect" parent="UI/HUD/baseBox" unique_id=1788899059]
@@ -745,7 +732,7 @@ size_flags_horizontal = 3
 [node name="Portrait" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorPortrait" unique_id=1672731350 instance=ExtResource("7_pl11u")]
 layout_mode = 2
 
-[node name="GridMap" type="GridContainer" parent="UI" unique_id=966407688 node_paths=PackedStringArray("grid_map")]
+[node name="GridMap" type="GridContainer" parent="UI" unique_id=966407688]
 layout_mode = 0
 offset_left = 192.0
 offset_top = 68.0
@@ -755,8 +742,6 @@ scale = Vector2(2, 2)
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 12
-script = ExtResource("10_37s47")
-grid_map = NodePath(".")
 
 [node name="Cell01" parent="UI/GridMap" unique_id=463411070 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
