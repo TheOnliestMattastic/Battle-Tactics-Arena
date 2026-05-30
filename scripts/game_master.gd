@@ -13,15 +13,12 @@ const CELL_SIZE: Vector2 = Vector2(64, 64)
 # === Systems config ===
 @onready var display_manager: DisplayManager = %UI
 
-# === Lists ===
-var initiative: Dictionary = {}
-
 func _ready() -> void:
 	Manifest.queue.append_array(vanguard)
 	Manifest.queue.append_array(flank)
-	initiative = TurnManager.roll_for_init(Manifest.queue)
-	display_manager.log_init(initiative)
 	Manifest.add_combatants(Manifest.queue)
+	TurnManager.roll_for_init(Manifest.queue)
+	display_manager.log_init()
 	display_manager.display_queue(Manifest.queue)
 	TurnManager.initiate_turn(Manifest.queue)
 

@@ -58,10 +58,10 @@ func display_target(target: Actor) -> void:
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/dex").text = str(target.data.dex) + " :DEX" 
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/spd").text = str(target.data.spd) + " :SPD" 
 
-func log_init(results: Dictionary) -> void:
-	for actor in results:
-		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + actor.data.name + " rolled a " + str(results[actor]) + "![br]")
+func log_init() -> void:
+	for combatant in Manifest.combatants:
+		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a " + str(Manifest.combatants[combatant]["init"]) + "![br]")
 
 func _on_move_button_pressed() -> void:
 	# TODO: highlight movement range
-	pass # Replace with function body.
+	print(Manifest.queue[0].data.name)

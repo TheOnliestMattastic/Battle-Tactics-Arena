@@ -9,6 +9,3 @@ func add_combatants(actors: Array[Actor]) -> void:
 
 func add_portrait(actor: Actor, portrait) -> void:
 	combatants[actor]["portrait"] = portrait
-	#print(actor.data.name)
-	#print(portrait)
-	#print(combatants)
