@@ -8,10 +8,10 @@ extends Control
 @export var target_display: Container 
 @export var combat_log: RichTextLabel
 
-func display_queue(queue: Array[Actor]) -> Dictionary:
+func display_queue(queue: Array[Actor]) -> void:
 	var copy_of_queue = queue.duplicate() # use copy for function
 
-	# Clear and fill active display, and populate dictionary
+	# Clear and fill active display
 	for child in active_display.get_node("HBoxContainer/ActiveActorPortrait").get_children():
 		child.queue_free()
 	var portrait = portrait_scene.instantiate()
@@ -29,8 +29,7 @@ func display_queue(queue: Array[Actor]) -> Dictionary:
 	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/spd").text = "SPD: " + str(copy_of_queue[0].data.spd)
 	
 	# add to dictionary
-	var portraits: Dictionary = {}
-	portraits[copy_of_queue[0].data.name] = portrait 
+	Manifest.add_portrait(copy_of_queue[0], portrait)
 	copy_of_queue.pop_front() # remove active actor
 
 	# Clear and fill queue display, and populate portraits dictionary
@@ -42,8 +41,7 @@ func display_queue(queue: Array[Actor]) -> Dictionary:
 		portrait.actor_name = actor.data.name
 		portrait.texture = actor.data.faceset
 		queue_display.add_child(portrait)
-		portraits[actor.data.name] = portrait
-	return portraits
+		Manifest.add_portrait(actor, portrait)
 
 func display_target(target: Actor) -> void:
 	var portrait = portrait_scene.instantiate()
@@ -63,3 +61,7 @@ func display_target(target: Actor) -> void:
 func log_init(results: Dictionary) -> void:
 	for actor in results:
 		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + actor.data.name + " rolled a " + str(results[actor]) + "![br]")
+
+func _on_move_button_pressed() -> void:
+	# TODO: highlight movement range
+	pass # Replace with function body.

@@ -14,22 +14,18 @@ const CELL_SIZE: Vector2 = Vector2(64, 64)
 @onready var display_manager: DisplayManager = %UI
 
 # === Lists ===
-var queue: Array[Actor] = []
-var combatants: Dictionary = {}
-var portraits: Dictionary = {}
 var initiative: Dictionary = {}
 
 func _ready() -> void:
-	queue.append_array(vanguard)
-	queue.append_array(flank)
-	initiative = TurnManager.roll_for_init(queue)
+	Manifest.queue.append_array(vanguard)
+	Manifest.queue.append_array(flank)
+	initiative = TurnManager.roll_for_init(Manifest.queue)
 	display_manager.log_init(initiative)
-	portraits = display_manager.display_queue(queue)
-	for actor in queue: # Populate combatants dictionary
-		combatants[actor.data.name] = actor
-	TurnManager.initiate_turn(queue)
+	Manifest.add_combatants(Manifest.queue)
+	display_manager.display_queue(Manifest.queue)
+	TurnManager.initiate_turn(Manifest.queue)
 
 func _process(delta: float) -> void:
-	for combatant in combatants:
-		if combatants[combatant].target:
-			display_manager.display_target(combatants[combatant])
+	for combatant in Manifest.combatants:
+		if combatant.target:
+			display_manager.display_target(combatant)

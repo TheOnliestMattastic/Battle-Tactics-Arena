@@ -485,7 +485,7 @@ label_settings = SubResource("LabelSettings_vtaks")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="attackButton2" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=1054470299]
+[node name="attackButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=1054470299]
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -495,7 +495,7 @@ texture_disabled = SubResource("AtlasTexture_rysoc")
 texture_focused = SubResource("AtlasTexture_ca42v")
 stretch_mode = 0
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/attackButton2" unique_id=355804190]
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/attackButton" unique_id=355804190]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -509,7 +509,7 @@ offset_bottom = 7.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/attackButton2/innerContainer" unique_id=2006582507]
+[node name="Label" type="Label" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/attackButton/innerContainer" unique_id=2006582507]
 layout_mode = 2
 text = "Attack"
 label_settings = SubResource("LabelSettings_vtaks")
@@ -979,6 +979,7 @@ position = Vector2(192, -64)
 scale = Vector2(4, 4)
 data = ExtResource("19_qnb83")
 
+[connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/moveButton" to="UI" method="_on_move_button_pressed"]
 [connection signal="mouse_entered" from="UI/GridMap/Cell01" to="UI/GridMap/Cell01" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/GridMap/Cell01" to="UI/GridMap/Cell01" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="UI/GridMap/Cell02" to="UI/GridMap/Cell02" method="_on_mouse_entered"]
