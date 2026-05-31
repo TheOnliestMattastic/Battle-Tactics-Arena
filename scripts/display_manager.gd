@@ -7,6 +7,7 @@ extends Control
 @export var active_display: Container
 @export var target_display: Container 
 @export var combat_log: RichTextLabel
+@onready var game_master: GameMaster = $".."
 
 func display_queue(queue: Array[Actor]) -> void:
 	var copy_of_queue = queue.duplicate() # use copy for function
@@ -64,4 +65,9 @@ func log_init() -> void:
 
 func _on_move_button_pressed() -> void:
 	# TODO: highlight movement range
-	print(Manifest.queue[0].data.name)
+	if not game_master.is_moving:
+		game_master.is_moving = true
+	else:
+		game_master.is_moving = false
+		
+	print(game_master.is_moving)

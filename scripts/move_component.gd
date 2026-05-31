@@ -6,6 +6,7 @@ extends Node
 @export var sprite: Node2D
 @onready var input_delay: Timer = $InputDelay
 var direction: Vector2 = Vector2.ZERO
+@onready var anim_player: AnimationPlayer = $"../AnimPlayer"
 
 func tick(delta: float) -> void:
 	# null check
@@ -13,5 +14,5 @@ func tick(delta: float) -> void:
 		return
 
 	# Move actor
-	actor.position = actor.position + direction * GameMaster.CELL_SIZE
+	actor.position = actor.position + direction * Vector2(64, 64)
 	input_delay.start()
