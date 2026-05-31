@@ -8,6 +8,9 @@ extends Control
 @export var target_display: Container 
 @export var combat_log: RichTextLabel
 @onready var game_master: GameMaster = $".."
+@export var grid_map: GridData
+
+var reachable = {}
 
 func display_queue(queue: Array[Actor]) -> void:
 	var copy_of_queue = queue.duplicate() # use copy for function
@@ -20,14 +23,15 @@ func display_queue(queue: Array[Actor]) -> void:
 	portrait.texture = copy_of_queue[0].data.faceset # populate portrait w/texture
 	
 	# display portrait and stats
+	var active_actor = copy_of_queue[0]
 	active_display.get_node("HBoxContainer/ActiveActorPortrait").add_child(portrait)
-	active_display.get_node("name").text = copy_of_queue[0].data.name
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/hp").text = "HP: " + str(copy_of_queue[0].data.hp)
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/ap").text = "AP: " + str(copy_of_queue[0].data.ap)
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/pwr").text = "PWR: " + str(copy_of_queue[0].data.pwr)
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/def").text = "DEF: " + str(copy_of_queue[0].data.def)
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/dex").text = "DEX: " + str(copy_of_queue[0].data.dex)
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/spd").text = "SPD: " + str(copy_of_queue[0].data.spd)
+	active_display.get_node("name").text = active_actor.data.name
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/hp").text = "HP: " + str(Manifest.combatants[active_actor]["HP"])
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/ap").text = "AP: " + str(Manifest.combatants[active_actor]["AP"])
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/pwr").text = "PWR: " + str(active_actor.data.pwr)
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/def").text = "DEF: " + str(active_actor.data.def)
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/dex").text = "DEX: " + str(active_actor.data.dex)
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/spd").text = "SPD: " + str(active_actor.data.spd)
 	
 	# add to dictionary
 	Manifest.add_portrait(copy_of_queue[0], portrait)
@@ -52,8 +56,8 @@ func display_target(target: Actor) -> void:
 	portrait.actor_name = target.data.name # link actor to portrait
 	portrait.texture = target.data.faceset # populate portrait w/texture
 	target_display.get_node("name").text = target.data.name
-	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/hp").text = str(target.data.hp) + " :HP" 
-	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/ap").text = str(target.data.ap) + " :AP" 
+	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/hp").text = str(Manifest.combatants[target]["HP"]) + " :HP" 
+	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/ap").text = str(Manifest.combatants[target]["AP"]) + " :AP" 
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/pwr").text = str(target.data.pwr) + " :PWR" 
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/def").text = str(target.data.def) + " :DEF" 
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/dex").text = str(target.data.dex) + " :DEX" 
@@ -64,10 +68,29 @@ func log_init() -> void:
 		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a " + str(Manifest.combatants[combatant]["init"]) + "![br]")
 
 func _on_move_button_pressed() -> void:
-	# TODO: highlight movement range
-	if not game_master.is_moving:
-		game_master.is_moving = true
-	else:
+	if game_master.is_moving:
 		game_master.is_moving = false
+	else:
+		var mover = Manifest.queue[0]
+		var start = mover.position / GameMaster.CELL_SIZE
+		var move_range = Manifest.combatants[mover]["AP"] * mover.data.spd
+		var astar = grid_map.astar
+
+		grid_map.toggle_obstacle(start, false)
+		game_master.is_moving = true
+		reachable.clear()
+
+		for x in range(astar.region.size.x):
+			for y in range(astar.region.size.y):
+				var cell := Vector2i(x,y)
+				var path = astar.get_id_path(Vector2i(mover.position / GameMaster.CELL_SIZE), cell)
+				if astar.is_point_solid(cell) or path.size() == 0:
+					reachable[cell] = false
+				else:
+					if path.size() > move_range:
+						reachable[cell] = false
+					else:
+						reachable[cell] = true
 		
-	print(game_master.is_moving)
+	print(game_master.is_moving) # DEBUGGER
+	print(reachable)

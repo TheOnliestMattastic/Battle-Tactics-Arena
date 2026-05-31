@@ -25,6 +25,57 @@
 [ext_resource type="Resource" uid="uid://c3vls8acqcun3" path="res://resources/sultan_black.tres" id="19_qnb83"]
 [ext_resource type="Resource" uid="uid://58ok6iwyf4un" path="res://resources/shaman_lion.tres" id="20_5newe"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_u5sy4"]
+font = ExtResource("4_p57ef")
+
+[sub_resource type="LabelSettings" id="LabelSettings_p57ef"]
+font = ExtResource("4_p57ef")
+font_size = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
+atlas = ExtResource("8_vtaks")
+region = Rect2(0, 0, 100, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir15t"]
+atlas = ExtResource("8_vtaks")
+region = Rect2(200, 0, 100, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca42v"]
+atlas = ExtResource("8_vtaks")
+region = Rect2(100, 0, 100, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rysoc"]
+atlas = ExtResource("8_vtaks")
+region = Rect2(300, 0, 100, 35)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vtaks"]
+font = ExtResource("4_p57ef")
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvpfn"]
+font = ExtResource("4_p57ef")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dinhu"]
+font = ExtResource("4_p57ef")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtaks"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
+atlas = ExtResource("8_0tnpc")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvuet"]
+font = ExtResource("4_p57ef")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_uwrxv")
 texture_region_size = Vector2i(32, 32)
@@ -97,127 +148,13 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
-[sub_resource type="LabelSettings" id="LabelSettings_u5sy4"]
-font = ExtResource("4_p57ef")
-
-[sub_resource type="LabelSettings" id="LabelSettings_p57ef"]
-font = ExtResource("4_p57ef")
-font_size = 24
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
-atlas = ExtResource("8_vtaks")
-region = Rect2(0, 0, 100, 35)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ir15t"]
-atlas = ExtResource("8_vtaks")
-region = Rect2(200, 0, 100, 35)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ca42v"]
-atlas = ExtResource("8_vtaks")
-region = Rect2(100, 0, 100, 35)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rysoc"]
-atlas = ExtResource("8_vtaks")
-region = Rect2(300, 0, 100, 35)
-
-[sub_resource type="LabelSettings" id="LabelSettings_vtaks"]
-font = ExtResource("4_p57ef")
-
-[sub_resource type="LabelSettings" id="LabelSettings_kvpfn"]
-font = ExtResource("4_p57ef")
-
-[sub_resource type="LabelSettings" id="LabelSettings_dinhu"]
-font = ExtResource("4_p57ef")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vtaks"]
-atlas = ExtResource("8_0tnpc")
-region = Rect2(0, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvpfn"]
-atlas = ExtResource("8_0tnpc")
-region = Rect2(48, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dinhu"]
-atlas = ExtResource("8_0tnpc")
-region = Rect2(24, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
-atlas = ExtResource("8_0tnpc")
-region = Rect2(72, 0, 24, 24)
-
-[sub_resource type="LabelSettings" id="LabelSettings_kvuet"]
-font = ExtResource("4_p57ef")
-
 [node name="Game" type="Node2D" unique_id=1873102440]
 script = ExtResource("1_kvpfn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1685079538]
 metadata/_edit_lock_ = true
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1797703118]
-position = Vector2(-384, -256)
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAAAAAAAAADAAUAAAABAAAAAAACAAcAAAACAAAAAAAAAAcAAAADAAAAAAAEAAcAAAAEAAAAAAAEAAYAAAAFAAAAAAAGAAUAAAAAAAEAAAACAAQAAAAAAAIAAAABAAUAAAAAAAMAAAACAAUAAAAAAAQAAAAAAAUAAAABAAEAAAADAAUAAAABAAIAAAAAAAcAAAABAAMAAAAGAAcAAAABAAQAAAAFAAYAAAACAAEAAAAFAAYAAAACAAIAAAAEAAYAAAACAAMAAAAGAAQAAAACAAQAAAACAAQAAAADAAEAAAABAAcAAAADAAIAAAAEAAYAAAADAAMAAAAEAAQAAAADAAQAAAAGAAYAAAAEAAEAAAAEAAcAAAAEAAIAAAABAAYAAAAEAAMAAAAGAAUAAAAEAAQAAAAGAAQAAAAFAAEAAAACAAYAAAAFAAIAAAAFAAcAAAAFAAMAAAAFAAYAAAAFAAQAAAAEAAcAAAAGAAAAAAACAAQAAAAGAAEAAAAGAAQAAAAGAAIAAAAGAAQAAAAGAAMAAAAAAAUAAAAGAAQAAAACAAcAAAAHAAAAAAAAAAUAAAAHAAEAAAAFAAQAAAAHAAIAAAAEAAUAAAAHAAMAAAABAAYAAAAHAAQAAAAGAAQAAAAIAAAAAAAAAAYAAAAIAAEAAAABAAcAAAAIAAIAAAAAAAcAAAAIAAMAAAAHAAYAAAAIAAQAAAAAAAQAAAAJAAAAAAABAAQAAAAJAAEAAAAFAAcAAAAJAAIAAAAEAAYAAAAJAAMAAAAGAAUAAAAJAAQAAAAAAAQAAAAKAAAAAAADAAcAAAAKAAEAAAACAAcAAAAKAAIAAAAFAAQAAAAKAAMAAAACAAQAAAAKAAQAAAAFAAYAAAALAAAAAAAAAAUAAAALAAEAAAAEAAUAAAALAAIAAAADAAQAAAALAAMAAAAAAAcAAAALAAQAAAACAAcAAAA=")
-tile_set = SubResource("TileSet_lnu2h")
-
-[node name="Actors" type="Node2D" parent="TileMapLayer" unique_id=1254128970]
-scale = Vector2(0.5, 0.5)
-
-[node name="Vanguard" type="Node2D" parent="TileMapLayer/Actors" unique_id=442984596]
-
-[node name="Actor" parent="TileMapLayer/Actors/Vanguard" unique_id=1096699479 instance=ExtResource("11_kvpfn")]
-position = Vector2(192, 64)
-scale = Vector2(4, 4)
-data = ExtResource("11_264po")
-
-[node name="Actor2" parent="TileMapLayer/Actors/Vanguard" unique_id=1061918940 instance=ExtResource("11_kvpfn")]
-position = Vector2(192, 192)
-scale = Vector2(4, 4)
-data = ExtResource("12_1kice")
-
-[node name="Actor3" parent="TileMapLayer/Actors/Vanguard" unique_id=1817617072 instance=ExtResource("11_kvpfn")]
-position = Vector2(128, 0)
-scale = Vector2(4, 4)
-data = ExtResource("13_5newe")
-
-[node name="Actor4" parent="TileMapLayer/Actors/Vanguard" unique_id=1039089710 instance=ExtResource("11_kvpfn")]
-position = Vector2(128, 256)
-scale = Vector2(4, 4)
-data = ExtResource("14_37s47")
-
-[node name="Actor5" parent="TileMapLayer/Actors/Vanguard" unique_id=729704875 instance=ExtResource("11_kvpfn")]
-position = Vector2(64, 128)
-scale = Vector2(4, 4)
-data = ExtResource("15_bt5mj")
-
-[node name="Flank" type="Node2D" parent="TileMapLayer/Actors" unique_id=993040297]
-
-[node name="Actor6" parent="TileMapLayer/Actors/Flank" unique_id=1695760592 instance=ExtResource("11_kvpfn")]
-position = Vector2(512, 0)
-scale = Vector2(4, 4)
-data = ExtResource("16_e1j6l")
-
-[node name="Actor7" parent="TileMapLayer/Actors/Flank" unique_id=1960963297 instance=ExtResource("11_kvpfn")]
-position = Vector2(512, 128)
-scale = Vector2(4, 4)
-data = ExtResource("17_pl11u")
-
-[node name="Actor8" parent="TileMapLayer/Actors/Flank" unique_id=1454518242 instance=ExtResource("11_kvpfn")]
-position = Vector2(512, 256)
-scale = Vector2(4, 4)
-data = ExtResource("18_bhx41")
-
-[node name="Actor9" parent="TileMapLayer/Actors/Flank" unique_id=162605852 instance=ExtResource("11_kvpfn")]
-position = Vector2(576, 64)
-scale = Vector2(4, 4)
-data = ExtResource("20_5newe")
-
-[node name="Actor10" parent="TileMapLayer/Actors/Flank" unique_id=928971165 instance=ExtResource("11_kvpfn")]
-position = Vector2(576, 192)
-scale = Vector2(4, 4)
-data = ExtResource("19_qnb83")
-
-[node name="UI" type="Control" parent="." unique_id=2064261322 node_paths=PackedStringArray("queue_display", "active_display", "target_display", "combat_log")]
+[node name="UI" type="Control" parent="." unique_id=2064261322 node_paths=PackedStringArray("queue_display", "active_display", "target_display", "combat_log", "grid_map")]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -229,12 +166,12 @@ offset_right = 576.0
 offset_bottom = 324.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 script = ExtResource("3_bt5mj")
 queue_display = NodePath("HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox")
 active_display = NodePath("HUD/baseBox/bottomPanel/innerMargin/contentBox/ActiveBox")
 target_display = NodePath("HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox")
 combat_log = NodePath("HUD/baseBox/topBox/LogPanel/innerContainer/contentBox/ScrollContainer/CombatLog")
+grid_map = NodePath("../Board/GridMap")
 metadata/_edit_lock_ = true
 
 [node name="HUD" type="MarginContainer" parent="UI" unique_id=1752919572]
@@ -788,318 +725,383 @@ size_flags_horizontal = 3
 [node name="Portrait" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/TargetBox/HBoxContainer/TargetActorPortrait" unique_id=1672731350 instance=ExtResource("7_pl11u")]
 layout_mode = 2
 
-[node name="GridMap" type="GridContainer" parent="UI" unique_id=966407688]
+[node name="Board" type="Node2D" parent="." unique_id=1001173469]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Board" unique_id=1797703118]
+position = Vector2(-384, -256)
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAAAAAAAAADAAUAAAABAAAAAAACAAcAAAACAAAAAAAAAAcAAAADAAAAAAAEAAcAAAAEAAAAAAAEAAYAAAAFAAAAAAAGAAUAAAAAAAEAAAACAAQAAAAAAAIAAAABAAUAAAAAAAMAAAACAAUAAAAAAAQAAAAAAAUAAAABAAEAAAADAAUAAAABAAIAAAAAAAcAAAABAAMAAAAGAAcAAAABAAQAAAAFAAYAAAACAAEAAAAFAAYAAAACAAIAAAAEAAYAAAACAAMAAAAGAAQAAAACAAQAAAACAAQAAAADAAEAAAABAAcAAAADAAIAAAAEAAYAAAADAAMAAAAEAAQAAAADAAQAAAAGAAYAAAAEAAEAAAAEAAcAAAAEAAIAAAABAAYAAAAEAAMAAAAGAAUAAAAEAAQAAAAGAAQAAAAFAAEAAAACAAYAAAAFAAIAAAAFAAcAAAAFAAMAAAAFAAYAAAAFAAQAAAAEAAcAAAAGAAAAAAACAAQAAAAGAAEAAAAGAAQAAAAGAAIAAAAGAAQAAAAGAAMAAAAAAAUAAAAGAAQAAAACAAcAAAAHAAAAAAAAAAUAAAAHAAEAAAAFAAQAAAAHAAIAAAAEAAUAAAAHAAMAAAABAAYAAAAHAAQAAAAGAAQAAAAIAAAAAAAAAAYAAAAIAAEAAAABAAcAAAAIAAIAAAAAAAcAAAAIAAMAAAAHAAYAAAAIAAQAAAAAAAQAAAAJAAAAAAABAAQAAAAJAAEAAAAFAAcAAAAJAAIAAAAEAAYAAAAJAAMAAAAGAAUAAAAJAAQAAAAAAAQAAAAKAAAAAAADAAcAAAAKAAEAAAACAAcAAAAKAAIAAAAFAAQAAAAKAAMAAAACAAQAAAAKAAQAAAAFAAYAAAALAAAAAAAAAAUAAAALAAEAAAAEAAUAAAALAAIAAAADAAQAAAALAAMAAAAAAAcAAAALAAQAAAACAAcAAAA=")
+tile_set = SubResource("TileSet_lnu2h")
+
+[node name="GridMap" type="GridContainer" parent="Board" unique_id=966407688]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 192.0
-offset_top = 68.0
-offset_right = 576.0
-offset_bottom = 228.0
+offset_left = -384.0
+offset_top = -256.0
+offset_bottom = -96.0
 scale = Vector2(2, 2)
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 12
 script = ExtResource("12_e1j6l")
 
-[node name="Cell01" parent="UI/GridMap" unique_id=463411070 instance=ExtResource("2_lbhrr")]
+[node name="Cell01" parent="Board/GridMap" unique_id=463411070 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell02" parent="UI/GridMap" unique_id=1402807200 instance=ExtResource("2_lbhrr")]
+[node name="Cell02" parent="Board/GridMap" unique_id=1402807200 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell03" parent="UI/GridMap" unique_id=2078766866 instance=ExtResource("2_lbhrr")]
+[node name="Cell03" parent="Board/GridMap" unique_id=2078766866 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell04" parent="UI/GridMap" unique_id=2094571364 instance=ExtResource("2_lbhrr")]
+[node name="Cell04" parent="Board/GridMap" unique_id=2094571364 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell05" parent="UI/GridMap" unique_id=1480924302 instance=ExtResource("2_lbhrr")]
+[node name="Cell05" parent="Board/GridMap" unique_id=1480924302 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell06" parent="UI/GridMap" unique_id=529022190 instance=ExtResource("2_lbhrr")]
+[node name="Cell06" parent="Board/GridMap" unique_id=529022190 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell07" parent="UI/GridMap" unique_id=2090480825 instance=ExtResource("2_lbhrr")]
+[node name="Cell07" parent="Board/GridMap" unique_id=2090480825 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell08" parent="UI/GridMap" unique_id=1713703547 instance=ExtResource("2_lbhrr")]
+[node name="Cell08" parent="Board/GridMap" unique_id=1713703547 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell09" parent="UI/GridMap" unique_id=823035503 instance=ExtResource("2_lbhrr")]
+[node name="Cell09" parent="Board/GridMap" unique_id=823035503 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell10" parent="UI/GridMap" unique_id=440921207 instance=ExtResource("2_lbhrr")]
+[node name="Cell10" parent="Board/GridMap" unique_id=440921207 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell11" parent="UI/GridMap" unique_id=870894953 instance=ExtResource("2_lbhrr")]
+[node name="Cell11" parent="Board/GridMap" unique_id=870894953 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell12" parent="UI/GridMap" unique_id=1312193307 instance=ExtResource("2_lbhrr")]
+[node name="Cell12" parent="Board/GridMap" unique_id=1312193307 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell13" parent="UI/GridMap" unique_id=1250108703 instance=ExtResource("2_lbhrr")]
+[node name="Cell13" parent="Board/GridMap" unique_id=1250108703 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell14" parent="UI/GridMap" unique_id=1749324885 instance=ExtResource("2_lbhrr")]
+[node name="Cell14" parent="Board/GridMap" unique_id=1749324885 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell15" parent="UI/GridMap" unique_id=932268219 instance=ExtResource("2_lbhrr")]
+[node name="Cell15" parent="Board/GridMap" unique_id=932268219 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell16" parent="UI/GridMap" unique_id=1164299397 instance=ExtResource("2_lbhrr")]
+[node name="Cell16" parent="Board/GridMap" unique_id=1164299397 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell17" parent="UI/GridMap" unique_id=1113436347 instance=ExtResource("2_lbhrr")]
+[node name="Cell17" parent="Board/GridMap" unique_id=1113436347 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell18" parent="UI/GridMap" unique_id=1823301831 instance=ExtResource("2_lbhrr")]
+[node name="Cell18" parent="Board/GridMap" unique_id=1823301831 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell19" parent="UI/GridMap" unique_id=304622809 instance=ExtResource("2_lbhrr")]
+[node name="Cell19" parent="Board/GridMap" unique_id=304622809 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell20" parent="UI/GridMap" unique_id=805272251 instance=ExtResource("2_lbhrr")]
+[node name="Cell20" parent="Board/GridMap" unique_id=805272251 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell21" parent="UI/GridMap" unique_id=244927124 instance=ExtResource("2_lbhrr")]
+[node name="Cell21" parent="Board/GridMap" unique_id=244927124 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell22" parent="UI/GridMap" unique_id=1741802914 instance=ExtResource("2_lbhrr")]
+[node name="Cell22" parent="Board/GridMap" unique_id=1741802914 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell23" parent="UI/GridMap" unique_id=1941717850 instance=ExtResource("2_lbhrr")]
+[node name="Cell23" parent="Board/GridMap" unique_id=1941717850 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell24" parent="UI/GridMap" unique_id=1128983322 instance=ExtResource("2_lbhrr")]
+[node name="Cell24" parent="Board/GridMap" unique_id=1128983322 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell25" parent="UI/GridMap" unique_id=1704365469 instance=ExtResource("2_lbhrr")]
+[node name="Cell25" parent="Board/GridMap" unique_id=1704365469 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell26" parent="UI/GridMap" unique_id=533456897 instance=ExtResource("2_lbhrr")]
+[node name="Cell26" parent="Board/GridMap" unique_id=533456897 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell27" parent="UI/GridMap" unique_id=1786707391 instance=ExtResource("2_lbhrr")]
+[node name="Cell27" parent="Board/GridMap" unique_id=1786707391 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell28" parent="UI/GridMap" unique_id=165706760 instance=ExtResource("2_lbhrr")]
+[node name="Cell28" parent="Board/GridMap" unique_id=165706760 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell29" parent="UI/GridMap" unique_id=1815842183 instance=ExtResource("2_lbhrr")]
+[node name="Cell29" parent="Board/GridMap" unique_id=1815842183 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell30" parent="UI/GridMap" unique_id=60776777 instance=ExtResource("2_lbhrr")]
+[node name="Cell30" parent="Board/GridMap" unique_id=60776777 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell31" parent="UI/GridMap" unique_id=168977894 instance=ExtResource("2_lbhrr")]
+[node name="Cell31" parent="Board/GridMap" unique_id=168977894 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell32" parent="UI/GridMap" unique_id=1639855815 instance=ExtResource("2_lbhrr")]
+[node name="Cell32" parent="Board/GridMap" unique_id=1639855815 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell33" parent="UI/GridMap" unique_id=1026215729 instance=ExtResource("2_lbhrr")]
+[node name="Cell33" parent="Board/GridMap" unique_id=1026215729 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell34" parent="UI/GridMap" unique_id=637900821 instance=ExtResource("2_lbhrr")]
+[node name="Cell34" parent="Board/GridMap" unique_id=637900821 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell35" parent="UI/GridMap" unique_id=900341244 instance=ExtResource("2_lbhrr")]
+[node name="Cell35" parent="Board/GridMap" unique_id=900341244 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell36" parent="UI/GridMap" unique_id=1003544775 instance=ExtResource("2_lbhrr")]
+[node name="Cell36" parent="Board/GridMap" unique_id=1003544775 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell37" parent="UI/GridMap" unique_id=804225681 instance=ExtResource("2_lbhrr")]
+[node name="Cell37" parent="Board/GridMap" unique_id=804225681 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell38" parent="UI/GridMap" unique_id=28623846 instance=ExtResource("2_lbhrr")]
+[node name="Cell38" parent="Board/GridMap" unique_id=28623846 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell39" parent="UI/GridMap" unique_id=236213006 instance=ExtResource("2_lbhrr")]
+[node name="Cell39" parent="Board/GridMap" unique_id=236213006 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell40" parent="UI/GridMap" unique_id=934192502 instance=ExtResource("2_lbhrr")]
+[node name="Cell40" parent="Board/GridMap" unique_id=934192502 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell41" parent="UI/GridMap" unique_id=139769125 instance=ExtResource("2_lbhrr")]
+[node name="Cell41" parent="Board/GridMap" unique_id=139769125 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell42" parent="UI/GridMap" unique_id=406178564 instance=ExtResource("2_lbhrr")]
+[node name="Cell42" parent="Board/GridMap" unique_id=406178564 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell43" parent="UI/GridMap" unique_id=956116215 instance=ExtResource("2_lbhrr")]
+[node name="Cell43" parent="Board/GridMap" unique_id=956116215 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell44" parent="UI/GridMap" unique_id=2071569184 instance=ExtResource("2_lbhrr")]
+[node name="Cell44" parent="Board/GridMap" unique_id=2071569184 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell45" parent="UI/GridMap" unique_id=785297122 instance=ExtResource("2_lbhrr")]
+[node name="Cell45" parent="Board/GridMap" unique_id=785297122 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell46" parent="UI/GridMap" unique_id=833242187 instance=ExtResource("2_lbhrr")]
+[node name="Cell46" parent="Board/GridMap" unique_id=833242187 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell47" parent="UI/GridMap" unique_id=246670287 instance=ExtResource("2_lbhrr")]
+[node name="Cell47" parent="Board/GridMap" unique_id=246670287 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell48" parent="UI/GridMap" unique_id=802837068 instance=ExtResource("2_lbhrr")]
+[node name="Cell48" parent="Board/GridMap" unique_id=802837068 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell49" parent="UI/GridMap" unique_id=875388647 instance=ExtResource("2_lbhrr")]
+[node name="Cell49" parent="Board/GridMap" unique_id=875388647 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell50" parent="UI/GridMap" unique_id=768576551 instance=ExtResource("2_lbhrr")]
+[node name="Cell50" parent="Board/GridMap" unique_id=768576551 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell51" parent="UI/GridMap" unique_id=1625022808 instance=ExtResource("2_lbhrr")]
+[node name="Cell51" parent="Board/GridMap" unique_id=1625022808 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell52" parent="UI/GridMap" unique_id=778469725 instance=ExtResource("2_lbhrr")]
+[node name="Cell52" parent="Board/GridMap" unique_id=778469725 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell53" parent="UI/GridMap" unique_id=846994256 instance=ExtResource("2_lbhrr")]
+[node name="Cell53" parent="Board/GridMap" unique_id=846994256 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell54" parent="UI/GridMap" unique_id=265959302 instance=ExtResource("2_lbhrr")]
+[node name="Cell54" parent="Board/GridMap" unique_id=265959302 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell55" parent="UI/GridMap" unique_id=1744962195 instance=ExtResource("2_lbhrr")]
+[node name="Cell55" parent="Board/GridMap" unique_id=1744962195 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell56" parent="UI/GridMap" unique_id=661740741 instance=ExtResource("2_lbhrr")]
+[node name="Cell56" parent="Board/GridMap" unique_id=661740741 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell57" parent="UI/GridMap" unique_id=1064763032 instance=ExtResource("2_lbhrr")]
+[node name="Cell57" parent="Board/GridMap" unique_id=1064763032 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell58" parent="UI/GridMap" unique_id=1712501593 instance=ExtResource("2_lbhrr")]
+[node name="Cell58" parent="Board/GridMap" unique_id=1712501593 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell59" parent="UI/GridMap" unique_id=2050898852 instance=ExtResource("2_lbhrr")]
+[node name="Cell59" parent="Board/GridMap" unique_id=2050898852 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
 
-[node name="Cell60" parent="UI/GridMap" unique_id=1663631938 instance=ExtResource("2_lbhrr")]
+[node name="Cell60" parent="Board/GridMap" unique_id=1663631938 instance=ExtResource("2_lbhrr")]
 layout_mode = 2
+
+[node name="Actors" type="Node2D" parent="Board" unique_id=1254128970]
+position = Vector2(-384, -256)
+
+[node name="Vanguard" type="Node2D" parent="Board/Actors" unique_id=442984596]
+unique_name_in_owner = true
+
+[node name="Actor" parent="Board/Actors/Vanguard" unique_id=1096699479 instance=ExtResource("11_kvpfn")]
+position = Vector2(192, 64)
+scale = Vector2(4, 4)
+data = ExtResource("11_264po")
+
+[node name="Actor2" parent="Board/Actors/Vanguard" unique_id=1061918940 instance=ExtResource("11_kvpfn")]
+position = Vector2(192, 192)
+scale = Vector2(4, 4)
+data = ExtResource("12_1kice")
+
+[node name="Actor3" parent="Board/Actors/Vanguard" unique_id=1817617072 instance=ExtResource("11_kvpfn")]
+position = Vector2(128, 0)
+scale = Vector2(4, 4)
+data = ExtResource("13_5newe")
+
+[node name="Actor4" parent="Board/Actors/Vanguard" unique_id=1039089710 instance=ExtResource("11_kvpfn")]
+position = Vector2(128, 256)
+scale = Vector2(4, 4)
+data = ExtResource("14_37s47")
+
+[node name="Actor5" parent="Board/Actors/Vanguard" unique_id=729704875 instance=ExtResource("11_kvpfn")]
+position = Vector2(64, 128)
+scale = Vector2(4, 4)
+data = ExtResource("15_bt5mj")
+
+[node name="Flank" type="Node2D" parent="Board/Actors" unique_id=993040297]
+unique_name_in_owner = true
+
+[node name="Actor6" parent="Board/Actors/Flank" unique_id=1695760592 instance=ExtResource("11_kvpfn")]
+position = Vector2(512, 0)
+scale = Vector2(4, 4)
+data = ExtResource("16_e1j6l")
+
+[node name="Actor7" parent="Board/Actors/Flank" unique_id=1960963297 instance=ExtResource("11_kvpfn")]
+position = Vector2(512, 128)
+scale = Vector2(4, 4)
+data = ExtResource("17_pl11u")
+
+[node name="Actor8" parent="Board/Actors/Flank" unique_id=1454518242 instance=ExtResource("11_kvpfn")]
+position = Vector2(512, 256)
+scale = Vector2(4, 4)
+data = ExtResource("18_bhx41")
+
+[node name="Actor9" parent="Board/Actors/Flank" unique_id=162605852 instance=ExtResource("11_kvpfn")]
+position = Vector2(576, 64)
+scale = Vector2(4, 4)
+data = ExtResource("20_5newe")
+
+[node name="Actor10" parent="Board/Actors/Flank" unique_id=928971165 instance=ExtResource("11_kvpfn")]
+position = Vector2(576, 192)
+scale = Vector2(4, 4)
+data = ExtResource("19_qnb83")
 
 [connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/moveButton" to="UI" method="_on_move_button_pressed"]
-[connection signal="grid_pressed" from="UI/GridMap" to="." method="_on_grid_map_grid_pressed"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell01" to="UI/GridMap/Cell01" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell01" to="UI/GridMap/Cell01" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell02" to="UI/GridMap/Cell02" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell02" to="UI/GridMap/Cell02" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell03" to="UI/GridMap/Cell03" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell03" to="UI/GridMap/Cell03" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell04" to="UI/GridMap/Cell04" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell04" to="UI/GridMap/Cell04" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell05" to="UI/GridMap/Cell05" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell05" to="UI/GridMap/Cell05" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell06" to="UI/GridMap/Cell06" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell06" to="UI/GridMap/Cell06" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell07" to="UI/GridMap/Cell07" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell07" to="UI/GridMap/Cell07" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell08" to="UI/GridMap/Cell08" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell08" to="UI/GridMap/Cell08" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell09" to="UI/GridMap/Cell09" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell09" to="UI/GridMap/Cell09" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell10" to="UI/GridMap/Cell10" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell10" to="UI/GridMap/Cell10" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell11" to="UI/GridMap/Cell11" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell11" to="UI/GridMap/Cell11" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell12" to="UI/GridMap/Cell12" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell12" to="UI/GridMap/Cell12" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell13" to="UI/GridMap/Cell13" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell13" to="UI/GridMap/Cell13" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell14" to="UI/GridMap/Cell14" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell14" to="UI/GridMap/Cell14" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell15" to="UI/GridMap/Cell15" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell15" to="UI/GridMap/Cell15" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell16" to="UI/GridMap/Cell16" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell16" to="UI/GridMap/Cell16" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell17" to="UI/GridMap/Cell17" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell17" to="UI/GridMap/Cell17" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell18" to="UI/GridMap/Cell18" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell18" to="UI/GridMap/Cell18" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell19" to="UI/GridMap/Cell19" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell19" to="UI/GridMap/Cell19" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell20" to="UI/GridMap/Cell20" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell20" to="UI/GridMap/Cell20" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell21" to="UI/GridMap/Cell21" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell21" to="UI/GridMap/Cell21" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell22" to="UI/GridMap/Cell22" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell22" to="UI/GridMap/Cell22" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell23" to="UI/GridMap/Cell23" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell23" to="UI/GridMap/Cell23" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell24" to="UI/GridMap/Cell24" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell24" to="UI/GridMap/Cell24" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell25" to="UI/GridMap/Cell25" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell25" to="UI/GridMap/Cell25" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell26" to="UI/GridMap/Cell26" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell26" to="UI/GridMap/Cell26" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell27" to="UI/GridMap/Cell27" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell27" to="UI/GridMap/Cell27" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell28" to="UI/GridMap/Cell28" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell28" to="UI/GridMap/Cell28" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell29" to="UI/GridMap/Cell29" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell29" to="UI/GridMap/Cell29" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell30" to="UI/GridMap/Cell30" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell30" to="UI/GridMap/Cell30" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell31" to="UI/GridMap/Cell31" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell31" to="UI/GridMap/Cell31" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell32" to="UI/GridMap/Cell32" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell32" to="UI/GridMap/Cell32" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell33" to="UI/GridMap/Cell33" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell33" to="UI/GridMap/Cell33" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell34" to="UI/GridMap/Cell34" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell34" to="UI/GridMap/Cell34" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell35" to="UI/GridMap/Cell35" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell35" to="UI/GridMap/Cell35" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell36" to="UI/GridMap/Cell36" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell36" to="UI/GridMap/Cell36" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell37" to="UI/GridMap/Cell37" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell37" to="UI/GridMap/Cell37" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell38" to="UI/GridMap/Cell38" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell38" to="UI/GridMap/Cell38" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell39" to="UI/GridMap/Cell39" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell39" to="UI/GridMap/Cell39" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell40" to="UI/GridMap/Cell40" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell40" to="UI/GridMap/Cell40" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell41" to="UI/GridMap/Cell41" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell41" to="UI/GridMap/Cell41" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell42" to="UI/GridMap/Cell42" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell42" to="UI/GridMap/Cell42" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell43" to="UI/GridMap/Cell43" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell43" to="UI/GridMap/Cell43" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell44" to="UI/GridMap/Cell44" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell44" to="UI/GridMap/Cell44" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell45" to="UI/GridMap/Cell45" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell45" to="UI/GridMap/Cell45" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell46" to="UI/GridMap/Cell46" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell46" to="UI/GridMap/Cell46" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell47" to="UI/GridMap/Cell47" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell47" to="UI/GridMap/Cell47" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell48" to="UI/GridMap/Cell48" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell48" to="UI/GridMap/Cell48" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell49" to="UI/GridMap/Cell49" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell49" to="UI/GridMap/Cell49" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell50" to="UI/GridMap/Cell50" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell50" to="UI/GridMap/Cell50" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell51" to="UI/GridMap/Cell51" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell51" to="UI/GridMap/Cell51" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell52" to="UI/GridMap/Cell52" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell52" to="UI/GridMap/Cell52" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell53" to="UI/GridMap/Cell53" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell53" to="UI/GridMap/Cell53" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell54" to="UI/GridMap/Cell54" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell54" to="UI/GridMap/Cell54" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell55" to="UI/GridMap/Cell55" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell55" to="UI/GridMap/Cell55" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell56" to="UI/GridMap/Cell56" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell56" to="UI/GridMap/Cell56" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell57" to="UI/GridMap/Cell57" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell57" to="UI/GridMap/Cell57" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell58" to="UI/GridMap/Cell58" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell58" to="UI/GridMap/Cell58" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell59" to="UI/GridMap/Cell59" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell59" to="UI/GridMap/Cell59" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="UI/GridMap/Cell60" to="UI/GridMap/Cell60" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/GridMap/Cell60" to="UI/GridMap/Cell60" method="_on_mouse_exited"]
+[connection signal="grid_pressed" from="Board/GridMap" to="." method="_on_grid_map_grid_pressed"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell01" to="Board/GridMap/Cell01" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell01" to="Board/GridMap/Cell01" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell02" to="Board/GridMap/Cell02" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell02" to="Board/GridMap/Cell02" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell03" to="Board/GridMap/Cell03" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell03" to="Board/GridMap/Cell03" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell04" to="Board/GridMap/Cell04" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell04" to="Board/GridMap/Cell04" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell05" to="Board/GridMap/Cell05" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell05" to="Board/GridMap/Cell05" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell06" to="Board/GridMap/Cell06" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell06" to="Board/GridMap/Cell06" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell07" to="Board/GridMap/Cell07" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell07" to="Board/GridMap/Cell07" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell08" to="Board/GridMap/Cell08" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell08" to="Board/GridMap/Cell08" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell09" to="Board/GridMap/Cell09" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell09" to="Board/GridMap/Cell09" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell10" to="Board/GridMap/Cell10" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell10" to="Board/GridMap/Cell10" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell11" to="Board/GridMap/Cell11" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell11" to="Board/GridMap/Cell11" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell12" to="Board/GridMap/Cell12" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell12" to="Board/GridMap/Cell12" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell13" to="Board/GridMap/Cell13" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell13" to="Board/GridMap/Cell13" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell14" to="Board/GridMap/Cell14" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell14" to="Board/GridMap/Cell14" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell15" to="Board/GridMap/Cell15" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell15" to="Board/GridMap/Cell15" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell16" to="Board/GridMap/Cell16" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell16" to="Board/GridMap/Cell16" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell17" to="Board/GridMap/Cell17" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell17" to="Board/GridMap/Cell17" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell18" to="Board/GridMap/Cell18" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell18" to="Board/GridMap/Cell18" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell19" to="Board/GridMap/Cell19" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell19" to="Board/GridMap/Cell19" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell20" to="Board/GridMap/Cell20" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell20" to="Board/GridMap/Cell20" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell21" to="Board/GridMap/Cell21" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell21" to="Board/GridMap/Cell21" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell22" to="Board/GridMap/Cell22" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell22" to="Board/GridMap/Cell22" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell23" to="Board/GridMap/Cell23" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell23" to="Board/GridMap/Cell23" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell24" to="Board/GridMap/Cell24" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell24" to="Board/GridMap/Cell24" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell25" to="Board/GridMap/Cell25" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell25" to="Board/GridMap/Cell25" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell26" to="Board/GridMap/Cell26" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell26" to="Board/GridMap/Cell26" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell27" to="Board/GridMap/Cell27" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell27" to="Board/GridMap/Cell27" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell28" to="Board/GridMap/Cell28" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell28" to="Board/GridMap/Cell28" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell29" to="Board/GridMap/Cell29" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell29" to="Board/GridMap/Cell29" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell30" to="Board/GridMap/Cell30" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell30" to="Board/GridMap/Cell30" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell31" to="Board/GridMap/Cell31" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell31" to="Board/GridMap/Cell31" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell32" to="Board/GridMap/Cell32" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell32" to="Board/GridMap/Cell32" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell33" to="Board/GridMap/Cell33" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell33" to="Board/GridMap/Cell33" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell34" to="Board/GridMap/Cell34" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell34" to="Board/GridMap/Cell34" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell35" to="Board/GridMap/Cell35" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell35" to="Board/GridMap/Cell35" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell36" to="Board/GridMap/Cell36" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell36" to="Board/GridMap/Cell36" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell37" to="Board/GridMap/Cell37" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell37" to="Board/GridMap/Cell37" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell38" to="Board/GridMap/Cell38" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell38" to="Board/GridMap/Cell38" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell39" to="Board/GridMap/Cell39" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell39" to="Board/GridMap/Cell39" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell40" to="Board/GridMap/Cell40" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell40" to="Board/GridMap/Cell40" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell41" to="Board/GridMap/Cell41" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell41" to="Board/GridMap/Cell41" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell42" to="Board/GridMap/Cell42" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell42" to="Board/GridMap/Cell42" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell43" to="Board/GridMap/Cell43" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell43" to="Board/GridMap/Cell43" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell44" to="Board/GridMap/Cell44" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell44" to="Board/GridMap/Cell44" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell45" to="Board/GridMap/Cell45" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell45" to="Board/GridMap/Cell45" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell46" to="Board/GridMap/Cell46" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell46" to="Board/GridMap/Cell46" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell47" to="Board/GridMap/Cell47" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell47" to="Board/GridMap/Cell47" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell48" to="Board/GridMap/Cell48" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell48" to="Board/GridMap/Cell48" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell49" to="Board/GridMap/Cell49" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell49" to="Board/GridMap/Cell49" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell50" to="Board/GridMap/Cell50" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell50" to="Board/GridMap/Cell50" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell51" to="Board/GridMap/Cell51" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell51" to="Board/GridMap/Cell51" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell52" to="Board/GridMap/Cell52" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell52" to="Board/GridMap/Cell52" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell53" to="Board/GridMap/Cell53" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell53" to="Board/GridMap/Cell53" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell54" to="Board/GridMap/Cell54" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell54" to="Board/GridMap/Cell54" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell55" to="Board/GridMap/Cell55" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell55" to="Board/GridMap/Cell55" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell56" to="Board/GridMap/Cell56" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell56" to="Board/GridMap/Cell56" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell57" to="Board/GridMap/Cell57" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell57" to="Board/GridMap/Cell57" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell58" to="Board/GridMap/Cell58" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell58" to="Board/GridMap/Cell58" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell59" to="Board/GridMap/Cell59" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell59" to="Board/GridMap/Cell59" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Board/GridMap/Cell60" to="Board/GridMap/Cell60" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Board/GridMap/Cell60" to="Board/GridMap/Cell60" method="_on_mouse_exited"]
