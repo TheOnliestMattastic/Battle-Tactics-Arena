@@ -39,6 +39,7 @@ func _ready() -> void:
 		var coords = Vector2i(x,y)
 		grid[coords] = cell
 
+# === Select Random Tile from Tilesheet ===
 func randomize_tile(tile):
 	var tile_size = Cell.SIZE
 	var sheet_cols = tilesheet.get_width() / tile_size.x
@@ -49,7 +50,13 @@ func randomize_tile(tile):
 	if tile.has_method("set_tile"):
 		tile.set_tile(tilesheet, tile_size, random_tile_coords)
 
+# === Highlight Movement Range ===
 func _on_ui_move_mode(tiles: Dictionary) -> void:
 	for walkable in tiles:
 		if tiles[walkable] == true:
-			grid[walkable].modulate = Color(0.0, 0.725, 0.0, 1.0)
+			grid[walkable].modulate = Color(0.0, 1.0, 0.0, 1.0)
+
+# === Remove Movement Range Highlight ===
+func _on_game_actor_moved() -> void:
+	for cell in grid:
+		grid[cell].modulate = Color(1, 1, 1, 1)

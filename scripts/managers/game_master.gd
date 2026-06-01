@@ -36,19 +36,18 @@ func _process(delta: float) -> void:
 			display_manager.display_target(combatant)
 
 # === Move Actor ===
+signal actor_moved()
 func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
-	# Exit if not in moving mode
-	if is_moving:
-		# store active actor's data
-		var actor = Manifest.queue[0]
-		var start = Vector2i(actor.position / CELL_SIZE)
-		
-		# set starting pos as walkable
-		grid_manager.toggle_obstacle(start, false) 
-		var path = grid_manager.find_path(start, coords)
-		for cell in path:
-			var target = Vector2(cell * 64)
-			var tween = create_tween()
-			tween.tween_property(actor, "position", target, 0.2)
-			await tween.finished
-		grid_manager.toggle_obstacle(coords, true) # set new position as unwalkable
+	if not is_moving: return # exit if not in moving mode
+	var active_actor = Manifest.queue[0]
+	var start_pos = Vector2i(active_actor.position / CELL_SIZE)
+	var path = grid_manager.find_path(start_pos, coords)
+	for cell in path:
+		var target = Vector2(cell * 64)
+		var tween = create_tween()
+		tween.tween_property(active_actor, "position", target, 0.2) # move along path
+		await tween.finished
+	grid_manager.toggle_obstacle(coords, true) # set new position as unwalkable
+	is_moving = false # exit moving mode
+	actor_moved.emit()
+	

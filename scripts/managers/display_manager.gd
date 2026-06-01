@@ -70,19 +70,24 @@ func log_init() -> void:
 		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a " + str(Manifest.combatants[combatant]["init"]) + "![br]")
 
 # === Movement Range ===
-var reachable = {}
 signal move_mode(tiles: Dictionary)
+var reachable = {}
 func _on_move_button_pressed() -> void:
 	# toggle move mode then exit if false
-	game_master.is_moving = !game_master.is_moving
-	print(game_master.is_moving) # DEBUGGER
-	if not game_master.is_moving:
+	game_master.is_moving = !game_master.is_moving 
+	var actor = Manifest.queue[0]
+	var start_pos = Vector2i(actor.position / GameMaster.CELL_SIZE)
+	
+	# clear highlights if not in move mode
+	if not game_master.is_moving: 
+		grid_manager.toggle_obstacle(start_pos, true)
+		var grid = grid_manager.grid
+		for cell in grid:
+			grid[cell].modulate = Color(1, 1, 1, 1)
 		return
 	
 	# setup
-	var actor = Manifest.queue[0]
 	var move_range = actor.data.spd
-	var start_pos = Vector2i(actor.position / GameMaster.CELL_SIZE)
 	var astar = grid_manager.astar
 	
 	# clean data
@@ -96,5 +101,5 @@ func _on_move_button_pressed() -> void:
 			var path = astar.get_id_path(start_pos, cell)
 			reachable[cell] = path.size() > 0 and path.size() - 1 <= move_range and not astar.is_point_solid(cell)
 	
-	# highlight reachable tiles
+	# send dictionary to GridManager
 	move_mode.emit(reachable)

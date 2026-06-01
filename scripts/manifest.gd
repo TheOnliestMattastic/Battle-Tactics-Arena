@@ -4,8 +4,9 @@ extends Node
 const GRID_SIZE: Vector2 = GameMaster.GRID_SIZE
 const CELL_SIZE: Vector2 = GameMaster.CELL_SIZE
 
+# === Lists ===
 var combatants: Dictionary
-var queue: Array [Actor] = []
+var queue: Array [Actor]
 
 func add_combatants(actors: Array[Actor]) -> void:
 	for actor in actors:

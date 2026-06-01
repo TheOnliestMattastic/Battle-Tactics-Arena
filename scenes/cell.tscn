@@ -5,6 +5,27 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_152gs"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s7o3"]
+bg_color = Color(0.39308554, 0.3930855, 0.39308548, 0.5019608)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nm02e"]
+bg_color = Color(0.65834, 0.65834, 0.6583398, 0.5019608)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ds1sf"]
+bg_color = Color(0.11858133, 0.11858139, 0.11858136, 0.5019608)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_nm02e"]
 atlas = ExtResource("2_0s7o3")
 region = Rect2(0, 224, 32, 32)
@@ -17,6 +38,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxEmpty_152gs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0s7o3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_nm02e")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_0s7o3")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ds1sf")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nm02e")
 script = ExtResource("1_152gs")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2145891241]

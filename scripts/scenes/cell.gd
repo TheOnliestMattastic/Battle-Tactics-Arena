@@ -14,5 +14,4 @@ func set_tile(sheet: Texture2D, tile_size: Vector2i, coords: Vector2i):
 	atlas.atlas = sheet
 	# Define which 32x32 area to show
 	atlas.region = Rect2(coords.x * tile_size.x, coords.y * tile_size.y, tile_size.x, tile_size.y)
-	
 	texture_display.texture = atlas
