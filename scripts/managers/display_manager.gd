@@ -74,12 +74,12 @@ signal move_mode(tiles: Dictionary)
 var reachable = {}
 func _on_move_button_pressed() -> void:
 	# toggle move mode then exit if false
-	game_master.is_moving = !game_master.is_moving 
+	game_master.toggle_movement_mode()
 	var actor = Manifest.queue[0]
 	var start_pos = Vector2i(actor.position / GameMaster.CELL_SIZE)
 	
 	# clear highlights if not in move mode
-	if not game_master.is_moving: 
+	if not game_master.current_state == GameMaster.State.MOVEMENT: 
 		grid_manager.toggle_obstacle(start_pos, true)
 		var grid = grid_manager.grid
 		for cell in grid:

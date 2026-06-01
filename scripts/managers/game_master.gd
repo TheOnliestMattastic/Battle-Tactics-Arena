@@ -6,9 +6,12 @@ const GRID_SIZE: Vector2 = Vector2(12, 5)
 const CELL_SIZE: Vector2 = Vector2(64, 64)
 
 # === States ===
-var is_moving: bool = false
-var is_attacking: bool = false
-var is_game_over: bool = false
+enum State {
+	IDLE,
+	MOVEMENT,
+	ATTACK,
+	ABILITY
+}
 
 # === Mangers ===
 @onready var display_manager: DisplayManager = %UI
@@ -36,18 +39,38 @@ func _process(delta: float) -> void:
 			display_manager.display_target(combatant)
 
 # === Move Actor ===
-signal actor_moved()
+var current_state: State = State.IDLE
 func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
-	if not is_moving: return # exit if not in moving mode
-	var active_actor = Manifest.queue[0]
-	var start_pos = Vector2i(active_actor.position / CELL_SIZE)
-	var path = grid_manager.find_path(start_pos, coords)
-	for cell in path:
-		var target = Vector2(cell * 64)
-		var tween = create_tween()
-		tween.tween_property(active_actor, "position", target, 0.2) # move along path
-		await tween.finished
-	grid_manager.toggle_obstacle(coords, true) # set new position as unwalkable
-	is_moving = false # exit moving mode
-	actor_moved.emit()
-	
+	match current_state:
+		State.IDLE:
+			print('No action selected')
+		
+		State.MOVEMENT:
+			# setup
+			var active_actor = Manifest.queue[0]
+			var start_pos = Vector2i(active_actor.position / CELL_SIZE)
+			var path = grid_manager.find_path(start_pos, coords)
+			var spd = active_actor.data.spd
+			
+			# exit if out of range 
+			if (path.size() - 1) > spd: return print("Too far...") 
+			
+			# move actor
+			for cell in path:
+				var target = Vector2(cell * 64)
+				var tween = create_tween()
+				tween.tween_property(active_actor, "position", target, 0.2) # move along path
+				await tween.finished
+			grid_manager.toggle_obstacle(coords, true) # set new position as unwalkable
+			grid_manager.clear_highlights()
+			current_state = State.IDLE
+		
+		_:
+			print("[I AM ERROR] Unknown state")
+
+# === Utils ===
+func toggle_movement_mode() -> void:
+	if current_state == State.MOVEMENT:
+		current_state = State.IDLE
+	else:
+		current_state = State.MOVEMENT

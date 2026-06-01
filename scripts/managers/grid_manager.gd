@@ -9,17 +9,6 @@ var cell_size: Vector2i = GameMaster.CELL_SIZE
 var astar := AStarGrid2D.new()
 var grid: Dictionary = {}
 
-# Pass cell signal to Game Master
-signal cell_pressed(coords: Vector2)
-func _on_cell_pressed(coords: Vector2):
-	cell_pressed.emit(coords)
-
-func toggle_obstacle(coords: Vector2, is_solid: bool):
-	astar.set_point_solid(coords, is_solid)
-
-func find_path(start: Vector2, end: Vector2) -> Array:
-	return astar.get_id_path(start, end)
-
 func _init():
 	astar.region = Rect2i(Vector2i.ZERO, grid_size)
 	astar.cell_size = cell_size
@@ -33,13 +22,25 @@ func _ready() -> void:
 		cell.cell_pressed.connect(_on_cell_pressed) # Connect to cell signals
 		randomize_tile(cell)
 		
-		# add cell to dictionary
+		# calculate cell coords and add them to the dictionary
 		var x = i % grid_size.x
 		var y = i / grid_size.x
 		var coords = Vector2i(x,y)
 		grid[coords] = cell
 
-# === Select Random Tile from Tilesheet ===
+# === Pass Cell Signal to GameMaster ===
+signal cell_pressed(coords: Vector2)
+func _on_cell_pressed(coords: Vector2):
+	cell_pressed.emit(coords)
+
+# === Highlight Movement Range ===
+func _on_ui_move_mode(tiles: Dictionary) -> void:
+	for walkable in tiles:
+		if tiles[walkable] == true:
+			grid[walkable].modulate = Color(0.0, 1.0, 0.0, 1.0)
+
+# === Utils ===
+# Select Random Tile from Tilesheet
 func randomize_tile(tile):
 	var tile_size = Cell.SIZE
 	var sheet_cols = tilesheet.get_width() / tile_size.x
@@ -50,13 +51,15 @@ func randomize_tile(tile):
 	if tile.has_method("set_tile"):
 		tile.set_tile(tilesheet, tile_size, random_tile_coords)
 
-# === Highlight Movement Range ===
-func _on_ui_move_mode(tiles: Dictionary) -> void:
-	for walkable in tiles:
-		if tiles[walkable] == true:
-			grid[walkable].modulate = Color(0.0, 1.0, 0.0, 1.0)
+# Mark cell as unwalkable
+func toggle_obstacle(coords: Vector2, is_solid: bool):
+	astar.set_point_solid(coords, is_solid)
 
-# === Remove Movement Range Highlight ===
-func _on_game_actor_moved() -> void:
+# Pathfinding
+func find_path(start: Vector2, end: Vector2) -> Array:
+	return astar.get_id_path(start, end)
+
+# Clear highlights
+func clear_highlights() -> void:
 	for cell in grid:
 		grid[cell].modulate = Color(1, 1, 1, 1)

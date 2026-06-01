@@ -905,7 +905,6 @@ position = Vector2(64, 128)
 scale = Vector2(4, 4)
 data = ExtResource("15_bt5mj")
 
-[connection signal="actor_moved" from="." to="UI/GridMap" method="_on_game_actor_moved"]
 [connection signal="move_mode" from="UI" to="UI/GridMap" method="_on_ui_move_mode"]
 [connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/moveButton" to="UI" method="_on_move_button_pressed"]
 [connection signal="cell_pressed" from="UI/GridMap" to="." method="_on_grid_map_cell_pressed"]
