@@ -1,3 +1,4 @@
+@tool
 class_name Actor
 extends Node2D
 

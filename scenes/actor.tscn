@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://djhx7tehfjcsx"]
 
-[ext_resource type="Script" uid="uid://dmsibkxw0osh4" path="res://scripts/actor.gd" id="1_0qi0m"]
+[ext_resource type="Script" uid="uid://dmsibkxw0osh4" path="res://scripts/scenes/actor.gd" id="1_0qi0m"]
 [ext_resource type="Texture2D" uid="uid://dx8g4fidsdy25" path="res://assets/sprites/chars/brawlerBlue/SpriteSheet.png" id="2_35erh"]
-[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/actor_data.gd" id="2_w6j74"]
-[ext_resource type="Script" uid="uid://cuim36c3j6xxr" path="res://scripts/input_component.gd" id="5_0jvkp"]
+[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/actor_data.gd" id="2_w6j74"]
+[ext_resource type="Script" uid="uid://cuim36c3j6xxr" path="res://scripts/components/input_component.gd" id="5_0jvkp"]
 
 [sub_resource type="Resource" id="Resource_7i7yh"]
 script = ExtResource("2_w6j74")

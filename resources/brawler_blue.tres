@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ActorData" format=3 uid="uid://ce5fcrpn2n2dp"]
 
 [ext_resource type="Texture2D" uid="uid://daylhmw7gyq1x" path="res://assets/sprites/chars/brawlerBlue/Faceset.png" id="1_2wcdi"]
-[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/actor_data.gd" id="1_b7uan"]
+[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/actor_data.gd" id="1_b7uan"]
 [ext_resource type="Texture2D" uid="uid://dx8g4fidsdy25" path="res://assets/sprites/chars/brawlerBlue/SpriteSheet.png" id="2_bioop"]
 
 [resource]

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ActorData" format=3 uid="uid://npyyjre4kfre"]
 
 [ext_resource type="Texture2D" uid="uid://xvaredhneb8w" path="res://assets/sprites/chars/ninjaBlack/Faceset.png" id="1_7uc5x"]
-[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/actor_data.gd" id="1_vutug"]
+[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/actor_data.gd" id="1_vutug"]
 [ext_resource type="Texture2D" uid="uid://bcg4yihq0mvi5" path="res://assets/sprites/chars/ninjaBlack/SpriteSheet.png" id="2_iaeln"]
 
 [resource]

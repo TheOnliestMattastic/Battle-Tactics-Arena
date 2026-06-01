@@ -1,17 +1,17 @@
+@tool
 class_name DisplayManager
 extends Control
 
 # === Config ===
-@export var portrait_scene: PackedScene = preload("uid://sv3c1o1hl810")
-@export var queue_display: Container
-@export var active_display: Container
-@export var target_display: Container 
-@export var combat_log: RichTextLabel
+@onready var portrait_scene: PackedScene = preload("uid://sv3c1o1hl810")
+@onready var queue_display: Container = %QueueBox
+@onready var active_display: Container = %ActiveBox
+@onready var target_display: Container = %TargetBox
+@onready var combat_log: RichTextLabel = %CombatLog
 @onready var game_master: GameMaster = $".."
-@export var grid_map: GridData
+@onready var grid_manager: GridManager = %GridMap
 
-var reachable = {}
-
+# === Display Queue Info ===
 func display_queue(queue: Array[Actor]) -> void:
 	var copy_of_queue = queue.duplicate() # use copy for function
 
@@ -48,6 +48,7 @@ func display_queue(queue: Array[Actor]) -> void:
 		queue_display.add_child(portrait)
 		Manifest.add_portrait(actor, portrait)
 
+# === Display Target Info ===
 func display_target(target: Actor) -> void:
 	var portrait = portrait_scene.instantiate()
 	for child in target_display.get_node("HBoxContainer/TargetActorPortrait").get_children():
@@ -63,34 +64,37 @@ func display_target(target: Actor) -> void:
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/dex").text = str(target.data.dex) + " :DEX" 
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/spd").text = str(target.data.spd) + " :SPD" 
 
+# === Diplay Init Rolls ===
 func log_init() -> void:
 	for combatant in Manifest.combatants:
 		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a " + str(Manifest.combatants[combatant]["init"]) + "![br]")
 
+# === Movement Range ===
+var reachable = {}
+signal move_mode(tiles: Dictionary)
 func _on_move_button_pressed() -> void:
-	if game_master.is_moving:
-		game_master.is_moving = false
-	else:
-		var mover = Manifest.queue[0]
-		var start = mover.position / GameMaster.CELL_SIZE
-		var move_range = Manifest.combatants[mover]["AP"] * mover.data.spd
-		var astar = grid_map.astar
-
-		grid_map.toggle_obstacle(start, false)
-		game_master.is_moving = true
-		reachable.clear()
-
-		for x in range(astar.region.size.x):
-			for y in range(astar.region.size.y):
-				var cell := Vector2i(x,y)
-				var path = astar.get_id_path(Vector2i(mover.position / GameMaster.CELL_SIZE), cell)
-				if astar.is_point_solid(cell) or path.size() == 0:
-					reachable[cell] = false
-				else:
-					if path.size() > move_range:
-						reachable[cell] = false
-					else:
-						reachable[cell] = true
-		
+	# toggle move mode then exit if false
+	game_master.is_moving = !game_master.is_moving
 	print(game_master.is_moving) # DEBUGGER
-	print(reachable)
+	if not game_master.is_moving:
+		return
+	
+	# setup
+	var actor = Manifest.queue[0]
+	var move_range = actor.data.spd
+	var start_pos = Vector2i(actor.position / GameMaster.CELL_SIZE)
+	var astar = grid_manager.astar
+	
+	# clean data
+	grid_manager.toggle_obstacle(start_pos, false)
+	reachable.clear()
+	
+	# iterate over gridmap and add to dictionary
+	for x in astar.region.size.x:
+		for y in astar.region.size.y:
+			var cell := Vector2i(x,y)
+			var path = astar.get_id_path(start_pos, cell)
+			reachable[cell] = path.size() > 0 and path.size() - 1 <= move_range and not astar.is_point_solid(cell)
+	
+	# highlight reachable tiles
+	move_mode.emit(reachable)

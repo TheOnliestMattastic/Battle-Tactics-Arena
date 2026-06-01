@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://oc0dkklawq5y"]
+
+[ext_resource type="Script" uid="uid://s0ysvdhigwbf" path="res://scripts/scenes/cell.gd" id="1_152gs"]
+[ext_resource type="Texture2D" uid="uid://bt77eidvhb0ii" path="res://assets/sprites/tilesets/TS_grassBrick-32x32.png" id="2_0s7o3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_152gs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm02e"]
+atlas = ExtResource("2_0s7o3")
+region = Rect2(0, 224, 32, 32)
+
+[node name="Cell" type="Button" unique_id=224175967]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 16.0
+offset_bottom = 16.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxEmpty_152gs")
+script = ExtResource("1_152gs")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2145891241]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_nm02e")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
