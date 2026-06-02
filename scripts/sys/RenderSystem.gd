@@ -70,11 +70,11 @@ func log_init() -> void:
 	for combatant in Manifest.combatants:
 		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a " + str(Manifest.combatants[combatant]["init"]) + "![br]")
 
-# === Move State ===
+# === Toggle Move State ===
 func _on_move_button_pressed() -> void:
 	game_master.toggle_state(GameMaster.State.MOVE)
 
-# === Attack State ===
+# === Toggle Attack State ===
 func _on_attack_button_pressed() -> void:
 	game_master.toggle_state(GameMaster.State.ATTACK)
 	
@@ -85,10 +85,9 @@ func highlight_range(actor: Actor, state: GameMaster.State) -> void:
 		GameMaster.State.MOVE: 
 			in_range.clear()
 			in_range = combat_system.get_cells_in_range(actor)
-			grid_map.highlight_cells(in_range, state) # send dict to GridManger
+			grid_map.highlight_cells(in_range, state)
 		
 		GameMaster.State.ATTACK:
-			print("Calculating attack range...")
 			in_range.clear()
-			in_range = combat_system.get_targets_in_range(actor, 2)
-			grid_map.highlight_cells(in_range, state) # send dict to GridManger
+			in_range = combat_system.get_targets_in_range(actor)
+			grid_map.highlight_cells(in_range, state)

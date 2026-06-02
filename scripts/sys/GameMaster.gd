@@ -81,6 +81,7 @@ func toggle_state(target_state: State) -> void:
 		current_state = State.IDLE
 	else:
 		current_state = target_state
+	
 	print("State changed to: ", State.keys()[current_state])
 	
 	match current_state:

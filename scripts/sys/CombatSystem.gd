@@ -26,7 +26,7 @@ func get_cells_in_range(actor) -> Array:
 	grid_map.toggle_obstacle(start_pos, true) # reset starting cell as unwalkable
 	return cells
 
-func get_targets_in_range(actor, limit: int = 2) -> Array:
+func get_targets_in_range(actor, limit: int = 1) -> Array:
 	var origin = Vector2i(actor.position) / GameMaster.CELL_SIZE
 	var targets: Array[Vector2i] = []
 	for x in range(-limit, limit + 1):

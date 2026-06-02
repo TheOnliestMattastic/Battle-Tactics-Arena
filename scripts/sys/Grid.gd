@@ -60,7 +60,7 @@ func clear_highlights() -> void:
 func highlight_cells(cells: Array, state: GameMaster.State) -> void:
 	var color: Color
 	match state:
-		GameMaster.State.MOVE: color = Color(0.0, 1.0, 0.0, 1.0)
-		GameMaster.State.ATTACK: color = Color(1.0, 0.0, 0.0, 1.0)
+		GameMaster.State.MOVE: color = Color(0.6, 1.0, 0.6, 1.0)
+		GameMaster.State.ATTACK: color = Color(1.0, 0.6, 0.6, 1.0)
 	for cell in cells:
 		gridmap[cell].modulate = color
