@@ -1,13 +1,8 @@
 [gd_scene format=3 uid="uid://djhx7tehfjcsx"]
 
-[ext_resource type="Script" uid="uid://dmsibkxw0osh4" path="res://scripts/scenes/actor.gd" id="1_0qi0m"]
+[ext_resource type="Script" uid="uid://dmsibkxw0osh4" path="res://scripts/scenes/Actor.gd" id="1_0qi0m"]
 [ext_resource type="Texture2D" uid="uid://dx8g4fidsdy25" path="res://assets/sprites/chars/brawlerBlue/SpriteSheet.png" id="2_35erh"]
-[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/actor_data.gd" id="2_w6j74"]
 [ext_resource type="Script" uid="uid://cuim36c3j6xxr" path="res://scripts/components/input_component.gd" id="5_0jvkp"]
-
-[sub_resource type="Resource" id="Resource_7i7yh"]
-script = ExtResource("2_w6j74")
-metadata/_custom_type_script = "uid://h8dpm7kjod7v"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvbpl"]
 size = Vector2(14, 14)
@@ -65,11 +60,8 @@ _data = {
 &"idle": SubResource("Animation_w6j74")
 }
 
-[node name="Actor" type="CharacterBody2D" unique_id=1096699479]
-input_pickable = true
+[node name="Actor" type="Area2D" unique_id=1497125434]
 script = ExtResource("1_0qi0m")
-data = SubResource("Resource_7i7yh")
-metadata/_custom_type_script = "uid://dmsibkxw0osh4"
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1376264151]
 position = Vector2(8, 8)
@@ -85,10 +77,8 @@ shape = SubResource("RectangleShape2D_yvbpl")
 [node name="AnimPlayer" type="AnimationPlayer" parent="." unique_id=1547184422]
 libraries/ = SubResource("AnimationLibrary_w6j74")
 
-[node name="InputComponent" type="Node" parent="." unique_id=1118900849 node_paths=PackedStringArray("actor")]
-unique_name_in_owner = true
+[node name="InputComponent" type="Node" parent="." unique_id=1118900849]
 script = ExtResource("5_0jvkp")
-actor = NodePath("..")
 metadata/_custom_type_script = "uid://cuim36c3j6xxr"
 
 [connection signal="mouse_entered" from="." to="InputComponent" method="_on_actor_mouse_entered"]

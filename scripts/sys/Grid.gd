@@ -1,17 +1,15 @@
 @tool
-class_name GridManager
+class_name Grid
 extends Node
 
 @export var tilesheet: Texture2D = preload("uid://bt77eidvhb0ii")
 @export var cell_scene: PackedScene = preload("uid://oc0dkklawq5y")
-var grid_size: Vector2i = GameMaster.GRID_SIZE
-var cell_size: Vector2i = GameMaster.CELL_SIZE
 var astar := AStarGrid2D.new()
-var grid: Dictionary = {}
+var gridmap: Dictionary = {}
 
 func _init():
-	astar.region = Rect2i(Vector2i.ZERO, grid_size)
-	astar.cell_size = cell_size
+	astar.region = Rect2i(Vector2i.ZERO, GameMaster.GRID_SIZE)
+	astar.cell_size = GameMaster.CELL_SIZE
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar.update()
 
@@ -23,21 +21,15 @@ func _ready() -> void:
 		randomize_tile(cell)
 		
 		# calculate cell coords and add them to the dictionary
-		var x = i % grid_size.x
-		var y = i / grid_size.x
+		var x = i % GameMaster.GRID_SIZE.x
+		var y = i / GameMaster.GRID_SIZE.x
 		var coords = Vector2i(x,y)
-		grid[coords] = cell
+		gridmap[coords] = cell
 
 # === Pass Cell Signal to GameMaster ===
 signal cell_pressed(coords: Vector2)
 func _on_cell_pressed(coords: Vector2):
 	cell_pressed.emit(coords)
-
-# === Highlight Movement Range ===
-func _on_ui_move_mode(tiles: Dictionary) -> void:
-	for walkable in tiles:
-		if tiles[walkable] == true:
-			grid[walkable].modulate = Color(0.0, 1.0, 0.0, 1.0)
 
 # === Utils ===
 # Select Random Tile from Tilesheet
@@ -61,5 +53,14 @@ func find_path(start: Vector2, end: Vector2) -> Array:
 
 # Clear highlights
 func clear_highlights() -> void:
-	for cell in grid:
-		grid[cell].modulate = Color(1, 1, 1, 1)
+	for cell in gridmap:
+		gridmap[cell].modulate = Color(1, 1, 1, 1)
+
+# Movement range
+func highlight_cells(cells: Array, state: GameMaster.State) -> void:
+	var color: Color
+	match state:
+		GameMaster.State.MOVE: color = Color(0.0, 1.0, 0.0, 1.0)
+		GameMaster.State.ATTACK: color = Color(1.0, 0.0, 0.0, 1.0)
+	for cell in cells:
+		gridmap[cell].modulate = color

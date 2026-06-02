@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ActorData" format=3 uid="uid://d1g7m63sg7d24"]
 
-[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/actor_data.gd" id="1_2omw7"]
+[ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/ActorData.gd" id="1_2omw7"]
 [ext_resource type="Texture2D" uid="uid://3x2j26naf6ir" path="res://assets/sprites/chars/fighterBlue/Faceset.png" id="1_4ryjp"]
 [ext_resource type="Texture2D" uid="uid://cdu6ijextkw07" path="res://assets/sprites/chars/fighterBlue/SpriteSheet.png" id="2_2omw7"]
 

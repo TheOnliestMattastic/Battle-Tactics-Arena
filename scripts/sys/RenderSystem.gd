@@ -1,5 +1,5 @@
 @tool
-class_name DisplayManager
+class_name RenderSystem
 extends Control
 
 # === Config ===
@@ -9,7 +9,8 @@ extends Control
 @onready var target_display: Container = %TargetBox
 @onready var combat_log: RichTextLabel = %CombatLog
 @onready var game_master: GameMaster = $".."
-@onready var grid_manager: GridManager = %GridMap
+@onready var grid_map: Grid = %GridMap
+@onready var combat_system: CombatSystem = %Actors
 
 # === Display Queue Info ===
 func display_queue(queue: Array[Actor]) -> void:
@@ -69,37 +70,25 @@ func log_init() -> void:
 	for combatant in Manifest.combatants:
 		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a " + str(Manifest.combatants[combatant]["init"]) + "![br]")
 
-# === Movement Range ===
-signal move_mode(tiles: Dictionary)
-var reachable = {}
+# === Move State ===
 func _on_move_button_pressed() -> void:
-	# toggle move mode then exit if false
-	game_master.toggle_movement_mode()
-	var actor = Manifest.queue[0]
-	var start_pos = Vector2i(actor.position / GameMaster.CELL_SIZE)
+	game_master.toggle_state(GameMaster.State.MOVE)
+
+# === Attack State ===
+func _on_attack_button_pressed() -> void:
+	game_master.toggle_state(GameMaster.State.ATTACK)
 	
-	# clear highlights if not in move mode
-	if not game_master.current_state == GameMaster.State.MOVEMENT: 
-		grid_manager.toggle_obstacle(start_pos, true)
-		var grid = grid_manager.grid
-		for cell in grid:
-			grid[cell].modulate = Color(1, 1, 1, 1)
-		return
-	
-	# setup
-	var move_range = actor.data.spd
-	var astar = grid_manager.astar
-	
-	# clean data
-	grid_manager.toggle_obstacle(start_pos, false)
-	reachable.clear()
-	
-	# iterate over gridmap and add to dictionary
-	for x in astar.region.size.x:
-		for y in astar.region.size.y:
-			var cell := Vector2i(x,y)
-			var path = astar.get_id_path(start_pos, cell)
-			reachable[cell] = path.size() > 0 and path.size() - 1 <= move_range and not astar.is_point_solid(cell)
-	
-	# send dictionary to GridManager
-	move_mode.emit(reachable)
+# === Calculate range ===
+var in_range = []
+func highlight_range(actor: Actor, state: GameMaster.State) -> void:
+	match state:
+		GameMaster.State.MOVE: 
+			in_range.clear()
+			in_range = combat_system.get_cells_in_range(actor)
+			grid_map.highlight_cells(in_range, state) # send dict to GridManger
+		
+		GameMaster.State.ATTACK:
+			print("Calculating attack range...")
+			in_range.clear()
+			in_range = combat_system.get_targets_in_range(actor, 2)
+			grid_map.highlight_cells(in_range, state) # send dict to GridManger

@@ -10,7 +10,7 @@ var active: bool = false
 var target: bool = false
 
 # Components
-@onready var input_component: InputComponent = %InputComponent
+@onready var input_component: InputComponent = $InputComponent
 
 func _ready() -> void:
 	# null check

@@ -3,7 +3,7 @@ extends Node
 
 # Configs
 @onready var anim_player: AnimationPlayer = $"../AnimPlayer"
-@export var actor: Actor
+@onready var actor: Actor = $".."
 
 # Mouse
 func _on_actor_mouse_entered() -> void:
