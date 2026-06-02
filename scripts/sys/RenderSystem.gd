@@ -80,14 +80,18 @@ func _on_attack_button_pressed() -> void:
 	
 # === Calculate range ===
 var in_range = []
+var targets = []
 func highlight_range(actor: Actor, state: GameMaster.State) -> void:
 	match state:
 		GameMaster.State.MOVE: 
 			in_range.clear()
+			targets.clear()
 			in_range = combat_system.get_cells_in_range(actor)
+			targets = combat_system.get_targets_in_range(actor, 2)
 			grid_map.highlight_cells(in_range, state)
+			grid_map.highlight_cells(targets, GameMaster.State.ATTACK)
 		
 		GameMaster.State.ATTACK:
-			in_range.clear()
-			in_range = combat_system.get_targets_in_range(actor)
-			grid_map.highlight_cells(in_range, state)
+			targets.clear()
+			targets = combat_system.get_targets_in_range(actor, 2)
+			grid_map.highlight_cells(targets, state)

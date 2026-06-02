@@ -9,6 +9,7 @@ script = ExtResource("1_a2wy4")
 name = "Rafe the Rough"
 spritesheet = ExtResource("2_a2wy4")
 faceset = ExtResource("1_hp2y3")
+alignment = "Flank"
 pwr = 6
 def = 3
 dex = 6

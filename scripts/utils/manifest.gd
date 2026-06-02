@@ -6,15 +6,17 @@ const CELL_SIZE: Vector2 = GameMaster.CELL_SIZE
 
 # === Lists ===
 var combatants: Dictionary
+var gridmap: Dictionary
+var portraits: Dictionary
 var queue: Array [Actor]
 
 func add_combatants(actors: Array[Actor]) -> void:
 	for actor in actors:
 		combatants[actor] = {}
-		var current_hp = actor.data.max_hp
-		combatants[actor]["HP"] = current_hp
+		combatants[actor]["HP"] = actor.data.max_hp
 		combatants[actor]["AP"] = 3
-		combatants[actor]["Coords"] = Vector2i(actor.position / CELL_SIZE)
+		var coords = Vector2i(actor.position / CELL_SIZE)
+		gridmap[coords] = actor
 
 func add_portrait(actor: Actor, portrait) -> void:
-	combatants[actor]["portrait"] = portrait
+	portraits[portrait] = actor

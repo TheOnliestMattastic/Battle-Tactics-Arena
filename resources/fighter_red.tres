@@ -9,6 +9,7 @@ script = ExtResource("1_c4ud8")
 name = "Sven the Sweaty"
 spritesheet = ExtResource("2_c4ud8")
 faceset = ExtResource("1_dqiy0")
+alignment = "Flank"
 max_hp = 20
 pwr = 7
 def = 3

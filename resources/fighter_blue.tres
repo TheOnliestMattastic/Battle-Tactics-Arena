@@ -9,6 +9,7 @@ script = ExtResource("1_2omw7")
 name = "Fenn the Forgetful"
 spritesheet = ExtResource("2_2omw7")
 faceset = ExtResource("1_4ryjp")
+alignment = "Vanguard"
 max_hp = 20
 pwr = 6
 def = 4

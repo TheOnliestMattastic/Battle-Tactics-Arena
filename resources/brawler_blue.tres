@@ -9,4 +9,5 @@ script = ExtResource("1_b7uan")
 name = "Bram the Brash"
 spritesheet = ExtResource("2_bioop")
 faceset = ExtResource("1_2wcdi")
+alignment = "Vanguard"
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

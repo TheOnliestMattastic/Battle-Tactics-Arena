@@ -9,6 +9,7 @@ script = ExtResource("1_gynw0")
 name = "Dorn the Dour"
 spritesheet = ExtResource("2_rd4cf")
 faceset = ExtResource("1_8tbdx")
+alignment = "Vanguard"
 pwr = 6
 def = 2
 dex = 6

@@ -9,6 +9,7 @@ script = ExtResource("1_yjfyb")
 name = "Vale the Vague"
 spritesheet = ExtResource("2_drks0")
 faceset = ExtResource("1_4bhcl")
+alignment = "Flank"
 pwr = 4
 def = 4
 dex = 6

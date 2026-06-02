@@ -9,6 +9,7 @@ script = ExtResource("1_h5ovt")
 name = "Clyde the Clumsy"
 spritesheet = ExtResource("2_h5ovt")
 faceset = ExtResource("1_76xik")
+alignment = "Flank"
 max_hp = 20
 def = 4
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

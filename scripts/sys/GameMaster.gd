@@ -27,10 +27,9 @@ func _ready() -> void:
 	Manifest.queue.append_array(flank)
 	Manifest.add_combatants(Manifest.queue)
 	
-	for combatant in Manifest.combatants:
-		grid_map.toggle_obstacle(Vector2i(combatant.position) / CELL_SIZE, true)
+	for combatant in Manifest.combatants: grid_map.toggle_obstacle(Vector2i(combatant.position) / CELL_SIZE, true)
 	
-	combat_system.roll_for_init(Manifest.queue)
+	combat_system.roll_init(Manifest.queue)
 	render_system.log_init()
 	render_system.display_queue(Manifest.queue)
 	combat_system.initiate_turn(Manifest.queue)
@@ -38,8 +37,7 @@ func _ready() -> void:
 # === Per Frame ===
 func _process(delta: float) -> void:
 	for combatant in Manifest.combatants:
-		if combatant.target:
-			render_system.display_target(combatant)
+		if combatant.target: render_system.display_target(combatant)
 
 # === When User Selects a Cell ===
 func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
@@ -71,16 +69,26 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			toggle_state(State.IDLE)
 		
 		State.ATTACK:
-			print("Attacking...")
-		
+			var attacker = Manifest.queue[0]
+			var target = Manifest.gridmap.get(coords)
+			if target: 
+				var results = combat_system.roll_attack(attacker, target)
+				print(results) 
+			
+			
+			
+			
+			else: print("No target...")
+			
+			
+			
+			
 		_: print("[I AM ERROR] Unknown state")
 
 # === Utils ===
 func toggle_state(target_state: State) -> void:
-	if current_state == target_state:
-		current_state = State.IDLE
-	else:
-		current_state = target_state
+	if current_state == target_state: current_state = State.IDLE
+	else: current_state = target_state
 	
 	print("State changed to: ", State.keys()[current_state])
 	
@@ -89,7 +97,7 @@ func toggle_state(target_state: State) -> void:
 			grid_map.clear_highlights()
 		State.MOVE:
 			grid_map.clear_highlights()
-			render_system.highlight_range(Manifest.queue[0], GameMaster.State.MOVE)
+			render_system.highlight_range(Manifest.queue[0], current_state)
 		State.ATTACK:
 			grid_map.clear_highlights()
-			render_system.highlight_range(Manifest.queue[0], GameMaster.State.ATTACK)
+			render_system.highlight_range(Manifest.queue[0], current_state)
