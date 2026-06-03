@@ -1,6 +1,8 @@
 class_name CombatManager
 extends Node
 
+@onready var game_master: GameMaster = $".."
+@onready var display_manager: DisplayManager = %UI
 @onready var grid_map: Grid = %GridMap
 
 func roll_for_init(queue: Array[Actor]) -> void:
@@ -15,6 +17,7 @@ func get_cells_in_range(actor) -> Array:
 	var astar = grid_map.astar
 	var in_range = actor.data.spd
 	var cells = []
+	
 	grid_map.toggle_obstacle(start_pos, false) # mark starting cell as walkable
 	for x in astar.region.size.x:
 		for y in astar.region.size.y:
@@ -28,6 +31,7 @@ func get_targets_in_range(actor, limit: int = 1, is_friendly: bool = false) -> A
 	var origin = Vector2i(actor.position) / GameMaster.CELL_SIZE
 	var targets: Array[Vector2i] = []
 	var alignment = actor.data.alignment
+	
 	for x in range(-limit, limit + 1):
 		for y in range(-limit, limit + 1):
 			var distance = abs(x) + abs(y)
@@ -35,7 +39,7 @@ func get_targets_in_range(actor, limit: int = 1, is_friendly: bool = false) -> A
 			var target_pos = origin + Vector2i(x, y)
 			if not grid_map.astar.is_in_bounds(target_pos.x, target_pos.y): continue
 			if not grid_map.astar.is_point_solid(target_pos): continue
-			var target = Manifest.gridmap.get(target_pos)
+			var target = Manifest.gridmap.get(target_pos).occupant
 			if target:
 				var same_alignment = (alignment == target.data.alignment)
 				if is_friendly == same_alignment: targets.append(target_pos)
@@ -71,8 +75,8 @@ func apply_damage(results: Dictionary) -> void:
 	var defender = results.get("defender")
 	var hp = Manifest.combatants[defender]["HP"]
 	var result = hp - damage
-	if result > 0 : Manifest.combatants[defender]["HP"] = result
-	else: actor_defeated(defender)
-
-func actor_defeated(actor: Actor) -> void:
-	return print("dead")
+	if result > 0 : 
+		Manifest.combatants[defender]["HP"] = result
+	else: 
+		Manifest.combatants[defender]["HP"] = 0
+		game_master.actor_defeated(defender)

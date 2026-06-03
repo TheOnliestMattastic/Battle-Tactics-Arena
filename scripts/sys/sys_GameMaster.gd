@@ -70,18 +70,19 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 		
 		State.ATTACK:
 			var attacker = Manifest.queue[0]
-			var target = Manifest.gridmap.get(coords)
+			var target = Manifest.gridmap.get(coords).occupant
 			if not target: return print("No target...")
 			
 			# calculate hit and log
 			var results = combat_manager.roll_for_attack(attacker, target)
 			display_manager.log_hit_results(results)
-			if not results.get("success"): return print("No damage to calculate.")
+			if not results.get("success"): return toggle_state(current_state)
 			
 			# calculate damage and log
 			var damage = combat_manager.roll_for_damage(attacker, target)
 			display_manager.log_damage_results(damage)
 			combat_manager.apply_damage(damage)
+			toggle_state(current_state)
 			
 
 		_: print("[I AM ERROR] Unknown state")
@@ -90,7 +91,6 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 func toggle_state(target_state: State) -> void:
 	if current_state == target_state: current_state = State.IDLE
 	else: current_state = target_state
-	
 	print("State changed to: ", State.keys()[current_state])
 	
 	match current_state:
@@ -102,3 +102,10 @@ func toggle_state(target_state: State) -> void:
 		State.ATTACK:
 			grid_map.clear_highlights()
 			display_manager.highlight_range(Manifest.queue[0], current_state)
+
+func actor_defeated(actor: Actor) -> void:
+	var coords := Vector2i(actor.position) / CELL_SIZE
+	display_manager.remove_portrait(actor)
+	Manifest.remove_from_queue(actor)
+	actor.queue_free()
+	grid_map.toggle_obstacle(coords, false)

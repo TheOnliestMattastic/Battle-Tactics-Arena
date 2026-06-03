@@ -12,6 +12,12 @@ extends Control
 @onready var grid_map: Grid = %GridMap
 @onready var combat_manager: CombatManager = %Actors
 
+# === Signals ===
+func _on_move_button_pressed() -> void: # Toggle move state
+	game_master.toggle_state(GameMaster.State.MOVE)
+func _on_attack_button_pressed() -> void: # Toggle attack state
+	game_master.toggle_state(GameMaster.State.ATTACK)
+
 # === Display Queue Info ===
 func display_queue(queue: Array[Actor]) -> void:
 	var copy_of_queue = queue.duplicate() # use copy for function
@@ -20,7 +26,7 @@ func display_queue(queue: Array[Actor]) -> void:
 	for child in active_display.get_node("HBoxContainer/ActiveActorPortrait").get_children():
 		child.queue_free()
 	var portrait = portrait_scene.instantiate()
-	portrait.actor_name = copy_of_queue[0].data.name # link actor to portrait
+	#portrait.actor_name = copy_of_queue[0].data.name # link actor to portrait
 	portrait.texture = copy_of_queue[0].data.faceset # populate portrait w/texture
 	
 	# display portrait and stats
@@ -34,7 +40,7 @@ func display_queue(queue: Array[Actor]) -> void:
 	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/dex").text = "DEX: " + str(active_actor.data.dex)
 	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/spd").text = "SPD: " + str(active_actor.data.spd)
 	
-	# add to dictionary
+	# add to dictionaries
 	Manifest.add_portrait(copy_of_queue[0], portrait)
 	copy_of_queue.pop_front() # remove active actor
 
@@ -44,7 +50,7 @@ func display_queue(queue: Array[Actor]) -> void:
 	copy_of_queue.reverse() # descending order for scrollbox
 	for actor in copy_of_queue:
 		portrait = portrait_scene.instantiate()
-		portrait.actor_name = actor.data.name
+		#portrait.actor_name = actor.data.name
 		portrait.texture = actor.data.faceset
 		queue_display.add_child(portrait)
 		Manifest.add_portrait(actor, portrait)
@@ -55,7 +61,7 @@ func display_target(target: Actor) -> void:
 	for child in target_display.get_node("HBoxContainer/TargetActorPortrait").get_children():
 		child.queue_free()
 	target_display.get_node("HBoxContainer/TargetActorPortrait").add_child(portrait)
-	portrait.actor_name = target.data.name # link actor to portrait
+	#portrait.actor_name = target.data.name # link actor to portrait
 	portrait.texture = target.data.faceset # populate portrait w/texture
 	target_display.get_node("name").text = target.data.name
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/hp").text = str(Manifest.combatants[target]["HP"]) + " :HP" 
@@ -65,7 +71,7 @@ func display_target(target: Actor) -> void:
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/dex").text = str(target.data.dex) + " :DEX" 
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/spd").text = str(target.data.spd) + " :SPD" 
 
-# === Diplay Init Rolls ===
+# === Display Logs ===
 func log_init() -> void:
 	for combatant in Manifest.combatants:
 		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a [color=cyan]" + str(Manifest.combatants[combatant]["init"]) + "[/color]![br]")
@@ -83,16 +89,8 @@ func log_damage_results(results) -> void:
 	var attacker = results.get("attacker")
 	var defender = results.get("defender")
 	combat_log.append_text("[[color=darkred]DAMAGE[/color]] [color=red]" + attacker.data.name + "[/color] rolled a [color=cyan]" + str(results["raw"]) + "[/color]! But [color=blue]" + defender.data.name + "[/color] deflected [color=cyan]" + str(results["deflected"]) + "[/color] pts for a total of [color=cyan]" + str(results["incoming"]) + "[/color] incoming damage![br]")
-	
-# === Toggle Move State ===
-func _on_move_button_pressed() -> void:
-	game_master.toggle_state(GameMaster.State.MOVE)
 
-# === Toggle Attack State ===
-func _on_attack_button_pressed() -> void:
-	game_master.toggle_state(GameMaster.State.ATTACK)
-	
-# === Calculate range ===
+# === Highlights ===
 func highlight_range(actor: Actor, state: GameMaster.State) -> void:
 	var in_range = []
 	var targets = []
@@ -109,3 +107,11 @@ func highlight_range(actor: Actor, state: GameMaster.State) -> void:
 			targets.clear()
 			targets = combat_manager.get_targets_in_range(actor, 2)
 			grid_map.highlight_cells(targets, state)
+
+# === Display Changes ===
+func remove_portrait(actor: Actor) -> void:
+	var portrait = Manifest.portraits.find_key(actor)
+	for child in queue_display.get_children():
+		if child == portrait: 
+			Manifest.portraits.erase(portrait)
+			child.free()

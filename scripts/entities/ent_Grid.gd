@@ -5,7 +5,6 @@ extends Node
 @export var tilesheet: Texture2D = preload("uid://bt77eidvhb0ii")
 @export var cell_scene: PackedScene = preload("uid://oc0dkklawq5y")
 var astar := AStarGrid2D.new()
-var gridmap: Dictionary = {}
 
 func _init():
 	astar.region = Rect2i(Vector2i.ZERO, GameMaster.GRID_SIZE)
@@ -24,7 +23,7 @@ func _ready() -> void:
 		var x = i % GameMaster.GRID_SIZE.x
 		var y = i / GameMaster.GRID_SIZE.x
 		var coords = Vector2i(x,y)
-		gridmap[coords] = cell
+		Manifest.gridmap[coords] = cell
 
 # === Pass Cell Signal to GameMaster ===
 signal cell_pressed(coords: Vector2)
@@ -53,8 +52,8 @@ func find_path(start: Vector2, end: Vector2) -> Array:
 
 # Clear highlights
 func clear_highlights() -> void:
-	for cell in gridmap:
-		gridmap[cell].modulate = Color(1, 1, 1, 1)
+	for cell in Manifest.gridmap:
+		Manifest.gridmap[cell].modulate = Color(1, 1, 1, 1)
 
 # Movement range
 func highlight_cells(cells: Array, state: GameMaster.State) -> void:
@@ -63,4 +62,4 @@ func highlight_cells(cells: Array, state: GameMaster.State) -> void:
 		GameMaster.State.MOVE: color = Color(0.6, 1.0, 0.6, 1.0)
 		GameMaster.State.ATTACK: color = Color(1.0, 0.6, 0.6, 1.0)
 	for cell in cells:
-		gridmap[cell].modulate = color
+		Manifest.gridmap[cell].modulate = color

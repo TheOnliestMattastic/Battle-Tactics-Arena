@@ -13,11 +13,20 @@ var queue: Array [Actor]
 
 func add_combatants(actors: Array[Actor]) -> void:
 	for actor in actors:
+		var coords = Vector2i(actor.position / CELL_SIZE)
+		gridmap[coords].occupant = actor
 		combatants[actor] = {}
 		combatants[actor]["HP"] = actor.data.max_hp
 		combatants[actor]["AP"] = 3
-		var coords = Vector2i(actor.position / CELL_SIZE)
-		gridmap[coords] = actor
 
 func add_portrait(actor: Actor, portrait) -> void:
-	portraits[portrait] = actor
+	portraits[portrait] = actor 
+
+func remove_from_queue(actor: Actor) -> void:
+	var coords = Vector2i(actor.position / CELL_SIZE)
+	gridmap[coords].occupant = null
+	combatants.erase(actor)
+	for i in queue.size():
+		if queue[i] == actor: 
+			queue.pop_at(i)
+			break
