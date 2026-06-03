@@ -1,5 +1,5 @@
 @tool
-class_name RenderSystem
+class_name DisplayManager
 extends Control
 
 # === Config ===
@@ -10,7 +10,7 @@ extends Control
 @onready var combat_log: RichTextLabel = %CombatLog
 @onready var game_master: GameMaster = $".."
 @onready var grid_map: Grid = %GridMap
-@onready var combat_system: CombatSystem = %Actors
+@onready var combat_manager: CombatManager = %Actors
 
 # === Display Queue Info ===
 func display_queue(queue: Array[Actor]) -> void:
@@ -68,8 +68,22 @@ func display_target(target: Actor) -> void:
 # === Diplay Init Rolls ===
 func log_init() -> void:
 	for combatant in Manifest.combatants:
-		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a " + str(Manifest.combatants[combatant]["init"]) + "![br]")
+		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a [color=cyan]" + str(Manifest.combatants[combatant]["init"]) + "[/color]![br]")
 
+func log_hit_results(results) -> void:
+	var attacker = results.get("attacker")
+	var defender = results.get("defender")
+	var successful = results.get("success")
+	combat_log.append_text("[[color=darkred]ATTACK[/color]] [color=red]" + attacker.data.name + "[/color] rolled a [color=cyan]" + str(results.get("hit")) + "[/color]![br]")
+	combat_log.append_text("[[color=darkblue]EVASION[/color]] [color=blue]" + defender.data.name + "[/color] rolled a [color=cyan]" + str(results.get("evasion")) + "[/color]![br]")
+	if successful: combat_log.append_text("The [color=darkgreen]attack succeeded[/color]![br]")
+	else: combat_log.append_text("The [color=red]attack failed[/color] to land. [color=blue]" + defender.data.name + "[/color] successfully evaded the attack![br]")
+
+func log_damage_results(results) -> void:
+	var attacker = results.get("attacker")
+	var defender = results.get("defender")
+	combat_log.append_text("[[color=darkred]DAMAGE[/color]] [color=red]" + attacker.data.name + "[/color] rolled a [color=cyan]" + str(results["raw"]) + "[/color]! But [color=blue]" + defender.data.name + "[/color] deflected [color=cyan]" + str(results["deflected"]) + "[/color] pts for a total of [color=cyan]" + str(results["incoming"]) + "[/color] incoming damage![br]")
+	
 # === Toggle Move State ===
 func _on_move_button_pressed() -> void:
 	game_master.toggle_state(GameMaster.State.MOVE)
@@ -79,19 +93,19 @@ func _on_attack_button_pressed() -> void:
 	game_master.toggle_state(GameMaster.State.ATTACK)
 	
 # === Calculate range ===
-var in_range = []
-var targets = []
 func highlight_range(actor: Actor, state: GameMaster.State) -> void:
+	var in_range = []
+	var targets = []
 	match state:
 		GameMaster.State.MOVE: 
 			in_range.clear()
 			targets.clear()
-			in_range = combat_system.get_cells_in_range(actor)
-			targets = combat_system.get_targets_in_range(actor, 2)
+			in_range = combat_manager.get_cells_in_range(actor)
+			targets = combat_manager.get_targets_in_range(actor, 2)
 			grid_map.highlight_cells(in_range, state)
 			grid_map.highlight_cells(targets, GameMaster.State.ATTACK)
 		
 		GameMaster.State.ATTACK:
 			targets.clear()
-			targets = combat_system.get_targets_in_range(actor, 2)
+			targets = combat_manager.get_targets_in_range(actor, 2)
 			grid_map.highlight_cells(targets, state)

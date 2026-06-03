@@ -1,3 +1,4 @@
+# manifest.gd
 extends Node
 
 # === Globals ===

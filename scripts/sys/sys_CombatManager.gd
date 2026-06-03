@@ -1,9 +1,9 @@
-class_name CombatSystem
+class_name CombatManager
 extends Node
 
 @onready var grid_map: Grid = %GridMap
 
-func roll_init(queue: Array[Actor]) -> void:
+func roll_for_init(queue: Array[Actor]) -> void:
 	for actor in queue: Manifest.combatants[actor]["init"] = Dice.roll_d10() + actor.data.spd
 	queue.sort_custom(func(a, b): return Manifest.combatants[a]["init"] > Manifest.combatants[b]["init"])
 
@@ -41,11 +41,38 @@ func get_targets_in_range(actor, limit: int = 1, is_friendly: bool = false) -> A
 				if is_friendly == same_alignment: targets.append(target_pos)
 	return targets
 
-func roll_attack(attacker: Actor, defender: Actor) -> Dictionary:
+func roll_for_attack(attacker: Actor, defender: Actor) -> Dictionary:
 	var results: Dictionary
+	var hit_mod = attacker.data.dex
 	var evasion_mod = defender.data.dex + defender.data.spd
-	var hit_result = Dice.roll_dice_plus(2, 6, attacker.data.dex)
-	var evasion_result = Dice.roll_dice_plus(1, 6, evasion_mod)
-	results[attacker] = hit_result
-	results[defender] = evasion_result
+	var hit_roll = Dice.roll_dice_plus(2, 6, hit_mod)
+	var evasion_roll = Dice.roll_dice_plus(1, 6, evasion_mod)
+	results["success"] = hit_roll >= evasion_roll
+	results["attacker"] = attacker
+	results["defender"] = defender
+	results["hit"] = hit_roll
+	results["evasion"] = evasion_roll
 	return results
+
+func roll_for_damage(attacker: Actor, defender: Actor) -> Dictionary:
+	var results: Dictionary
+	var damage_mod = attacker.data.pwr
+	var damage_roll = Dice.roll_dice(damage_mod, 4)
+	var deflected = defender.data.def
+	results["attacker"] = attacker
+	results["defender"] = defender
+	results["raw"] = damage_roll
+	results["deflected"] = deflected
+	results["incoming"] = max(int(damage_roll - deflected), 0)
+	return results
+
+func apply_damage(results: Dictionary) -> void:
+	var damage = results.get("incoming")
+	var defender = results.get("defender")
+	var hp = Manifest.combatants[defender]["HP"]
+	var result = hp - damage
+	if result > 0 : Manifest.combatants[defender]["HP"] = result
+	else: actor_defeated(defender)
+
+func actor_defeated(actor: Actor) -> void:
+	return print("dead")

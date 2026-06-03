@@ -15,29 +15,29 @@ enum State {
 var current_state: State = State.IDLE
 
 # === Systems ===
-@onready var combat_system: CombatSystem = %Actors
-@onready var render_system: RenderSystem = %UI
+@onready var combat_manager: CombatManager = %Actors
+@onready var display_manager: DisplayManager = %UI
 @onready var grid_map: Grid = %GridMap
 
 # === On Startup ===
 func _ready() -> void:
-	var flank = combat_system.get_child(0).get_children()
-	var vanguard = combat_system.get_child(1).get_children()
+	var flank = combat_manager.get_child(0).get_children()
+	var vanguard = combat_manager.get_child(1).get_children()
 	Manifest.queue.append_array(vanguard)
 	Manifest.queue.append_array(flank)
 	Manifest.add_combatants(Manifest.queue)
 	
 	for combatant in Manifest.combatants: grid_map.toggle_obstacle(Vector2i(combatant.position) / CELL_SIZE, true)
 	
-	combat_system.roll_init(Manifest.queue)
-	render_system.log_init()
-	render_system.display_queue(Manifest.queue)
-	combat_system.initiate_turn(Manifest.queue)
+	combat_manager.roll_for_init(Manifest.queue)
+	display_manager.log_init()
+	display_manager.display_queue(Manifest.queue)
+	combat_manager.initiate_turn(Manifest.queue)
 
 # === Per Frame ===
 func _process(delta: float) -> void:
 	for combatant in Manifest.combatants:
-		if combatant.target: render_system.display_target(combatant)
+		if combatant.target: display_manager.display_target(combatant)
 
 # === When User Selects a Cell ===
 func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
@@ -71,18 +71,19 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 		State.ATTACK:
 			var attacker = Manifest.queue[0]
 			var target = Manifest.gridmap.get(coords)
-			if target: 
-				var results = combat_system.roll_attack(attacker, target)
-				print(results) 
+			if not target: return print("No target...")
 			
+			# calculate hit and log
+			var results = combat_manager.roll_for_attack(attacker, target)
+			display_manager.log_hit_results(results)
+			if not results.get("success"): return print("No damage to calculate.")
 			
+			# calculate damage and log
+			var damage = combat_manager.roll_for_damage(attacker, target)
+			display_manager.log_damage_results(damage)
+			combat_manager.apply_damage(damage)
 			
-			
-			else: print("No target...")
-			
-			
-			
-			
+
 		_: print("[I AM ERROR] Unknown state")
 
 # === Utils ===
@@ -97,7 +98,7 @@ func toggle_state(target_state: State) -> void:
 			grid_map.clear_highlights()
 		State.MOVE:
 			grid_map.clear_highlights()
-			render_system.highlight_range(Manifest.queue[0], current_state)
+			display_manager.highlight_range(Manifest.queue[0], current_state)
 		State.ATTACK:
 			grid_map.clear_highlights()
-			render_system.highlight_range(Manifest.queue[0], current_state)
+			display_manager.highlight_range(Manifest.queue[0], current_state)
