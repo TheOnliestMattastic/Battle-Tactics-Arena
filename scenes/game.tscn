@@ -189,7 +189,7 @@ layout_mode = 2
 [node name="Portrait5" parent="UI/HUD/baseBox/topBox/QueuePanel/innerMargin/conentBox/innerMargin/QueueScrollBox/QueueBox" unique_id=1040465098 instance=ExtResource("7_pl11u")]
 layout_mode = 2
 
-[node name="Banner" type="NinePatchRect" parent="UI/HUD/baseBox/topBox" unique_id=32996742]
+[node name="BannerPanel" type="NinePatchRect" parent="UI/HUD/baseBox/topBox" unique_id=32996742]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -200,7 +200,7 @@ patch_margin_top = 8
 patch_margin_right = 19
 patch_margin_bottom = 8
 
-[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/topBox/Banner" unique_id=876517995]
+[node name="innerContainer" type="MarginContainer" parent="UI/HUD/baseBox/topBox/BannerPanel" unique_id=876517995]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -212,7 +212,8 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="UI/HUD/baseBox/topBox/Banner/innerContainer" unique_id=178927339]
+[node name="Banner" type="Label" parent="UI/HUD/baseBox/topBox/BannerPanel/innerContainer" unique_id=178927339]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Contextual information."
 label_settings = SubResource("LabelSettings_p57ef")

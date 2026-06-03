@@ -80,3 +80,8 @@ func apply_damage(results: Dictionary) -> void:
 	else: 
 		Manifest.combatants[defender]["HP"] = 0
 		game_master.actor_defeated(defender)
+
+func spend_ap(actor: Actor, ammount: int = 1) -> void:
+	print(Manifest.combatants[actor]["AP"])
+	Manifest.combatants[actor]["AP"] = Manifest.combatants[actor]["AP"] - 1
+	return print(Manifest.combatants[actor]["AP"])

@@ -8,6 +8,7 @@ extends Control
 @onready var active_display: Container = %ActiveBox
 @onready var target_display: Container = %TargetBox
 @onready var combat_log: RichTextLabel = %CombatLog
+@onready var banner: Label = %Banner
 @onready var game_master: GameMaster = $".."
 @onready var grid_map: Grid = %GridMap
 @onready var combat_manager: CombatManager = %Actors
@@ -23,10 +24,8 @@ func display_queue(queue: Array[Actor]) -> void:
 	var copy_of_queue = queue.duplicate() # use copy for function
 
 	# Clear and fill active display
-	for child in active_display.get_node("HBoxContainer/ActiveActorPortrait").get_children():
-		child.queue_free()
+	for child in active_display.get_node("HBoxContainer/ActiveActorPortrait").get_children(): child.queue_free()
 	var portrait = portrait_scene.instantiate()
-	#portrait.actor_name = copy_of_queue[0].data.name # link actor to portrait
 	portrait.texture = copy_of_queue[0].data.faceset # populate portrait w/texture
 	
 	# display portrait and stats
@@ -40,17 +39,15 @@ func display_queue(queue: Array[Actor]) -> void:
 	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/dex").text = "DEX: " + str(active_actor.data.dex)
 	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/spd").text = "SPD: " + str(active_actor.data.spd)
 	
-	# add to dictionaries
+	# add to dictionary
 	Manifest.add_portrait(copy_of_queue[0], portrait)
 	copy_of_queue.pop_front() # remove active actor
 
 	# Clear and fill queue display, and populate portraits dictionary
-	for child in queue_display.get_children():
-		child.queue_free()
+	for child in queue_display.get_children(): child.queue_free()
 	copy_of_queue.reverse() # descending order for scrollbox
 	for actor in copy_of_queue:
 		portrait = portrait_scene.instantiate()
-		#portrait.actor_name = actor.data.name
 		portrait.texture = actor.data.faceset
 		queue_display.add_child(portrait)
 		Manifest.add_portrait(actor, portrait)
@@ -75,6 +72,9 @@ func display_target(target: Actor) -> void:
 func log_init() -> void:
 	for combatant in Manifest.combatants:
 		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a [color=cyan]" + str(Manifest.combatants[combatant]["init"]) + "[/color]![br]")
+
+func log_to_banner(message: String) -> void:
+	banner.text = message
 
 func log_hit_results(results) -> void:
 	var attacker = results.get("attacker")
@@ -115,3 +115,4 @@ func remove_portrait(actor: Actor) -> void:
 		if child == portrait: 
 			Manifest.portraits.erase(portrait)
 			child.free()
+			break

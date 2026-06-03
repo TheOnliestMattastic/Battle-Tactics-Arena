@@ -2,8 +2,8 @@ class_name GameMaster
 extends Node
 
 # === GLOBALS ===
-const GRID_SIZE: Vector2i = Vector2(12, 5)
-const CELL_SIZE: Vector2i = Vector2(64, 64)
+const GRID_SIZE: Vector2i = Vector2i(12, 5)
+const CELL_SIZE: Vector2i = Vector2i(64, 64)
 
 # === States ===
 enum State {
@@ -12,7 +12,7 @@ enum State {
 	ATTACK,
 	ABILITY
 }
-var current_state: State = State.IDLE
+var current_state: State
 
 # === Systems ===
 @onready var combat_manager: CombatManager = %Actors
@@ -33,6 +33,7 @@ func _ready() -> void:
 	display_manager.log_init()
 	display_manager.display_queue(Manifest.queue)
 	combat_manager.initiate_turn(Manifest.queue)
+	toggle_state(State.IDLE)
 
 # === Per Frame ===
 func _process(delta: float) -> void:
@@ -57,7 +58,7 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			# exit if out of range 
 			if (path.size() - 1) > spd:
 				grid_map.toggle_obstacle(start_pos, false)
-				return print("Too far...")
+				return display_manager.log_to_banner("Too far...")
 			
 			# move actor
 			for cell in path:
@@ -71,7 +72,7 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 		State.ATTACK:
 			var attacker = Manifest.queue[0]
 			var target = Manifest.gridmap.get(coords).occupant
-			if not target: return print("No target...")
+			if not target: return display_manager.log_to_banner("No target...")
 			
 			# calculate hit and log
 			var results = combat_manager.roll_for_attack(attacker, target)
@@ -82,26 +83,29 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			var damage = combat_manager.roll_for_damage(attacker, target)
 			display_manager.log_damage_results(damage)
 			combat_manager.apply_damage(damage)
-			toggle_state(current_state)
+			toggle_state(State.IDLE)
+			combat_manager.spend_ap(attacker)
 			
-
 		_: print("[I AM ERROR] Unknown state")
 
 # === Utils ===
 func toggle_state(target_state: State) -> void:
 	if current_state == target_state: current_state = State.IDLE
 	else: current_state = target_state
-	print("State changed to: ", State.keys()[current_state])
 	
 	match current_state:
 		State.IDLE:
+			var active = Manifest.queue[0].data.name
 			grid_map.clear_highlights()
+			display_manager.log_to_banner(active + "'s turn.")
 		State.MOVE:
 			grid_map.clear_highlights()
 			display_manager.highlight_range(Manifest.queue[0], current_state)
+			display_manager.log_to_banner("Moving...")
 		State.ATTACK:
 			grid_map.clear_highlights()
 			display_manager.highlight_range(Manifest.queue[0], current_state)
+			display_manager.log_to_banner("Attacking...")
 
 func actor_defeated(actor: Actor) -> void:
 	var coords := Vector2i(actor.position) / CELL_SIZE
