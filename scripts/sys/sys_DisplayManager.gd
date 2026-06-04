@@ -99,15 +99,12 @@ func highlight_range(actor: Actor, state: GameMaster.State) -> void:
 	var targets = []
 	match state:
 		GameMaster.State.MOVE: 
-			in_range.clear()
-			targets.clear()
 			in_range = combat_manager.get_cells_in_range(actor)
 			targets = combat_manager.get_targets_in_range(actor, 2)
 			grid_map.highlight_cells(in_range, state)
 			grid_map.highlight_cells(targets, GameMaster.State.ATTACK)
 		
 		GameMaster.State.ATTACK:
-			targets.clear()
 			targets = combat_manager.get_targets_in_range(actor, 2)
 			grid_map.highlight_cells(targets, state)
 

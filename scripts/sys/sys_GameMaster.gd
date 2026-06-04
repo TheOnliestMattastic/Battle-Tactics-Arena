@@ -44,9 +44,9 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 		
 		State.MOVE:
 			# setup
-			var active_actor = Manifest.queue[0]
-			var start_pos = Vector2i(active_actor.position) / CELL_SIZE
-			var spd = active_actor.data.spd
+			var mover = Manifest.queue[0]
+			var start_pos = Vector2i(mover.position) / CELL_SIZE
+			var spd = mover.data.spd
 			
 			# get path
 			grid_map.toggle_obstacle(start_pos, false) # set starting pos as walkable
@@ -61,9 +61,11 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			for cell in path:
 				var target = Vector2(cell * 64)
 				var tween = create_tween()
-				tween.tween_property(active_actor, "position", target, 0.2) # move along path
+				tween.tween_property(mover, "position", target, 0.2) # move along path
 				await tween.finished
 			grid_map.toggle_obstacle(coords, true) # set new position as unwalkable
+			Manifest.gridmap.get(coords).occupant = mover
+			Manifest.gridmap.get(start_pos).occupant = null
 			toggle_state(State.IDLE)
 		
 		State.ATTACK:
