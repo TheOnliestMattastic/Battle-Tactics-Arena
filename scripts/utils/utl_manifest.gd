@@ -17,7 +17,7 @@ func add_combatants(actors: Array[Actor]) -> void:
 		gridmap[coords].occupant = actor
 		combatants[actor] = {}
 		combatants[actor]["HP"] = actor.data.max_hp
-		combatants[actor]["AP"] = 3
+		combatants[actor]["AP"] = 0
 
 func add_portrait(actor: Actor, portrait) -> void:
 	portraits[portrait] = actor 

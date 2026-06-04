@@ -29,11 +29,11 @@ func _ready() -> void:
 	
 	combat_manager.roll_for_init(Manifest.queue)
 	display_manager.log_init()
-	display_manager.display_queue(Manifest.queue)
 	toggle_state(State.IDLE)
 
 # === Per Frame ===
 func _process(delta: float) -> void:
+	display_manager.display_queue(Manifest.queue)
 	for combatant in Manifest.combatants:
 		if combatant.target: display_manager.display_target(combatant)
 

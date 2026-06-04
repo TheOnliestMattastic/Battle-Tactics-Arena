@@ -6,7 +6,9 @@ extends Node
 @onready var grid_map: Grid = %GridMap
 
 func roll_for_init(queue: Array[Actor]) -> void:
-	for actor in queue: Manifest.combatants[actor]["init"] = Dice.roll_d20() + actor.data.spd
+	for actor in queue: 
+		Manifest.combatants[actor]["init"] = Dice.roll_d20() + actor.data.spd
+		Manifest.combatants[actor]["AP"] = min((Manifest.combatants[actor]["AP"] + 3), 5)
 	queue.sort_custom(func(a, b): return Manifest.combatants[a]["init"] > Manifest.combatants[b]["init"])
 
 func get_cells_in_range(actor) -> Array:
