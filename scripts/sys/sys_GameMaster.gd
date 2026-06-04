@@ -21,10 +21,8 @@ var current_state: State
 
 # === On Startup ===
 func _ready() -> void:
-	var flank = combat_manager.get_child(0).get_children()
-	var vanguard = combat_manager.get_child(1).get_children()
-	Manifest.queue.append_array(vanguard)
-	Manifest.queue.append_array(flank)
+	var combatants = get_combatants()
+	Manifest.queue.append_array(combatants)
 	Manifest.add_combatants(Manifest.queue)
 	
 	for combatant in Manifest.combatants: grid_map.toggle_obstacle(Vector2i(combatant.position) / CELL_SIZE, true)
@@ -32,7 +30,6 @@ func _ready() -> void:
 	combat_manager.roll_for_init(Manifest.queue)
 	display_manager.log_init()
 	display_manager.display_queue(Manifest.queue)
-	combat_manager.initiate_turn(Manifest.queue)
 	toggle_state(State.IDLE)
 
 # === Per Frame ===
@@ -75,9 +72,7 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			if not target: return display_manager.log_to_banner("No target...")
 			
 			# TESTING: AP mechanics; need to move later
-			var current_ap = Manifest.combatants[attacker]["AP"]
-			var ap_cost = 1
-			if not ap_cost <= current_ap: return display_manager.log_to_banner("Not enough AP.")
+			if not combat_manager.has_enough_ap(attacker): return display_manager.log_to_banner("Not enough AP...")
 			combat_manager.spend_ap(attacker)
 			
 			# calculate hit and log
@@ -118,3 +113,22 @@ func actor_defeated(actor: Actor) -> void:
 	Manifest.remove_from_queue(actor)
 	actor.queue_free()
 	grid_map.toggle_obstacle(coords, false)
+
+func end_turn() -> void:
+	Manifest.queue.pop_front()
+	if Manifest.queue.size() == 0:
+		var combatants = get_combatants()
+		Manifest.queue.clear()
+		Manifest.queue.append_array(combatants)
+		combat_manager.roll_for_init(Manifest.queue)
+		display_manager.log_init()
+	display_manager.display_queue(Manifest.queue)
+	toggle_state(State.IDLE)
+
+func get_combatants() -> Array:
+	var combatants: Array
+	var a = combat_manager.get_child(0).get_children()
+	var b = combat_manager.get_child(1).get_children()
+	combatants.append_array(a)
+	combatants.append_array(b)
+	return combatants

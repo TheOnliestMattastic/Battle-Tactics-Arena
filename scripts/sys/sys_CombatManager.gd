@@ -6,11 +6,8 @@ extends Node
 @onready var grid_map: Grid = %GridMap
 
 func roll_for_init(queue: Array[Actor]) -> void:
-	for actor in queue: Manifest.combatants[actor]["init"] = Dice.roll_d10() + actor.data.spd
+	for actor in queue: Manifest.combatants[actor]["init"] = Dice.roll_d20() + actor.data.spd
 	queue.sort_custom(func(a, b): return Manifest.combatants[a]["init"] > Manifest.combatants[b]["init"])
-
-func initiate_turn(queue: Array[Actor]) -> void:
-	queue[0].active = true
 
 func get_cells_in_range(actor) -> Array:
 	var start_pos = Vector2i(actor.position) / GameMaster.CELL_SIZE
@@ -82,7 +79,8 @@ func apply_damage(results: Dictionary) -> void:
 		game_master.actor_defeated(defender)
 
 func spend_ap(actor: Actor, ammount: int = 1) -> void:
-	if Manifest.combatants[actor]["AP"] >= ammount:
-		Manifest.combatants[actor]["AP"] = Manifest.combatants[actor]["AP"] - ammount
-	else: 
-		display_manager.log_to_banner("Not enough AP!")
+	if has_enough_ap(actor, ammount): Manifest.combatants[actor]["AP"] = Manifest.combatants[actor]["AP"] - ammount
+	else: print("[I AM ERROR] spend_ap edge was activated!")
+
+func has_enough_ap(actor: Actor, ammount: int = 1) -> bool:
+	return Manifest.combatants[actor]["AP"] >= ammount

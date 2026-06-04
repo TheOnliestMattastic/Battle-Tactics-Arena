@@ -910,4 +910,5 @@ data = ExtResource("19_qnb83")
 
 [connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/moveButton" to="UI" method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/attackButton" to="UI" method="_on_attack_button_pressed"]
+[connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/endButton" to="UI" method="_on_end_button_pressed"]
 [connection signal="cell_pressed" from="UI/GridMap" to="." method="_on_grid_map_cell_pressed"]

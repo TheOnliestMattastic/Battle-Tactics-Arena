@@ -16,8 +16,12 @@ extends Control
 # === Signals ===
 func _on_move_button_pressed() -> void: # Toggle move state
 	game_master.toggle_state(GameMaster.State.MOVE)
+
 func _on_attack_button_pressed() -> void: # Toggle attack state
 	game_master.toggle_state(GameMaster.State.ATTACK)
+
+func _on_end_button_pressed() -> void:
+	game_master.end_turn()
 
 # === Display Queue Info ===
 func display_queue(queue: Array[Actor]) -> void:
@@ -58,7 +62,6 @@ func display_target(target: Actor) -> void:
 	for child in target_display.get_node("HBoxContainer/TargetActorPortrait").get_children():
 		child.queue_free()
 	target_display.get_node("HBoxContainer/TargetActorPortrait").add_child(portrait)
-	#portrait.actor_name = target.data.name # link actor to portrait
 	portrait.texture = target.data.faceset # populate portrait w/texture
 	target_display.get_node("name").text = target.data.name
 	target_display.get_node("HBoxContainer/TargetActorStatMargin/TargetActorStatBox/hp").text = str(Manifest.combatants[target]["HP"]) + " :HP" 
