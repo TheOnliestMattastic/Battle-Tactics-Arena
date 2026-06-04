@@ -134,3 +134,11 @@ func get_combatants() -> Array:
 	combatants.append_array(a)
 	combatants.append_array(b)
 	return combatants
+
+func delay_turn() -> void:
+	if Manifest.queue[0].delayed: 
+		display_manager.log_to_banner("Turn already delayed this turn.")
+	else:
+		Manifest.queue[0].delayed = true
+		Manifest.queue.push_back(Manifest.queue.pop_front())
+		toggle_state(State.IDLE)

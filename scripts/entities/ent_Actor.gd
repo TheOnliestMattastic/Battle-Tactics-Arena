@@ -7,6 +7,7 @@ extends Area2D
 @onready var anim: AnimationPlayer = $AnimPlayer
 @onready var sprite: Sprite2D = $Sprite
 var target: bool = false
+var delayed: bool = false
 
 # Components
 @onready var input_component: InputComponent = $InputComponent

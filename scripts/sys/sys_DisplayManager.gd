@@ -23,6 +23,9 @@ func _on_attack_button_pressed() -> void: # Toggle attack state
 func _on_end_button_pressed() -> void:
 	game_master.end_turn()
 
+func _on_delay_button_pressed() -> void:
+	game_master.delay_turn()
+
 # === Display Queue Info ===
 func display_queue(queue: Array[Actor]) -> void:
 	var copy_of_queue = queue.duplicate() # use copy for function
