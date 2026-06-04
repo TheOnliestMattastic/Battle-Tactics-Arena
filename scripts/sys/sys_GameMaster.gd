@@ -74,6 +74,12 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			var target = Manifest.gridmap.get(coords).occupant
 			if not target: return display_manager.log_to_banner("No target...")
 			
+			# TESTING: AP mechanics; need to move later
+			var current_ap = Manifest.combatants[attacker]["AP"]
+			var ap_cost = 1
+			if not ap_cost <= current_ap: return display_manager.log_to_banner("Not enough AP.")
+			combat_manager.spend_ap(attacker)
+			
 			# calculate hit and log
 			var results = combat_manager.roll_for_attack(attacker, target)
 			display_manager.log_hit_results(results)
@@ -84,7 +90,6 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			display_manager.log_damage_results(damage)
 			combat_manager.apply_damage(damage)
 			toggle_state(State.IDLE)
-			combat_manager.spend_ap(attacker)
 			
 		_: print("[I AM ERROR] Unknown state")
 

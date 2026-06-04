@@ -82,6 +82,7 @@ func apply_damage(results: Dictionary) -> void:
 		game_master.actor_defeated(defender)
 
 func spend_ap(actor: Actor, ammount: int = 1) -> void:
-	print(Manifest.combatants[actor]["AP"])
-	Manifest.combatants[actor]["AP"] = Manifest.combatants[actor]["AP"] - 1
-	return print(Manifest.combatants[actor]["AP"])
+	if Manifest.combatants[actor]["AP"] >= ammount:
+		Manifest.combatants[actor]["AP"] = Manifest.combatants[actor]["AP"] - ammount
+	else: 
+		display_manager.log_to_banner("Not enough AP!")
