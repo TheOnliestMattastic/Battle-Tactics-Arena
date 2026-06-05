@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://daylhmw7gyq1x" path="res://assets/sprites/chars/brawlerBlue/Faceset.png" id="1_2wcdi"]
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_b7uan"]
+[ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_oveh3"]
 [ext_resource type="Texture2D" uid="uid://dx8g4fidsdy25" path="res://assets/sprites/chars/brawlerBlue/SpriteSheet.png" id="2_bioop"]
 
 [resource]
@@ -9,5 +10,6 @@ script = ExtResource("1_b7uan")
 name = "Bram the Brash"
 spritesheet = ExtResource("2_bioop")
 faceset = ExtResource("1_2wcdi")
-alignment = "Vanguard"
+alignment = null
+range = 0
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

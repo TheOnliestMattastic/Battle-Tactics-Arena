@@ -5,7 +5,7 @@ extends Node
 @onready var display_manager: DisplayManager = %UI
 @onready var grid_map: Grid = %GridMap
 
-func roll_for_init(queue: Array[Actor]) -> void:
+static func roll_for_init(queue: Array[Actor]) -> void:
 	for actor in queue: 
 		Manifest.combatants[actor]["init"] = Dice.roll_d20() + actor.data.spd
 		Manifest.combatants[actor]["AP"] = min((Manifest.combatants[actor]["AP"] + 3), 5)
@@ -45,7 +45,7 @@ func get_targets_in_range(actor, limit: int = 1, is_friendly: bool = false) -> A
 				if is_friendly == same_alignment: targets.append(target_pos)
 	return targets
 
-func roll_for_attack(attacker: Actor, defender: Actor) -> Dictionary:
+static func roll_for_attack(attacker: Actor, defender: Actor) -> Dictionary:
 	var results: Dictionary
 	var hit_mod = attacker.data.dex
 	var evasion_mod = defender.data.dex + defender.data.spd
@@ -56,9 +56,10 @@ func roll_for_attack(attacker: Actor, defender: Actor) -> Dictionary:
 	results["defender"] = defender
 	results["hit"] = hit_roll
 	results["evasion"] = evasion_roll
+	if not results["success"]: results["message"] = "Missed"
 	return results
 
-func roll_for_damage(attacker: Actor, defender: Actor) -> Dictionary:
+static func roll_for_damage(attacker: Actor, defender: Actor) -> Dictionary:
 	var results: Dictionary
 	var damage_mod = attacker.data.pwr
 	var damage_roll = Dice.roll_dice(damage_mod, 4)
@@ -81,9 +82,9 @@ func apply_damage(results: Dictionary) -> void:
 		Manifest.combatants[defender]["HP"] = 0
 		game_master.actor_defeated(defender)
 
-func spend_ap(actor: Actor, ammount: int = 1) -> void:
+static func spend_ap(actor: Actor, ammount: int = 1) -> void:
 	if has_enough_ap(actor, ammount): Manifest.combatants[actor]["AP"] = Manifest.combatants[actor]["AP"] - ammount
 	else: print("[I AM ERROR] spend_ap edge was activated!")
 
-func has_enough_ap(actor: Actor, ammount: int = 1) -> bool:
+static func has_enough_ap(actor: Actor, ammount: int = 1) -> bool:
 	return Manifest.combatants[actor]["AP"] >= ammount

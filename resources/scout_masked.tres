@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="ActorData" format=3 uid="uid://cvmd5eo1uvxvj"]
 
 [ext_resource type="Texture2D" uid="uid://mt377b5uvu21" path="res://assets/sprites/chars/scoutMasked/Faceset.png" id="1_4bhcl"]
+[ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_snehm"]
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_yjfyb"]
 [ext_resource type="Texture2D" uid="uid://g4lw5e1r3qdn" path="res://assets/sprites/chars/scoutMasked/SpriteSheet.png" id="2_drks0"]
+[ext_resource type="Resource" uid="uid://dvpcblj0cto3p" path="res://resources/snipe_ability.tres" id="2_niv5o"]
 
 [resource]
 script = ExtResource("1_yjfyb")
@@ -10,8 +12,11 @@ name = "Vale the Vague"
 spritesheet = ExtResource("2_drks0")
 faceset = ExtResource("1_4bhcl")
 alignment = "Flank"
+role = null
 pwr = 4
 def = 4
 dex = 6
 spd = 3
+attack_range = null
+abilities = Array[ExtResource("1_snehm")]([ExtResource("2_niv5o")])
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

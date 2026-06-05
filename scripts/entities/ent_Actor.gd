@@ -1,4 +1,3 @@
-@tool
 class_name Actor
 extends Area2D
 
@@ -9,14 +8,23 @@ extends Area2D
 var target: bool = false
 var delayed: bool = false
 
-# Components
-@onready var input_component: InputComponent = $InputComponent
-
 func _ready() -> void:
-	# null check
-	if not data:
-		return
+	if not data: return
+	if data.spritesheet: sprite.set_texture(data.spritesheet)
+	if data.name: self.name = data.name
 
-	# update spritesheet
-	if data.spritesheet:
-		sprite.set_texture(data.spritesheet)
+func _physics_process(delta: float) -> void:
+	if not Manifest.queue: return
+	if  self == Manifest.queue[0]: anim.play("active_down") 
+	elif target: return
+	else: anim.play("idle_down")
+
+func _on_mouse_entered() -> void:
+	if self == Manifest.queue[0]: return
+	anim.play("active_down")
+	target = true
+
+func _on_mouse_exited() -> void:
+	if self == Manifest.queue[0]: return
+	anim.play("idle_down")
+	target = false

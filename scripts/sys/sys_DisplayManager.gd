@@ -1,4 +1,3 @@
-@tool
 class_name DisplayManager
 extends Control
 

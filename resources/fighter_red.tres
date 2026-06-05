@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ActorData" format=3 uid="uid://u0nuwsc4a5o"]
 
+[ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_8bqds"]
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_c4ud8"]
 [ext_resource type="Texture2D" uid="uid://dtnjsbdix0ke7" path="res://assets/sprites/chars/fighterRed/Faceset.png" id="1_dqiy0"]
 [ext_resource type="Texture2D" uid="uid://csvwpuf36af6d" path="res://assets/sprites/chars/fighterRed/SpriteSheet.png" id="2_c4ud8"]
@@ -10,6 +11,7 @@ name = "Sven the Sweaty"
 spritesheet = ExtResource("2_c4ud8")
 faceset = ExtResource("1_dqiy0")
 alignment = "Flank"
+range = null
 max_hp = 20
 pwr = 7
 def = 3

@@ -27,7 +27,7 @@ func _ready() -> void:
 	
 	for combatant in Manifest.combatants: grid_map.toggle_obstacle(Vector2i(combatant.position) / CELL_SIZE, true)
 	
-	combat_manager.roll_for_init(Manifest.queue)
+	CombatManager.roll_for_init(Manifest.queue)
 	display_manager.log_init()
 	toggle_state(State.IDLE)
 
@@ -40,7 +40,8 @@ func _process(delta: float) -> void:
 # === When User Selects a Cell ===
 func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 	match current_state:
-		State.IDLE: print('No action selected')
+		State.IDLE: 
+			display_manager.log_to_banner('No action selected')
 		
 		State.MOVE:
 			# setup
@@ -74,20 +75,26 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			if not target: return display_manager.log_to_banner("No target...")
 			
 			# TESTING: AP mechanics; need to move later
-			if not combat_manager.has_enough_ap(attacker): return display_manager.log_to_banner("Not enough AP...")
-			combat_manager.spend_ap(attacker)
+			if not CombatManager.has_enough_ap(attacker): return display_manager.log_to_banner("Not enough AP...")
+			CombatManager.spend_ap(attacker)
 			
 			# calculate hit and log
-			var results = combat_manager.roll_for_attack(attacker, target)
+			var results = CombatManager.roll_for_attack(attacker, target)
 			display_manager.log_hit_results(results)
 			if not results.get("success"): return toggle_state(current_state)
 			
 			# calculate damage and log
-			var damage = combat_manager.roll_for_damage(attacker, target)
+			var damage = CombatManager.roll_for_damage(attacker, target)
 			display_manager.log_damage_results(damage)
 			combat_manager.apply_damage(damage)
 			toggle_state(State.IDLE)
-			
+		
+		State.ABILITY:
+			var caster = Manifest.queue[0]
+			var result = caster.data.abilities[0].execute(caster, coords)
+			if not result["success"]: return display_manager.log_to_banner(result["message"])
+			print(result)
+		
 		_: print("[I AM ERROR] Unknown state")
 
 # === Utils ===
@@ -108,6 +115,9 @@ func toggle_state(target_state: State) -> void:
 			grid_map.clear_highlights()
 			display_manager.highlight_range(Manifest.queue[0], current_state)
 			display_manager.log_to_banner("Attacking...")
+		State.ABILITY:
+			grid_map.clear_highlights()
+			display_manager.log_to_banner("Choosing ability")
 
 func actor_defeated(actor: Actor) -> void:
 	var coords := Vector2i(actor.position) / CELL_SIZE
@@ -122,7 +132,7 @@ func end_turn() -> void:
 		var combatants = get_combatants()
 		Manifest.queue.clear()
 		Manifest.queue.append_array(combatants)
-		combat_manager.roll_for_init(Manifest.queue)
+		CombatManager.roll_for_init(Manifest.queue)
 		display_manager.log_init()
 	display_manager.display_queue(Manifest.queue)
 	toggle_state(State.IDLE)
@@ -142,3 +152,8 @@ func delay_turn() -> void:
 		Manifest.queue[0].delayed = true
 		Manifest.queue.push_back(Manifest.queue.pop_front())
 		toggle_state(State.IDLE)
+
+
+func _on_skills_button_pressed() -> void:
+	if not Manifest.queue[0].data.name == "Vale the Vague": return
+	toggle_state(State.ABILITY)
