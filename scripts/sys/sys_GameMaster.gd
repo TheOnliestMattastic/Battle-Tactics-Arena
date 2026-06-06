@@ -109,19 +109,24 @@ func toggle_state(target_state: State) -> void:
 	match current_state:
 		State.IDLE:
 			var active = Manifest.queue[0].data.name
-			grid_map.clear_highlights()
+			Grid.clear_highlights()
 			display_manager.log_to_banner(active + "'s turn.")
 		State.MOVE:
-			grid_map.clear_highlights()
+			Grid.clear_highlights()
 			display_manager.highlight_range(Manifest.queue[0], current_state)
 			display_manager.log_to_banner("Moving...")
 		State.ATTACK:
-			grid_map.clear_highlights()
+			Grid.clear_highlights()
 			display_manager.highlight_range(Manifest.queue[0], current_state)
 			display_manager.log_to_banner("Attacking...")
 		State.ABILITY:
-			grid_map.clear_highlights()
+			var caster = Manifest.queue[0]
+			Grid.clear_highlights()
 			display_manager.log_to_banner("Choosing ability")
+			
+			# === TESTING: need to refactor later! ===
+			if not caster.data.abilities: return
+			caster.data.abilities[0].stage(caster, grid_map.astar)
 
 func actor_defeated(actor: Actor) -> void:
 	var coords := Vector2i(actor.position) / CELL_SIZE

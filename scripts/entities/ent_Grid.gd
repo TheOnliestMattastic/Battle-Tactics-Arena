@@ -50,12 +50,12 @@ func find_path(start: Vector2, end: Vector2) -> Array:
 	return astar.get_id_path(start, end)
 
 # Clear highlights
-func clear_highlights() -> void:
+static func clear_highlights() -> void:
 	for cell in Manifest.gridmap:
 		Manifest.gridmap[cell].modulate = Color(1, 1, 1, 1)
 
 # Movement range
-func highlight_cells(cells: Array, state: GameMaster.State) -> void:
+static func highlight_cells(cells: Array, state: GameMaster.State) -> void:
 	var color: Color
 	match state:
 		GameMaster.State.MOVE: color = Color(0.6, 1.0, 0.6, 1.0)

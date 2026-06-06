@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SnipeAbility" format=3 uid="uid://dvpcblj0cto3p"]
 
-[ext_resource type="Script" uid="uid://dvqgu0gemlvo2" path="res://scripts/res/res_SnipeAbility.gd" id="1_mk48c"]
+[ext_resource type="Script" uid="uid://dvqgu0gemlvo2" path="res://scripts/abilities/abil_SnipeAbility.gd" id="1_mk48c"]
 
 [resource]
 script = ExtResource("1_mk48c")

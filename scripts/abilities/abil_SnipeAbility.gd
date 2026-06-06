@@ -3,6 +3,13 @@ extends AbilityData
 
 @export var modifier: float = 1.5
 
+func stage(caster: Actor, astar: AStarGrid2D) -> Dictionary:
+	var results: Dictionary
+	var targets = GridMath.get_targets_in_range(caster, cast_range, astar)
+	Grid.highlight_cells(targets, GameMaster.State.ATTACK)
+	results["success"] = true
+	return results
+
 func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 	# setup 
 	var results: Dictionary

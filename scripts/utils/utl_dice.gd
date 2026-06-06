@@ -1,4 +1,3 @@
-# dice.gd
 extends Node
 
 var rng := RandomNumberGenerator.new()

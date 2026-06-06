@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Dice="*uid://ty3rsqgy4ieb"
 Manifest="*uid://dpgxlablvib8k"
+GridMath="*uid://blhxpsyqs5474"
 
 [debug]
 
