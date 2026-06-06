@@ -25,6 +25,7 @@ static func roll_for_attack(attacker: Actor, defender: Actor) -> Dictionary:
 	results["defender"] = defender
 	results["hit"] = hit_roll
 	results["evasion"] = evasion_roll
+	attacker.attacked = true
 	if not results["success"]: results["message"] = "Missed"
 	return results
 
@@ -43,7 +44,7 @@ static func stage_damage_results(attacker: Actor, defender: Actor, damage: int) 
 	results["defender"] = defender
 	results["raw"] = damage
 	results["deflected"] = deflected
-	results["damage"] = max(int(damage - deflected), 0)	
+	results["damage"] = max(int(damage - deflected), 0)
 	return results
 
 func apply_damage(results: Dictionary) -> void:

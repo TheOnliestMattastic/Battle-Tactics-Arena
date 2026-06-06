@@ -6,6 +6,7 @@ extends Resource
 @export var ap_cost: int = 1
 @export var cast_range: int = 1
 @export var base_pwr: float = 1
+@export_enum("Attack", "Buff", "Debuff", "Heal") var type: String
 
 func stage(caster: Actor, astar: AStarGrid2D,) -> Dictionary:
 	var results: Dictionary

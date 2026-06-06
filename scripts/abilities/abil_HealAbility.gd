@@ -12,11 +12,12 @@ func stage(caster: Actor, astar: AStarGrid2D) -> Dictionary:
 
 func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 	var results: Dictionary
-	var target = Manifest.gridmap[coords].occupant
-	if target == null: # return if no target
+	var target: Actor = Manifest.gridmap[coords].occupant
+	if target == null or target.data.alignment != caster.data.alignment: # return if invalid target
 		results["success"] = false
 		results["message"] = "Invalid target."
 		return results
+	
 	
 	
 	

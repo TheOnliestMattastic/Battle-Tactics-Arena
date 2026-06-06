@@ -29,4 +29,5 @@ func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 	var distance = caster_coords.distance_to(coords)
 	var raw = int(Dice.roll_dice(base_damage, 4) + (distance * modifier))
 	results = CombatManager.stage_damage_results(caster, target, raw)
+	CombatManager.spend_ap(caster, self.ap_cost)
 	return results

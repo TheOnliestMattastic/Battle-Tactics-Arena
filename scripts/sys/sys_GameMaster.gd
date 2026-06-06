@@ -79,7 +79,6 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			# TESTING: AP mechanics; need to move later
 			if not CombatManager.has_enough_ap(attacker): return display_manager.log_to_banner("Not enough AP...")
 			CombatManager.spend_ap(attacker)
-			attacker.attacked = true
 			
 			# calculate hit and log
 			var results = CombatManager.roll_for_attack(attacker, target)
@@ -95,11 +94,14 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 		State.ABILITY:
 			var caster: Actor = Manifest.queue[0]
 			var ability: AbilityData = caster.data.abilities[0]
-			if not CombatManager.has_enough_ap(caster, ability.ap_cost): return display_manager.log_to_banner("Not enough AP...")
+			if not CombatManager.has_enough_ap(caster, ability.ap_cost): 
+				return display_manager.log_to_banner("Not enough AP...")
+			
 			var result = ability.execute(caster, coords)
-			caster.attacked = true
-			CombatManager.spend_ap(caster, ability.ap_cost)
-			if not result["success"]: return display_manager.log_to_banner(result["message"])
+			if not result["success"]:
+				display_manager.log_to_banner(result["message"])
+				return toggle_state(State.IDLE)
+			
 			display_manager.log_damage_results(result)
 			combat_manager.apply_damage(result)
 			toggle_state(State.IDLE)

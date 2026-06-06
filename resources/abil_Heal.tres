@@ -4,6 +4,8 @@
 
 [resource]
 script = ExtResource("1_j0hpq")
+name = "Heal"
 ap_cost = 2
-cast_range = 5
+cast_range = 6
+type = "Heal"
 metadata/_custom_type_script = "uid://dvqgu0gemlvo2"
