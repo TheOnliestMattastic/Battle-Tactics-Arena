@@ -93,11 +93,16 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			toggle_state(State.IDLE)
 		
 		State.ABILITY:
-			var caster = Manifest.queue[0]
-			var result = caster.data.abilities[0].execute(caster, coords)
-			if not result["success"]: return display_manager.log_to_banner(result["message"])
-			print(result)
+			var caster: Actor = Manifest.queue[0]
+			var ability: AbilityData = caster.data.abilities[0]
+			if not CombatManager.has_enough_ap(caster, ability.ap_cost): return display_manager.log_to_banner("Not enough AP...")
+			var result = ability.execute(caster, coords)
 			caster.attacked = true
+			CombatManager.spend_ap(caster, ability.ap_cost)
+			if not result["success"]: return display_manager.log_to_banner(result["message"])
+			display_manager.log_damage_results(result)
+			combat_manager.apply_damage(result)
+			toggle_state(State.IDLE)
 		
 		_: print("[I AM ERROR] Unknown state")
 

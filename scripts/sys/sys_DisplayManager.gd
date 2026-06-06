@@ -113,7 +113,7 @@ func log_hit_results(results) -> void:
 func log_damage_results(results) -> void:
 	var attacker = results.get("attacker")
 	var defender = results.get("defender")
-	combat_log.append_text("[[color=darkred]DAMAGE[/color]] [color=red]" + attacker.data.name + "[/color] rolled a [color=cyan]" + str(results["raw"]) + "[/color]! But [color=blue]" + defender.data.name + "[/color] deflected [color=cyan]" + str(results["deflected"]) + "[/color] pts for a total of [color=cyan]" + str(results["incoming"]) + "[/color] incoming damage![br]")
+	combat_log.append_text("[[color=darkred]DAMAGE[/color]] [color=red]" + attacker.data.name + "[/color] attacked for [color=cyan]" + str(results["raw"]) + "[/color] pts of damage! But [color=blue]" + defender.data.name + "[/color] deflected [color=cyan]" + str(results["deflected"]) + "[/color] pts for a total of [color=cyan]" + str(results["damage"]) + "[/color] incoming damage![br]")
 
 # === Highlights ===
 func highlight_range(actor: Actor, state: GameMaster.State) -> void:

@@ -27,6 +27,7 @@ func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 	var base_damage = int(caster.data.pwr * base_pwr)
 	var caster_coords = Vector2i(caster.position) / GameMaster.CELL_SIZE
 	var distance = caster_coords.distance_to(coords)
-	var total_damage = int(Dice.roll_dice(base_damage, 4) + (distance * modifier))
-	results["damage"] = total_damage
+	var raw = int(Dice.roll_dice(base_damage, 4) + (distance * modifier))
+	results = CombatManager.stage_damage_results(caster, target, raw)
+	results["success"] = true
 	return results

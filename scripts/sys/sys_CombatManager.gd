@@ -32,16 +32,21 @@ static func roll_for_damage(attacker: Actor, defender: Actor) -> Dictionary:
 	var results: Dictionary
 	var damage_mod = attacker.data.pwr
 	var damage_roll = Dice.roll_dice(damage_mod, 4)
-	var deflected = defender.data.def
+	results = stage_damage_results(attacker, defender, damage_roll)
+	return results
+
+static func stage_damage_results(attacker: Actor, defender: Actor, damage: int) -> Dictionary:
+	var results: Dictionary
+	var deflected: int = defender.data.def
 	results["attacker"] = attacker
 	results["defender"] = defender
-	results["raw"] = damage_roll
+	results["raw"] = damage
 	results["deflected"] = deflected
-	results["incoming"] = max(int(damage_roll - deflected), 0)
+	results["damage"] = max(int(damage - deflected), 0)	
 	return results
 
 func apply_damage(results: Dictionary) -> void:
-	var damage = results.get("incoming")
+	var damage = results.get("damage")
 	var defender = results.get("defender")
 	var hp = Manifest.combatants[defender]["HP"]
 	var result = hp - damage
