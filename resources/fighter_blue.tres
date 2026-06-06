@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="ActorData" format=3 uid="uid://d1g7m63sg7d24"]
 
+[ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_1pvfj"]
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_2omw7"]
 [ext_resource type="Texture2D" uid="uid://3x2j26naf6ir" path="res://assets/sprites/chars/fighterBlue/Faceset.png" id="1_4ryjp"]
 [ext_resource type="Texture2D" uid="uid://cdu6ijextkw07" path="res://assets/sprites/chars/fighterBlue/SpriteSheet.png" id="2_2omw7"]
@@ -14,4 +15,5 @@ max_hp = 20
 pwr = 6
 def = 4
 dex = 4
+attack_range = null
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

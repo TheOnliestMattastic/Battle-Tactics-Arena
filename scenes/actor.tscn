@@ -4,11 +4,12 @@
 [ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="2_0jvkp"]
 [ext_resource type="Texture2D" uid="uid://dx8g4fidsdy25" path="res://assets/sprites/chars/brawlerBlue/SpriteSheet.png" id="2_35erh"]
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="2_w6j74"]
+[ext_resource type="Texture2D" uid="uid://daylhmw7gyq1x" path="res://assets/sprites/chars/brawlerBlue/Faceset.png" id="3_0jvkp"]
 
 [sub_resource type="Resource" id="Resource_0jvkp"]
 script = ExtResource("2_w6j74")
-alignment = null
-role = null
+spritesheet = ExtResource("2_35erh")
+faceset = ExtResource("3_0jvkp")
 attack_range = null
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"
 

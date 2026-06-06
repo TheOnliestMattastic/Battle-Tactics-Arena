@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ActorData" format=3 uid="uid://58ok6iwyf4un"]
 
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_a2wy4"]
+[ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_cshav"]
 [ext_resource type="Texture2D" uid="uid://dwa81bksgrxcp" path="res://assets/sprites/chars/shaLion/Faceset.png" id="1_hp2y3"]
 [ext_resource type="Texture2D" uid="uid://4rtp1ak25dy0" path="res://assets/sprites/chars/shaLion/SpriteSheet.png" id="2_a2wy4"]
 
@@ -9,9 +10,10 @@ script = ExtResource("1_a2wy4")
 name = "Rafe the Rough"
 spritesheet = ExtResource("2_a2wy4")
 faceset = ExtResource("1_hp2y3")
-alignment = "Flank"
+alignment = "Vanguard"
 pwr = 6
 def = 3
 dex = 6
 spd = 4
+attack_range = null
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

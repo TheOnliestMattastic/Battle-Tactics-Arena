@@ -7,6 +7,8 @@ extends Area2D
 @onready var sprite: Sprite2D = $Sprite
 var target: bool = false
 var delayed: bool = false
+var moved: bool = false
+var attacked: bool = false
 
 func _ready() -> void:
 	if not data: return

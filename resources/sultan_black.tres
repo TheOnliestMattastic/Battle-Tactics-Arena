@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://7gxcqolshg2u" path="res://assets/sprites/chars/sultanBlack/Faceset.png" id="1_26fel"]
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_jmjoq"]
+[ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_qew8d"]
 [ext_resource type="Texture2D" uid="uid://csgnw0rr1yas1" path="res://assets/sprites/chars/sultanBlack/SpriteSheet.png" id="2_jmjoq"]
 
 [resource]
@@ -15,4 +16,5 @@ pwr = 6
 def = 3
 dex = 6
 spd = 3
+attack_range = null
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

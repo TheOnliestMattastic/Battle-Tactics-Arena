@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dq5c1q1gq41pf" path="res://assets/sprites/chars/shaman/Faceset.png" id="1_8tbdx"]
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_gynw0"]
+[ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_iprxc"]
 [ext_resource type="Texture2D" uid="uid://usmw88akve3x" path="res://assets/sprites/chars/shaman/SpriteSheet.png" id="2_rd4cf"]
 
 [resource]
@@ -9,9 +10,10 @@ script = ExtResource("1_gynw0")
 name = "Dorn the Dour"
 spritesheet = ExtResource("2_rd4cf")
 faceset = ExtResource("1_8tbdx")
-alignment = "Vanguard"
+alignment = "Flank"
 pwr = 6
 def = 2
 dex = 6
 spd = 3
+attack_range = null
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

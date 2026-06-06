@@ -10,6 +10,8 @@ static func roll_for_init(queue: Array[Actor]) -> void:
 		Manifest.combatants[actor]["init"] = Dice.roll_d20() + actor.data.spd
 		Manifest.combatants[actor]["AP"] = min((Manifest.combatants[actor]["AP"] + 3), 5)
 		actor.delayed = false
+		actor.moved = false
+		actor.attacked = false
 	queue.sort_custom(func(a, b): return Manifest.combatants[a]["init"] > Manifest.combatants[b]["init"])
 
 func get_cells_in_range(actor) -> Array:

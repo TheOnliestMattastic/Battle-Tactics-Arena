@@ -12,7 +12,6 @@ name = "Vale the Vague"
 spritesheet = ExtResource("2_drks0")
 faceset = ExtResource("1_4bhcl")
 alignment = "Flank"
-role = null
 pwr = 4
 def = 4
 dex = 6

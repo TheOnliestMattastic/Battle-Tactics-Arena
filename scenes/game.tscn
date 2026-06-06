@@ -376,6 +376,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="moveButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=84745252]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -407,6 +408,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="attackButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=1054470299]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -438,6 +440,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="skillsButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=793698351]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -469,6 +472,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="delayButton" type="TextureButton" parent="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu" unique_id=75603471]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 texture_normal = SubResource("AtlasTexture_trtic")
@@ -874,7 +878,7 @@ data = ExtResource("13_5newe")
 [node name="Actor4" parent="Actors/Vanguard" unique_id=1039089710 instance=ExtResource("11_kvpfn")]
 position = Vector2(128, 256)
 scale = Vector2(4, 4)
-data = ExtResource("14_37s47")
+data = ExtResource("20_5newe")
 
 [node name="Actor5" parent="Actors/Vanguard" unique_id=729704875 instance=ExtResource("11_kvpfn")]
 position = Vector2(64, 128)
@@ -901,7 +905,7 @@ data = ExtResource("18_bhx41")
 [node name="Actor9" parent="Actors/Flank" unique_id=162605852 instance=ExtResource("11_kvpfn")]
 position = Vector2(576, 64)
 scale = Vector2(4, 4)
-data = ExtResource("20_5newe")
+data = ExtResource("14_37s47")
 
 [node name="Actor10" parent="Actors/Flank" unique_id=928971165 instance=ExtResource("11_kvpfn")]
 position = Vector2(576, 192)
@@ -910,7 +914,7 @@ data = ExtResource("19_qnb83")
 
 [connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/moveButton" to="UI" method="_on_move_button_pressed"]
 [connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/attackButton" to="UI" method="_on_attack_button_pressed"]
-[connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/skillsButton" to="." method="_on_skills_button_pressed"]
+[connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/skillsButton" to="UI" method="_on_skills_button_pressed"]
 [connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/delayButton" to="UI" method="_on_delay_button_pressed"]
 [connection signal="pressed" from="UI/HUD/baseBox/bottomPanel/innerMargin/contentBox/ActionMenu/actionMenu/endButton" to="UI" method="_on_end_button_pressed"]
 [connection signal="cell_pressed" from="UI/GridMap" to="." method="_on_grid_map_cell_pressed"]

@@ -28,12 +28,13 @@ func _ready() -> void:
 	for combatant in Manifest.combatants: grid_map.toggle_obstacle(Vector2i(combatant.position) / CELL_SIZE, true)
 	
 	CombatManager.roll_for_init(Manifest.queue)
+	display_manager.display_queue(Manifest.queue)
 	display_manager.log_init()
 	toggle_state(State.IDLE)
 
 # === Per Frame ===
 func _process(delta: float) -> void:
-	display_manager.display_queue(Manifest.queue)
+	display_manager.display_active(Manifest.queue[0])
 	for combatant in Manifest.combatants:
 		if combatant.target: display_manager.display_target(combatant)
 
@@ -68,6 +69,7 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			Manifest.gridmap.get(coords).occupant = mover
 			Manifest.gridmap.get(start_pos).occupant = null
 			toggle_state(State.IDLE)
+			mover.moved = true
 		
 		State.ATTACK:
 			var attacker = Manifest.queue[0]
@@ -77,6 +79,7 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			# TESTING: AP mechanics; need to move later
 			if not CombatManager.has_enough_ap(attacker): return display_manager.log_to_banner("Not enough AP...")
 			CombatManager.spend_ap(attacker)
+			attacker.attacked = true
 			
 			# calculate hit and log
 			var results = CombatManager.roll_for_attack(attacker, target)
@@ -94,6 +97,7 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 			var result = caster.data.abilities[0].execute(caster, coords)
 			if not result["success"]: return display_manager.log_to_banner(result["message"])
 			print(result)
+			caster.attacked = true
 		
 		_: print("[I AM ERROR] Unknown state")
 
@@ -125,6 +129,7 @@ func actor_defeated(actor: Actor) -> void:
 	Manifest.remove_from_queue(actor)
 	actor.queue_free()
 	grid_map.toggle_obstacle(coords, false)
+	display_manager.display_queue(Manifest.queue)
 
 func end_turn() -> void:
 	Manifest.queue.pop_front()
@@ -151,9 +156,5 @@ func delay_turn() -> void:
 	else:
 		Manifest.queue[0].delayed = true
 		Manifest.queue.push_back(Manifest.queue.pop_front())
+		display_manager.display_queue(Manifest.queue)
 		toggle_state(State.IDLE)
-
-
-func _on_skills_button_pressed() -> void:
-	if not Manifest.queue[0].data.name == "Vale the Vague": return
-	toggle_state(State.ABILITY)

@@ -11,6 +11,25 @@ extends Control
 @onready var game_master: GameMaster = $".."
 @onready var grid_map: Grid = %GridMap
 @onready var combat_manager: CombatManager = %Actors
+@onready var delay_button: TextureButton = %delayButton
+@onready var move_button: TextureButton = %moveButton
+@onready var skills_button: TextureButton = %skillsButton
+@onready var attack_button: TextureButton = %attackButton
+
+func _process(delta: float) -> void:
+	var active = Manifest.queue[0]
+	if active.delayed or active.moved or active.attacked: delay_button.disabled = true
+	else: delay_button.disabled = false
+	
+	if active.moved: move_button.disabled = true
+	else: move_button.disabled = false
+	
+	if active.attacked: 
+		attack_button.disabled = true
+		skills_button.disabled = true
+	else: 
+		attack_button.disabled = false
+		skills_button.disabled = false
 
 # === Signals ===
 func _on_move_button_pressed() -> void: # Toggle move state
@@ -25,6 +44,10 @@ func _on_end_button_pressed() -> void:
 func _on_delay_button_pressed() -> void:
 	game_master.delay_turn()
 
+func _on_skills_button_pressed() -> void:
+	if not Manifest.queue[0].data.abilities: return
+	game_master.toggle_state(GameMaster.State.ABILITY)
+
 # === Display Queue Info ===
 func display_queue(queue: Array[Actor]) -> void:
 	var copy_of_queue = queue.duplicate() # use copy for function
@@ -32,24 +55,8 @@ func display_queue(queue: Array[Actor]) -> void:
 	# Clear and fill active display
 	for child in active_display.get_node("HBoxContainer/ActiveActorPortrait").get_children(): child.queue_free()
 	var portrait = portrait_scene.instantiate()
-	portrait.texture = copy_of_queue[0].data.faceset # populate portrait w/texture
-	
-	# display portrait and stats
-	var active_actor = copy_of_queue[0]
-	active_display.get_node("HBoxContainer/ActiveActorPortrait").add_child(portrait)
-	active_display.get_node("name").text = active_actor.data.name
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/hp").text = "HP: " + str(Manifest.combatants[active_actor]["HP"])
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/ap").text = "AP: " + str(Manifest.combatants[active_actor]["AP"])
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/pwr").text = "PWR: " + str(active_actor.data.pwr)
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/def").text = "DEF: " + str(active_actor.data.def)
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/dex").text = "DEX: " + str(active_actor.data.dex)
-	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/spd").text = "SPD: " + str(active_actor.data.spd)
-	
-	# add to dictionary
-	Manifest.add_portrait(copy_of_queue[0], portrait)
-	copy_of_queue.pop_front() # remove active actor
 
-	# Clear and fill queue display, and populate portraits dictionary
+	copy_of_queue.pop_front() # remove active actor
 	for child in queue_display.get_children(): child.queue_free()
 	copy_of_queue.reverse() # descending order for scrollbox
 	for actor in copy_of_queue:
@@ -57,6 +64,19 @@ func display_queue(queue: Array[Actor]) -> void:
 		portrait.texture = actor.data.faceset
 		queue_display.add_child(portrait)
 		Manifest.add_portrait(actor, portrait)
+
+# === Display Active Info ===
+func display_active(actor: Actor) -> void:
+	var portrait = portrait_scene.instantiate()
+	portrait.texture = actor.data.faceset # populate portrait w/texture
+	active_display.get_node("HBoxContainer/ActiveActorPortrait").add_child(portrait)
+	active_display.get_node("name").text = actor.data.name
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/hp").text = "HP: " + str(Manifest.combatants[actor]["HP"])
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/ap").text = "AP: " + str(Manifest.combatants[actor]["AP"])
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/pwr").text = "PWR: " + str(actor.data.pwr)
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/def").text = "DEF: " + str(actor.data.def)
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/dex").text = "DEX: " + str(actor.data.dex)
+	active_display.get_node("HBoxContainer/ActiveActorStatMargin/ActiveActorStatBox/spd").text = "SPD: " + str(actor.data.spd)
 
 # === Display Target Info ===
 func display_target(target: Actor) -> void:
