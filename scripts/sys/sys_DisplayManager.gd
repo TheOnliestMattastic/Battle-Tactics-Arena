@@ -123,12 +123,12 @@ func highlight_range(actor: Actor, state: GameMaster.State) -> void:
 		GameMaster.State.MOVE: 
 			in_range = GridMath.get_cells_in_range(actor, grid_map.astar)
 			targets = GridMath.get_targets_in_range(actor, 2, grid_map.astar)
-			Grid.highlight_cells(in_range, state)
-			Grid.highlight_cells(targets, GameMaster.State.ATTACK)
+			Grid.highlight_cells(in_range, "green")
+			Grid.highlight_cells(targets, "red")
 		
 		GameMaster.State.ATTACK:
 			targets = GridMath.get_targets_in_range(actor, 2, grid_map.astar)
-			Grid.highlight_cells(targets, state)
+			Grid.highlight_cells(targets, "red")
 
 # === Display Changes ===
 func remove_portrait(actor: Actor) -> void:

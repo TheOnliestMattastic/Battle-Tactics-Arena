@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HealAbility" format=3 uid="uid://ctvvfxunym23x"]
+
+[ext_resource type="Script" uid="uid://80ye5rjoghb4" path="res://scripts/abilities/abil_HealAbility.gd" id="1_j0hpq"]
+
+[resource]
+script = ExtResource("1_j0hpq")
+ap_cost = 2
+cast_range = 5
+metadata/_custom_type_script = "uid://dvqgu0gemlvo2"

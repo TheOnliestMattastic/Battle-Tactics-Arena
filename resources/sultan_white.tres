@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_1iiuk"]
 [ext_resource type="Texture2D" uid="uid://dw0v1hkhafqdh" path="res://assets/sprites/chars/sultanWhite/Faceset.png" id="1_7eo6l"]
+[ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_s2ii8"]
+[ext_resource type="Resource" uid="uid://ctvvfxunym23x" path="res://resources/abil_Heal.tres" id="2_g8k2l"]
 [ext_resource type="Texture2D" uid="uid://c3lnndut0gnlj" path="res://assets/sprites/chars/sultanWhite/SpriteSheet.png" id="2_yudxj"]
 
 [resource]
@@ -15,4 +17,6 @@ pwr = 4
 def = 2
 dex = 7
 spd = 3
+attack_range = null
+abilities = Array[ExtResource("1_s2ii8")]([ExtResource("2_g8k2l")])
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

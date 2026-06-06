@@ -38,6 +38,7 @@ static func roll_for_damage(attacker: Actor, defender: Actor) -> Dictionary:
 static func stage_damage_results(attacker: Actor, defender: Actor, damage: int) -> Dictionary:
 	var results: Dictionary
 	var deflected: int = defender.data.def
+	results["success"] = true
 	results["attacker"] = attacker
 	results["defender"] = defender
 	results["raw"] = damage

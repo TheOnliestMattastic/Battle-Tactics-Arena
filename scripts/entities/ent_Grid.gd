@@ -55,10 +55,10 @@ static func clear_highlights() -> void:
 		Manifest.gridmap[cell].modulate = Color(1, 1, 1, 1)
 
 # Movement range
-static func highlight_cells(cells: Array, state: GameMaster.State) -> void:
-	var color: Color
-	match state:
-		GameMaster.State.MOVE: color = Color(0.6, 1.0, 0.6, 1.0)
-		GameMaster.State.ATTACK: color = Color(1.0, 0.6, 0.6, 1.0)
+static func highlight_cells(cells: Array, color: String) -> void:
+	var shade: Color
+	match color:
+		"green": shade = Color(0.6, 1.0, 0.6, 1.0)
+		"red": shade = Color(1.0, 0.6, 0.6, 1.0)
 	for cell in cells:
-		Manifest.gridmap[cell].modulate = color
+		Manifest.gridmap[cell].modulate = shade

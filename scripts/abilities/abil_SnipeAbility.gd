@@ -6,7 +6,7 @@ extends AbilityData
 func stage(caster: Actor, astar: AStarGrid2D) -> Dictionary:
 	var results: Dictionary
 	var targets = GridMath.get_targets_in_range(caster, cast_range, astar)
-	Grid.highlight_cells(targets, GameMaster.State.ATTACK)
+	Grid.highlight_cells(targets, "red")
 	results["success"] = true
 	return results
 
@@ -29,5 +29,4 @@ func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 	var distance = caster_coords.distance_to(coords)
 	var raw = int(Dice.roll_dice(base_damage, 4) + (distance * modifier))
 	results = CombatManager.stage_damage_results(caster, target, raw)
-	results["success"] = true
 	return results

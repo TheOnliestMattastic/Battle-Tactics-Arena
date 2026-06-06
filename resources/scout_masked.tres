@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_snehm"]
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_yjfyb"]
 [ext_resource type="Texture2D" uid="uid://g4lw5e1r3qdn" path="res://assets/sprites/chars/scoutMasked/SpriteSheet.png" id="2_drks0"]
-[ext_resource type="Resource" uid="uid://dvpcblj0cto3p" path="res://resources/snipe_ability.tres" id="2_niv5o"]
+[ext_resource type="Resource" uid="uid://dvpcblj0cto3p" path="res://resources/abil_Snipe.tres" id="2_niv5o"]
 
 [resource]
 script = ExtResource("1_yjfyb")
