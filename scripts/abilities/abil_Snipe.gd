@@ -1,14 +1,12 @@
-class_name SnipeAbility
+class_name AbilitySnipe
 extends AbilityData
 
 @export var modifier: float = 1.5
 
-func stage(caster: Actor, astar: AStarGrid2D) -> Dictionary:
-	var results: Dictionary
+func stage(caster: Actor, astar: AStarGrid2D) -> void:
 	var targets = GridMath.get_targets_in_range(caster, cast_range, astar)
 	Grid.highlight_cells(targets, "red")
-	results["success"] = true
-	return results
+
 
 func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 	# setup 

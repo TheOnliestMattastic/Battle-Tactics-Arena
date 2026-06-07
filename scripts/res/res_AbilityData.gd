@@ -8,11 +8,8 @@ extends Resource
 @export var base_pwr: float = 1
 @export_enum("Attack", "Buff", "Debuff", "Heal") var type: String
 
-func stage(caster: Actor, astar: AStarGrid2D,) -> Dictionary:
-	var results: Dictionary
-	results["success"] = false
-	results["message"] = "[I AM ERROR] State method not overridden!"
-	return results
+func stage(caster: Actor, astar: AStarGrid2D) -> void:
+	return print("[I AM ERROR] Stage method not overridden!")
 
 
 func execute(caster: Actor, coords: Vector2i) -> Dictionary:

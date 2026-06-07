@@ -58,6 +58,19 @@ func apply_damage(results: Dictionary) -> void:
 		Manifest.combatants[defender]["HP"] = 0
 		game_master.actor_defeated(defender)
 
+static func apply_heal(results: Dictionary) -> void:
+	var target: Actor = results.get("target")
+	var ammount: int = results.get("ammount")
+	Manifest.combatants[target]["HP"] = min((Manifest.combatants[target]["HP"] + ammount), target.data.max_hp)
+
+static func stage_heal_results(caster: Actor, target: Actor, ammount: int) -> Dictionary:
+	var results: Dictionary
+	results["success"] = true
+	results["caster"] = caster
+	results["target"] = target
+	results["ammount"] = ammount
+	return results
+
 static func spend_ap(actor: Actor, ammount: int = 1) -> void:
 	if has_enough_ap(actor, ammount): Manifest.combatants[actor]["AP"] = Manifest.combatants[actor]["AP"] - ammount
 	else: print("[I AM ERROR] spend_ap edge was activated!")

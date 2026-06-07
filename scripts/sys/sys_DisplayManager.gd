@@ -96,12 +96,12 @@ func display_target(target: Actor) -> void:
 # === Display Logs ===
 func log_init() -> void:
 	for combatant in Manifest.combatants:
-		combat_log.append_text("[[color=darkgreen]INITIATIVE[/color]] " + combatant.data.name + " rolled a [color=cyan]" + str(Manifest.combatants[combatant]["init"]) + "[/color]![br]")
+		combat_log.append_text("[[color=yellow]INITIATIVE[/color]] " + combatant.data.name + " rolled a [color=cyan]" + str(Manifest.combatants[combatant]["init"]) + "[/color]![br]")
 
 func log_to_banner(message: String) -> void:
 	banner.text = message
 
-func log_hit_results(results) -> void:
+func log_hit_results(results: Dictionary) -> void:
 	var attacker = results.get("attacker")
 	var defender = results.get("defender")
 	var successful = results.get("success")
@@ -110,10 +110,15 @@ func log_hit_results(results) -> void:
 	if successful: combat_log.append_text("The [color=darkgreen]attack succeeded[/color]![br]")
 	else: combat_log.append_text("The [color=red]attack failed[/color] to land. [color=blue]" + defender.data.name + "[/color] successfully evaded the attack![br]")
 
-func log_damage_results(results) -> void:
+func log_damage_results(results: Dictionary) -> void:
 	var attacker = results.get("attacker")
 	var defender = results.get("defender")
 	combat_log.append_text("[[color=darkred]DAMAGE[/color]] [color=red]" + attacker.data.name + "[/color] attacked for [color=cyan]" + str(results["raw"]) + "[/color] pts of damage! But [color=blue]" + defender.data.name + "[/color] deflected [color=cyan]" + str(results["deflected"]) + "[/color] pts for a total of [color=cyan]" + str(results["damage"]) + "[/color] incoming damage![br]")
+
+func log_heal_results(results: Dictionary) -> void:
+	var caster: Actor = results.get("caster")
+	var target: Actor = results.get("target")
+	combat_log.append_text("[[color=darkgreen]HEAL[/color]] [color=darkgreen]" + caster.data.name + "[/color] healed [color=blue]" + target.data.name + "[/color] for [color=cyan]" + str(results.get("ammount")) + "[/color] pts![br]")
 
 # === Highlights ===
 func highlight_range(actor: Actor, state: GameMaster.State) -> void:

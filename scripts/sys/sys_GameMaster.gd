@@ -102,8 +102,16 @@ func _on_grid_map_cell_pressed(coords: Vector2i) -> void:
 				display_manager.log_to_banner(result["message"])
 				return toggle_state(State.IDLE)
 			
-			display_manager.log_damage_results(result)
-			combat_manager.apply_damage(result)
+			var type := ability.type
+			match type:
+				"Attack":
+					combat_manager.apply_damage(result)
+					display_manager.log_damage_results(result)
+				
+				"Heal":
+					CombatManager.apply_heal(result)
+					display_manager.log_heal_results(result)
+			
 			toggle_state(State.IDLE)
 		
 		_: print("[I AM ERROR] Unknown state")

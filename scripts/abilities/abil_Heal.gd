@@ -1,14 +1,10 @@
-class_name HealAbility
+class_name AbilityHeal
 extends AbilityData
 
-@export var modifier: float = 1.75
-
-func stage(caster: Actor, astar: AStarGrid2D) -> Dictionary:
-	var results: Dictionary
+func stage(caster: Actor, astar: AStarGrid2D) -> void:
 	var targets = GridMath.get_targets_in_range(caster, cast_range, astar, true)
 	Grid.highlight_cells(targets, "green")
-	results["success"] = true
-	return results
+
 
 func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 	var results: Dictionary
@@ -17,9 +13,8 @@ func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 		results["success"] = false
 		results["message"] = "Invalid target."
 		return results
-	
-	
-	
-	
+		
+	var ammount: int = int(caster.data.pwr * self.base_pwr)
+	results = CombatManager.stage_heal_results(caster, target, ammount)
 	
 	return results
