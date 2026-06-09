@@ -11,10 +11,10 @@ extends Control
 @onready var game_master: GameMaster = $".."
 @onready var grid_map: Grid = %GridMap
 @onready var combat_manager: CombatManager = %Actors
-@onready var delay_button: TextureButton = %delayButton
-@onready var move_button: TextureButton = %moveButton
-@onready var skills_button: TextureButton = %skillsButton
-@onready var attack_button: TextureButton = %attackButton
+@onready var delay_button: Button = %delayButton
+@onready var move_button: Button = %moveButton
+@onready var skills_button: Button = %skillsButton
+@onready var attack_button: Button = %attackButton
 const POPUP: PackedScene = preload("uid://c85was7sqng2o")
 
 func _process(delta: float) -> void:

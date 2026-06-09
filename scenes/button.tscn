@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://du80t518b7k5e"]
+
+[ext_resource type="FontFile" uid="uid://cex5evsqoospt" path="res://resources/font.tres" id="1_1bdt2"]
+[ext_resource type="StyleBox" uid="uid://dcx6pqvxsmnp2" path="res://resources/btn_normal.tres" id="2_8m7bo"]
+[ext_resource type="StyleBox" uid="uid://ifei8qoxe528" path="res://resources/btn_pressed.tres" id="3_t81cg"]
+[ext_resource type="StyleBox" uid="uid://kg1xg2fq5nte" path="res://resources/btn_hover.tres" id="4_is61r"]
+[ext_resource type="StyleBox" uid="uid://b3tcf7obf2qta" path="res://resources/btn_disabled.tres" id="5_iw4ej"]
+
+[node name="Button" type="Button" unique_id=246738831]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_1bdt2")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("2_8m7bo")
+theme_override_styles/pressed = ExtResource("3_t81cg")
+theme_override_styles/hover = ExtResource("4_is61r")
+theme_override_styles/disabled = ExtResource("5_iw4ej")
+theme_override_styles/focus = ExtResource("4_is61r")
+text = "Main Menu"

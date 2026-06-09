@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://b5c5p41dyogej"]
+
+[ext_resource type="FontFile" uid="uid://cex5evsqoospt" path="res://resources/font.tres" id="1_mfdpk"]
+
+[resource]
+font = ExtResource("1_mfdpk")
+font_size = 48
