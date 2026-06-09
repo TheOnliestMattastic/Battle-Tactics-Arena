@@ -18,6 +18,8 @@ var current_state: State
 @onready var combat_manager: CombatManager = %Actors
 @onready var display_manager: DisplayManager = %UI
 @onready var grid_map: Grid = %GridMap
+@onready var vanguard: Node2D = %Vanguard
+@onready var flank: Node2D = %Flank
 
 # === On Startup ===
 func _ready() -> void:
@@ -145,11 +147,23 @@ func toggle_state(target_state: State) -> void:
 
 func actor_defeated(actor: Actor) -> void:
 	var coords := Vector2i(actor.position) / CELL_SIZE
+	var alignment := actor.data.alignment
 	display_manager.remove_portrait(actor)
 	Manifest.remove_from_queue(actor)
 	actor.queue_free()
 	grid_map.toggle_obstacle(coords, false)
 	display_manager.display_queue(Manifest.queue)
+	
+	# check for win condition
+	# checking w/-1 because actor is queued for deletion but not yet deleted
+	var team = combat_manager.get_node(alignment).get_child_count()
+	if team - 1 == 0: game_over(alignment) 
+
+func game_over(loser: String) -> void:
+	var winner
+	if loser == "Vanguard": winner = "Flank"
+	else: winner = "Vanguard"
+	display_manager.display_game_over(winner)
 
 func end_turn() -> void:
 	Manifest.queue.pop_front()
@@ -164,10 +178,10 @@ func end_turn() -> void:
 
 func get_combatants() -> Array:
 	var combatants: Array
-	var a = combat_manager.get_child(0).get_children()
-	var b = combat_manager.get_child(1).get_children()
-	combatants.append_array(a)
-	combatants.append_array(b)
+	var v = vanguard.get_children()
+	var f = flank.get_children()
+	combatants.append_array(v)
+	combatants.append_array(f)
 	return combatants
 
 func delay_turn() -> void:

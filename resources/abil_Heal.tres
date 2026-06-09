@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HealAbility" format=3 uid="uid://ctvvfxunym23x"]
+[gd_resource type="Resource" script_class="AbilityHeal" format=3 uid="uid://ctvvfxunym23x"]
 
 [ext_resource type="Script" uid="uid://80ye5rjoghb4" path="res://scripts/abilities/abil_Heal.gd" id="1_j0hpq"]
 
@@ -7,6 +7,6 @@ script = ExtResource("1_j0hpq")
 name = "Heal"
 ap_cost = 2
 cast_range = 6
-base_pwr = 2.5
+base_pwr = 3.0
 type = "Heal"
 metadata/_custom_type_script = "uid://dvqgu0gemlvo2"

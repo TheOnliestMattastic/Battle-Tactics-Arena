@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbilitySunder" format=3 uid="uid://dtcj1b8jfk6m8"]
+
+[ext_resource type="Script" uid="uid://c6ma16hrdj071" path="res://scripts/abilities/abil_Sunder.gd" id="1_k6uul"]
+
+[resource]
+script = ExtResource("1_k6uul")
+name = "Sunder"
+ap_cost = 4
+base_pwr = 0.75
+type = "Attack"
+metadata/_custom_type_script = "uid://c6ma16hrdj071"

@@ -859,6 +859,7 @@ position = Vector2(-384, -256)
 script = ExtResource("13_pl11u")
 
 [node name="Vanguard" type="Node2D" parent="Actors" unique_id=442984596]
+unique_name_in_owner = true
 
 [node name="Actor" parent="Actors/Vanguard" unique_id=1096699479 instance=ExtResource("11_kvpfn")]
 position = Vector2(192, 64)
@@ -886,6 +887,7 @@ scale = Vector2(4, 4)
 data = ExtResource("15_bt5mj")
 
 [node name="Flank" type="Node2D" parent="Actors" unique_id=993040297]
+unique_name_in_owner = true
 
 [node name="Actor6" parent="Actors/Flank" unique_id=1695760592 instance=ExtResource("11_kvpfn")]
 position = Vector2(512, 0)

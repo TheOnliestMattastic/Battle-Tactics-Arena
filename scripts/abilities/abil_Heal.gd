@@ -14,7 +14,7 @@ func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 		results["message"] = "Invalid target."
 		return results
 		
-	var ammount: int = int(caster.data.pwr * self.base_pwr)
+	var ammount: int = int(caster.data.pwr * base_pwr)
 	results = CombatManager.stage_heal_results(caster, target, ammount)
-	
+	CombatManager.spend_ap(caster, ap_cost)
 	return results

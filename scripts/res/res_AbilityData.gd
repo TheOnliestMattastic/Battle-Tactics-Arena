@@ -11,7 +11,6 @@ extends Resource
 func stage(caster: Actor, astar: AStarGrid2D) -> void:
 	return print("[I AM ERROR] Stage method not overridden!")
 
-
 func execute(caster: Actor, coords: Vector2i) -> Dictionary:
 	var results: Dictionary
 	results["success"] = false

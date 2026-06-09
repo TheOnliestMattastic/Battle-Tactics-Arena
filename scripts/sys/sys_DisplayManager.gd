@@ -15,6 +15,7 @@ extends Control
 @onready var move_button: TextureButton = %moveButton
 @onready var skills_button: TextureButton = %skillsButton
 @onready var attack_button: TextureButton = %attackButton
+const POPUP: PackedScene = preload("uid://c85was7sqng2o")
 
 func _process(delta: float) -> void:
 	var active = Manifest.queue[0]
@@ -143,3 +144,11 @@ func remove_portrait(actor: Actor) -> void:
 			Manifest.portraits.erase(portrait)
 			child.free()
 			break
+
+
+# === Display Game Over Screen ===
+func display_game_over(winner: String) -> void:
+	var gameover = POPUP.instantiate()
+	var label = gameover.get_node("MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/Body")
+	label.text = winner + " is the victor."
+	add_child(gameover)

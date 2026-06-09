@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://c85was7sqng2o"]
+
+[ext_resource type="Texture2D" uid="uid://dmlf5wgs3jpcc" path="res://resources/npr_panel.tres" id="1_hjcnf"]
+[ext_resource type="FontFile" uid="uid://cex5evsqoospt" path="res://resources/font.tres" id="2_hjcnf"]
+[ext_resource type="StyleBox" uid="uid://dcx6pqvxsmnp2" path="res://resources/btn_normal.tres" id="3_hjcnf"]
+[ext_resource type="StyleBox" uid="uid://ifei8qoxe528" path="res://resources/btn_pressed.tres" id="4_3bqek"]
+[ext_resource type="StyleBox" uid="uid://kg1xg2fq5nte" path="res://resources/btn_hover.tres" id="5_gk7y2"]
+[ext_resource type="StyleBox" uid="uid://b3tcf7obf2qta" path="res://resources/btn_disabled.tres" id="6_y0oo1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hjcnf"]
+font = ExtResource("2_hjcnf")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_ofmyw"]
+font = ExtResource("2_hjcnf")
+font_size = 24
+
+[node name="Popup" type="Control" unique_id=548684461]
+z_index = 10
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1767890209]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 192
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 192
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer" unique_id=1555866508]
+layout_mode = 2
+texture = ExtResource("1_hjcnf")
+patch_margin_left = 34
+patch_margin_top = 48
+patch_margin_right = 34
+patch_margin_bottom = 48
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect" unique_id=671409690]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer" unique_id=458067680]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1222846655]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Game Over"
+label_settings = SubResource("LabelSettings_hjcnf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Body" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=1684691233]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Victor!"
+label_settings = SubResource("LabelSettings_ofmyw")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer" unique_id=99897507]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=52996643]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_hjcnf")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("3_hjcnf")
+theme_override_styles/pressed = ExtResource("4_3bqek")
+theme_override_styles/hover = ExtResource("5_gk7y2")
+theme_override_styles/disabled = ExtResource("6_y0oo1")
+theme_override_styles/focus = ExtResource("5_gk7y2")
+text = "Main Menu"
+
+[node name="Button2" type="Button" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=706864287]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_hjcnf")
+theme_override_styles/normal = ExtResource("3_hjcnf")
+theme_override_styles/pressed = ExtResource("4_3bqek")
+theme_override_styles/hover = ExtResource("5_gk7y2")
+theme_override_styles/disabled = ExtResource("6_y0oo1")
+theme_override_styles/focus = ExtResource("5_gk7y2")
+text = "Reset"

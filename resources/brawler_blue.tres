@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://h8dpm7kjod7v" path="res://scripts/res/res_ActorData.gd" id="1_b7uan"]
 [ext_resource type="Script" uid="uid://coa45myn0p2l4" path="res://scripts/res/res_AbilityData.gd" id="1_oveh3"]
 [ext_resource type="Texture2D" uid="uid://dx8g4fidsdy25" path="res://assets/sprites/chars/brawlerBlue/SpriteSheet.png" id="2_bioop"]
+[ext_resource type="Resource" uid="uid://dtcj1b8jfk6m8" path="res://resources/abil_Sunder.tres" id="2_l77pa"]
 
 [resource]
 script = ExtResource("1_b7uan")
@@ -12,4 +13,5 @@ spritesheet = ExtResource("2_bioop")
 faceset = ExtResource("1_2wcdi")
 alignment = "Vanguard"
 attack_range = null
+abilities = Array[ExtResource("1_oveh3")]([ExtResource("2_l77pa")])
 metadata/_custom_type_script = "uid://h8dpm7kjod7v"

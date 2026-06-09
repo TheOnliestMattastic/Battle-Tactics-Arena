@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://kg1xg2fq5nte"]
+
+[ext_resource type="Texture2D" uid="uid://be0tq4i3oce1p" path="res://assets/sprites/ui/buttondragon1.png" id="1_5vq7a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap2cg"]
+atlas = ExtResource("1_5vq7a")
+region = Rect2(100, 0, 100, 35)
+
+[resource]
+texture = SubResource("AtlasTexture_ap2cg")
+texture_margin_left = 14.0
+texture_margin_top = 10.0
+texture_margin_right = 14.0
+texture_margin_bottom = 10.0
